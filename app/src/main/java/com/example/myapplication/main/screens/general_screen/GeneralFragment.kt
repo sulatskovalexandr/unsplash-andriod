@@ -14,22 +14,30 @@ class GeneralFragment : Fragment() {
 
     private lateinit var adapter: PhotosAdapter
 
-    private var fragmentGeneralBinding: FragmentGeneralBinding? = null
+    private var _binding: FragmentGeneralBinding? = null
+    private val binding get() = requireNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentGeneralBinding.inflate(inflater, container, false)
-        fragmentGeneralBinding = binding
+    ): View {
+        _binding = FragmentGeneralBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         adapter = PhotosAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
+
+        binding.fgRvListPhotos.layoutManager = LinearLayoutManager(requireContext())
+        binding.fgRvListPhotos.adapter = adapter
 
         adapter.addPhoto(
             listOf(
+
                 Photos(
                     "Alex",
                     "USA",
@@ -44,7 +52,11 @@ class GeneralFragment : Fragment() {
                 ),
             )
         )
-        return binding.root
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 
