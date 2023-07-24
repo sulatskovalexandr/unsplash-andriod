@@ -4,11 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ItemPhotosBinding
 
 
 class PhotosAdapter : RecyclerView.Adapter<PhotoHolder>() {
+
 
     private val listPhotos = mutableListOf<Photos>()
 
@@ -30,15 +34,19 @@ class PhotosAdapter : RecyclerView.Adapter<PhotoHolder>() {
     }
 }
 
-
 class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val binding = ItemPhotosBinding.bind(itemView)
 
     fun bindPhoto(photo: Photos) = with(binding) {
-        itemName.text = photo.name
-        itemLocation.text = photo.location
-        itemImage.setImageResource(photo.image)
-        itemProfileImage.setImageResource(photo.profile_image)
+
+        Glide.with(itemView).load(photo.user?.profileImage?.medium).circleCrop()
+            .into(itemProfileImage)
+
+        Glide.with(itemView).load(photo.urls?.regular).transform(CenterCrop(), RoundedCorners(16))
+            .into(itemImage)
+
+        itemName.text = photo.user?.userName
+        itemLocation.text = photo.user?.location
     }
 }
 

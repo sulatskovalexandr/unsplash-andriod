@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/items_photos"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/item_profile_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_24"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/black" />
 
     <TextView
         android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Name"
+        android:layout_marginStart="@dimen/margin_16"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_name"
+        app:layout_constraintBottom_toTopOf="@id/item_location"
         app:layout_constraintStart_toEndOf="@id/item_profile_image"
         app:layout_constraintTop_toTopOf="@id/item_profile_image"
-        android:layout_marginStart="@dimen/margin_16"
-        app:layout_constraintBottom_toTopOf="@id/item_location"
-        android:textSize="@dimen/text_size_name"
-        android:textColor="@color/black" />
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/item_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Location"
-        app:layout_constraintStart_toEndOf="@id/item_profile_image"
-        app:layout_constraintBottom_toBottomOf="@id/item_profile_image"
         android:layout_marginStart="@dimen/margin_16"
-        app:layout_constraintTop_toBottomOf="@id/item_name"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_location"
-        android:textColor="@color/black" />
+        app:layout_constraintBottom_toBottomOf="@id/item_profile_image"
+        app:layout_constraintStart_toEndOf="@id/item_profile_image"
+        app:layout_constraintTop_toBottomOf="@id/item_name"
+        tools:text="Location" />
 
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_profile_image"
-        android:src="@drawable/plant5"
+        android:layout_height="300dp"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
-        android:layout_marginEnd="@dimen/margin_16" />
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_profile_image"
+        tools:src="@drawable/plant5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
