@@ -1,11 +1,11 @@
-package com.example.myapplication.main.screens.general_screen.general_use_case
+package com.example.myapplication.main.screens.general_screen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.main.data.PhotoApiService
-import com.example.myapplication.main.screens.general_screen.Photos
+import com.example.myapplication.main.screens.general_screen.general_use_case.GetPhotoUseCase
 import kotlinx.coroutines.launch
 
 class GeneralViewModel : ViewModel() {

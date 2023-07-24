@@ -39,10 +39,14 @@ class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindPhoto(photo: Photos) = with(binding) {
 
-        Glide.with(itemView).load(photo.user?.profileImage?.medium).circleCrop()
+        Glide.with(itemView)
+            .load(photo.user?.profileImage?.medium)
+            .circleCrop()
             .into(itemProfileImage)
 
-        Glide.with(itemView).load(photo.urls?.regular).transform(CenterCrop(), RoundedCorners(16))
+        Glide.with(itemView)
+            .load(photo.urls?.regular)
+            .transform(CenterCrop(), RoundedCorners(16))
             .into(itemImage)
 
         itemName.text = photo.user?.userName
