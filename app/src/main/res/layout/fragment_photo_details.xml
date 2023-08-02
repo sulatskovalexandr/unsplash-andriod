@@ -2,149 +2,311 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fpdClContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.screens.photo_details_screen.PhotoDetailsFragment">
 
+    <Toolbar
+        android:id="@+id/fpdToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:title="@string/fpd_toolbar_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:id="@+id/details_image"
+        android:id="@+id/fpdImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fpdToolbar"
         tools:src="@drawable/plant5" />
 
     <TextView
-        android:id="@+id/details_location"
+        android:id="@+id/fpdLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_24"
         android:layout_marginBottom="8dp"
-        android:text="location"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/details_image"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/fpdImage"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="location" />
 
     <ImageView
-        android:id="@+id/details_profile_image"
+        android:id="@+id/fpdProfileImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details_image"
+        app:layout_constraintTop_toBottomOf="@id/fpdImage"
         tools:src="@color/black" />
 
     <TextView
-        android:id="@+id/details_user_name"
+        android:id="@+id/fpdUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_name"
-        app:layout_constraintBottom_toBottomOf="@id/details_profile_image"
-        app:layout_constraintStart_toEndOf="@id/details_profile_image"
-        app:layout_constraintTop_toTopOf="@id/details_profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/fpdProfileImage"
+        app:layout_constraintStart_toEndOf="@id/fpdProfileImage"
+        app:layout_constraintTop_toTopOf="@id/fpdProfileImage"
         tools:text="Name" />
 
 
     <ImageView
-        android:id="@+id/btn_details_bookmark"
+        android:id="@+id/fpdBtnFavorite"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginEnd="@dimen/margin_24"
         android:src="@drawable/baseline_bookmark_border_24"
-        app:layout_constraintBottom_toBottomOf="@id/details_profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/fpdProfileImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/details_profile_image" />
+        app:layout_constraintTop_toTopOf="@+id/fpdProfileImage" />
 
     <ImageView
-        android:id="@+id/btn_details_favorite"
+        android:id="@+id/fpdBtnLike"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginEnd="@dimen/margin_16"
         android:src="@drawable/baseline_favorite_border_24"
-        app:layout_constraintEnd_toStartOf="@id/btn_details_bookmark"
-        app:layout_constraintTop_toTopOf="@+id/btn_details_bookmark" />
+        app:layout_constraintEnd_toStartOf="@id/fpdBtnFavorite"
+        app:layout_constraintTop_toTopOf="@id/fpdBtnFavorite" />
 
     <ImageView
-        android:id="@+id/btn_details_downland"
+        android:id="@+id/fpdBtnDownland"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginEnd="@dimen/margin_16"
         android:src="@drawable/baseline_download_24"
-        app:layout_constraintEnd_toStartOf="@id/btn_details_favorite"
-        app:layout_constraintTop_toTopOf="@+id/btn_details_favorite" />
+        app:layout_constraintEnd_toStartOf="@id/fpdBtnLike"
+        app:layout_constraintTop_toTopOf="@+id/fpdBtnLike" />
 
     <View
-        android:id="@+id/_details_line1"
+        android:id="@+id/fpdLine1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_16"
         android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/details_profile_image" />
+        app:layout_constraintTop_toBottomOf="@id/fpdProfileImage" />
 
     <TextView
-        android:id="@+id/details_camera"
+        android:id="@+id/fpdTvCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_24"
-        android:text="Камера"
-        app:layout_constraintStart_toStartOf="@id/_details_line1"
-        app:layout_constraintTop_toBottomOf="@id/_details_line1" />
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fpd_text_camera"
+        app:layout_constraintStart_toStartOf="@id/fpdLine1"
+        app:layout_constraintTop_toBottomOf="@id/fpdLine1" />
 
     <TextView
-        android:id="@+id/tv_details_camera_info"
+        android:id="@+id/fpdTvCameraInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_5"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/details_camera"
-        app:layout_constraintTop_toBottomOf="@id/details_camera"
+        app:layout_constraintStart_toStartOf="@id/fpdTvCamera"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvCamera"
         tools:text="Camera info" />
 
     <TextView
-        android:id="@+id/details_focus"
+        android:id="@+id/fpdTvFocus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_24"
-        android:text="Фокусное растояние"
-        app:layout_constraintStart_toStartOf="@id/_details_line1"
-        app:layout_constraintTop_toBottomOf="@id/tv_details_camera_info" />
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fpd_text_focus"
+        app:layout_constraintStart_toStartOf="@id/fpdLine1"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvCameraInfo" />
 
     <TextView
-        android:id="@+id/tv_details_focus_info"
+        android:id="@+id/fpdTvFocusInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_5"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/details_focus"
-        app:layout_constraintTop_toBottomOf="@id/details_focus"
+        app:layout_constraintStart_toStartOf="@id/fpdTvFocus"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvFocus"
         tools:text="Focus info" />
 
-    <TextView
-        android:id="@+id/details_iso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_24"
-        android:text="ISO"
-        app:layout_constraintStart_toStartOf="@id/tv_details_focus_info"
-        app:layout_constraintTop_toBottomOf="@id/tv_details_focus_info" />
 
     <TextView
-        android:id="@+id/tv_details_iso_info"
+        android:id="@+id/fpdTvIso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fpd_text_iso"
+        app:layout_constraintStart_toStartOf="@id/fpdTvFocusInfo"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvFocusInfo" />
+
+    <TextView
+        android:id="@+id/fpdTvIsoInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_5"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/details_iso"
-        app:layout_constraintTop_toBottomOf="@id/details_iso"
+        app:layout_constraintStart_toStartOf="@id/fpdTvIso"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvIso"
         tools:text="ISO info" />
 
+    <TextView
+        android:id="@+id/fpdTvAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="100dp"
+        android:text="@string/fg_text_aperture"
+        app:layout_constraintEnd_toEndOf="@id/fpdLine1"
+        app:layout_constraintTop_toBottomOf="@id/fpdLine1" />
+
+    <TextView
+        android:id="@+id/fpdTvApertureInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/fpdTvAperture"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvAperture"
+        tools:text="Aperture info" />
+
+    <TextView
+        android:id="@+id/fpdTvExposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fg_text_exposition"
+        app:layout_constraintStart_toStartOf="@id/fpdTvApertureInfo"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvApertureInfo" />
+
+    <TextView
+        android:id="@+id/fpdTvExpositionInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/fpdTvExposition"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvExposition"
+        tools:text="Exposition info" />
+
+    <TextView
+        android:id="@+id/fpdTvResolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fg_text_resolution"
+        app:layout_constraintStart_toStartOf="@id/fpdTvExpositionInfo"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvExpositionInfo" />
+
+    <TextView
+        android:id="@+id/fpdTvResolutionInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/fpdTvResolution"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvResolution"
+        tools:text="Resolution info" />
+
+    <View
+        android:id="@+id/fpdLine2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvIsoInfo" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintEnd_toStartOf="@id/fpdTvNumberOfDownland"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fpdLine2"
+        tools:text="@string/fpd_text_number_of_view" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfView"
+        app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfView"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfView"
+        tools:text="View info" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfDownland"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintEnd_toStartOf="@id/fpdTvNumberOfLikes"
+        app:layout_constraintStart_toEndOf="@id/fpdTvNumberOfView"
+        app:layout_constraintTop_toBottomOf="@id/fpdLine2"
+        tools:text="@string/fpd_text_number_of_downlands" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfDownlandInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfDownland"
+        app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfDownland"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfDownland"
+        tools:text="Downlands info" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/fpd_text_number_of_likes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fpdTvNumberOfDownland"
+        app:layout_constraintTop_toBottomOf="@id/fpdLine2" />
+
+    <TextView
+        android:id="@+id/fpdTvNumberOfLikesInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfLikes"
+        app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfLikes"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfLikes"
+        tools:text="Likes info" />
+
+    <View
+        android:id="@+id/fpdLine3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfViewInfo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fpdRvListTags"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="@dimen/margin_16"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fpdLine3"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_tags" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
