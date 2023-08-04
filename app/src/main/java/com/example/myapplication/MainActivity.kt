@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.main.screens.general_screen.GeneralFragment
 import com.example.myapplication.main.screens.photo_details_screen.PhotoDetailsFragment
@@ -27,16 +28,17 @@ class MainActivity : AppCompatActivity() {
     private fun openGeneralScreen() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, GeneralFragment())
-            .setReorderingAllowed(true)
             .commit()
     }
 
     fun openPhotoDetailsScreen(photoId: String) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, PhotoDetailsFragment())
-            .setReorderingAllowed(true)
+            .replace(R.id.fragment_container, PhotoDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putString(Const.PHOTO_ID_KEY, photoId)
+                }
+            })
+            .addToBackStack(null)
             .commit()
     }
-
-
 }

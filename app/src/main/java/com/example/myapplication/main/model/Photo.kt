@@ -10,6 +10,7 @@ data class Photos(
 
 class User(
     val id: String,
+    val name: String,
     @SerializedName("username")
     val userName: String,
     val location: String? = "",
@@ -24,6 +25,7 @@ class ProfileImage(
 
 class Urls(
     val regular: String? = "",
+    val small: String? = ""
 )
 
 

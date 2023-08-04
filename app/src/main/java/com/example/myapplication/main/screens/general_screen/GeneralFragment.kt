@@ -6,16 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.MainActivity
+import com.example.myapplication.common.observeData
 import com.example.myapplication.databinding.FragmentGeneralBinding
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 
 class GeneralFragment : Fragment(), PhotoListClickListener {
@@ -86,7 +81,6 @@ class GeneralFragment : Fragment(), PhotoListClickListener {
             adapter.clear()
             viewModel.onRefreshPhotos()
         }
-
     }
 
     override fun onDestroyView() {
@@ -96,21 +90,5 @@ class GeneralFragment : Fragment(), PhotoListClickListener {
 
     override fun onPhotoClick(photoId: String) {
         (activity as? MainActivity)?.openPhotoDetailsScreen(photoId)
-    }
-
-    /**
-     * Запускает (и перезапускает) на фрагменте collect для переданного flow только в состоянии активности
-     */
-    inline fun <T> Fragment.observeData(
-        flow: Flow<T>,
-        lifecycleOwner: LifecycleOwner = viewLifecycleOwner,
-        state: Lifecycle.State = Lifecycle.State.STARTED,
-        crossinline block: (T) -> Unit
-    ) = lifecycleOwner.lifecycleScope.launch {
-        lifecycleOwner.repeatOnLifecycle(state) {
-            flow.collect { data ->
-                block(data)
-            }
-        }
     }
 }

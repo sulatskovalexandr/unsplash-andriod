@@ -14,7 +14,6 @@ interface UnsplashPhotoApi {
     @Headers(
         "Accept-Version: v1",
     )
-    @Deprecated("")
     suspend fun getPhotos(
         @Query("page") page: Int?,
         @Query("per_page") perPage: Int? = PER_PAGE,
@@ -24,6 +23,7 @@ interface UnsplashPhotoApi {
     @GET("photos/{id}")
     suspend fun getPhotoDetails(
         @Path("id")
-        photoId: String
+        photoId: String,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): PhotoDetails?
 }
