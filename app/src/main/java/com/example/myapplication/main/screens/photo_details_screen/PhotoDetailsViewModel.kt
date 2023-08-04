@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.main.data.PhotoApiService
 import com.example.myapplication.main.model.PhotoDetails
-import com.example.myapplication.main.screens.general_screen.general_use_case.GetPhotoDetailsById
+import com.example.myapplication.main.screens.photo_details_screen.photo_details_use_case.GetPhotoDetailsById
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull

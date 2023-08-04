@@ -55,24 +55,18 @@ class PhotosAdapter(val clickListener: PhotoListClickListener) :
 }
 
 class PhotoHolder(
-    clickListener: PhotoListClickListener,
+    var clickListener: PhotoListClickListener,
     itemView: View,
 ) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = ItemPhotosBinding.bind(itemView)
-    private lateinit var itPhoto: Photos
-
-    init {
-        binding.itemImage.setOnClickListener {
-            clickListener.onPhotoClick(itPhoto.id)
-        }
-    }
 
     /**
      * Передачи данных в разметку
+     *
      */
     fun bindPhoto(photo: Photos) = with(binding) {
-        itPhoto = photo
+
         Glide.with(itemView)
             .load(photo.user?.profileImage?.medium)
             .circleCrop()
@@ -94,6 +88,10 @@ class PhotoHolder(
 //            itemLocation.text = photo.user.location
 //        } else
         itemLocation.visibility = View.GONE
+
+        binding.itemImage.setOnClickListener {
+            clickListener.onPhotoClick(photo.id)
+        }
     }
 }
 

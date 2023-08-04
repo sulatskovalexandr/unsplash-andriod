@@ -41,6 +41,4 @@ class GeneralViewModel : ViewModel() {
             loadPhoto(currentPage)
         }
     }
-
-
 }

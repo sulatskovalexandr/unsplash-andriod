@@ -7,7 +7,6 @@ import com.example.myapplication.main.screens.general_screen.Photos
  * Получить список фотографий
  */
 class GetPhotoUseCase(private var photoApiService: PhotoApiService) {
-
     suspend fun execute(page: Int): List<Photos> =
         photoApiService.getPhotos(page, 20)
 }
