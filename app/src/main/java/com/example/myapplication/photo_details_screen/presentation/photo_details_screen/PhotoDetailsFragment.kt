@@ -1,4 +1,4 @@
-package com.example.myapplication.main.screens.photo_details_screen
+package com.example.myapplication.photo_details_screen.presentation.photo_details_screen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.myapplication.common.formated
 import com.example.myapplication.common.observeData
 import com.example.myapplication.constants.Const.PHOTO_ID_KEY
 import com.example.myapplication.databinding.FragmentPhotoDetailsBinding
@@ -31,6 +32,7 @@ class PhotoDetailsFragment : Fragment() {
 
         val photoId = arguments?.getString(PHOTO_ID_KEY) ?: error("error")
         viewModel.setPhotoId(photoId)
+
         observeData(viewModel.photoDetails) { photoDetails ->
             Glide
                 .with(view)
@@ -49,12 +51,12 @@ class PhotoDetailsFragment : Fragment() {
                 binding.fpdTvCameraInfo.text = "Неизвестно"
             }
             if (photoDetails.exif?.focalLength != null) {
-                binding.fpdTvFocusInfo.text = "${photoDetails.exif?.focalLength}mm"
+                binding.fpdTvFocusInfo.text = "${photoDetails.exif.focalLength}mm"
             } else {
                 binding.fpdTvFocusInfo.text = "Неизвестно"
             }
             if (photoDetails.exif?.iso != null) {
-                binding.fpdTvIsoInfo.text = photoDetails.exif?.iso.toString()
+                binding.fpdTvIsoInfo.text = photoDetails.exif.iso.toString()
             } else {
                 binding.fpdTvIsoInfo.text = "Неизвестно"
             }
@@ -69,20 +71,26 @@ class PhotoDetailsFragment : Fragment() {
                 binding.fpdTvExpositionInfo.text = "Неизвестно"
             }
             binding.fpdTvResolutionInfo.text = "${photoDetails.width} x ${photoDetails.height}"
-            binding.fpdTvNumberOfLikesInfo.text = photoDetails.likes.toString()
-            binding.fpdTvNumberOfDownlandInfo.text = photoDetails.downloads.toString()
+
+            binding.fpdTvNumberOfLikesInfo.text = photoDetails.likes?.formated
+
             if (photoDetails.location?.country != null && photoDetails.location?.city != null) {
                 binding.fpdLocation.text =
                     "${photoDetails.location.city}, ${photoDetails.location.country}"
             } else if (photoDetails.location?.country != null && photoDetails.location?.city == null) {
                 binding.fpdLocation.text = photoDetails.location.country
             } else if (photoDetails.location?.country == null && photoDetails.location?.city != null) {
-                binding.fpdLocation.text = photoDetails.location.city
-//            } else {
-//                binding.fpdLocation.visibility = View.GONE
+                binding.fpdLocation.text = " ${photoDetails.location.city}"
+            } else {
+                binding.fpdLocation.visibility = View.GONE
             }
+        }
 
+        observeData(viewModel.photoStatistics) { photoStatistics ->
+            binding.fpdTvNumberOfViewInfo.text = photoStatistics.views.total.formated
 
+            binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total.formated
+//            binding.fpdTvNumberOfLikesInfo.text = photoStatistics.likes?.total.toString()
         }
     }
 

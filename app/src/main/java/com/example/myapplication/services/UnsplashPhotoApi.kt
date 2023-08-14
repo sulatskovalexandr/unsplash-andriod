@@ -1,9 +1,10 @@
-package com.example.myapplication.main.data
+package com.example.myapplication.services
 
 import com.example.myapplication.constants.Const.PER_PAGE
 import com.example.myapplication.constants.Const.YOUR_ACCESS_KEY
-import com.example.myapplication.main.model.PhotoDetails
-import com.example.myapplication.main.screens.general_screen.Photos
+import com.example.myapplication.general_screen.domain.model.PhotoDetails
+import com.example.myapplication.main.presentation.general_screen.Photos
+import com.example.myapplication.photo_details_screen.domain.model.PhotoStatistics
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -26,4 +27,11 @@ interface UnsplashPhotoApi {
         photoId: String,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): PhotoDetails?
+
+    @GET("photos/{id}/statistics")
+    suspend fun getPhotoStatistics(
+        @Path("id")
+        photoId: String,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): PhotoStatistics?
 }

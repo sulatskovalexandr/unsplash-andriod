@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.main.screens.general_screen.GeneralFragment
-import com.example.myapplication.main.screens.photo_details_screen.PhotoDetailsFragment
+import com.example.myapplication.general_screen.presentation.general_screen.GeneralFragment
+import com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-    Функция добавления GeneralFragment в fragment_container
+    Добавления GeneralFragment в fragment_container
      **/
     private fun openGeneralScreen() {
         supportFragmentManager.beginTransaction()

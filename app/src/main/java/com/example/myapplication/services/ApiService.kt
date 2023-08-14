@@ -1,8 +1,9 @@
-package com.example.myapplication.main.data
+package com.example.myapplication.services
 
 import com.example.myapplication.constants.Const.BASE_URL
-import com.example.myapplication.main.model.PhotoDetails
-import com.example.myapplication.main.screens.general_screen.Photos
+import com.example.myapplication.general_screen.domain.model.PhotoDetails
+import com.example.myapplication.main.presentation.general_screen.Photos
+import com.example.myapplication.photo_details_screen.domain.model.PhotoStatistics
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,5 +21,7 @@ class PhotoApiService {
     suspend fun getPhotoDetails(photoId: String): PhotoDetails? =
         service.getPhotoDetails(photoId)
 
+    suspend fun getPhotoStatistics(photoId: String): PhotoStatistics? =
+        service.getPhotoStatistics(photoId)
 
 }

@@ -36,10 +36,12 @@
                 android:id="@+id/fpdLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_16"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:drawableStart="@drawable/baseline_location_on_24"
+                android:drawablePadding="4dp"
                 app:layout_constraintBottom_toBottomOf="@id/fpdImage"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="location" />
@@ -204,6 +206,7 @@
                 android:id="@+id/fpdTvExpositionInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:textColor="@color/dark_grey"
                 app:layout_constraintStart_toStartOf="@id/fpdTvExposition"
                 app:layout_constraintTop_toBottomOf="@id/fpdTvExposition"

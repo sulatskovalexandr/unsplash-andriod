@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fgLlContainer"
     android:orientation="vertical"
-    tools:context=".main.screens.general_screen.GeneralFragment">
+    tools:context=".general_screen.presentation.general_screen.GeneralFragment">
 
     <Toolbar
         android:id="@+id/fgToolbar"

@@ -1,4 +1,4 @@
-package com.example.myapplication.main.screens.general_screen
+package com.example.myapplication.main.presentation.general_screen
 
 import com.google.gson.annotations.SerializedName
 
