@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.myapplication.common.getProgressBar
 import com.example.myapplication.databinding.ItemPhotosBinding
 import com.example.myapplication.main.presentation.general_screen.Photos
@@ -70,12 +68,10 @@ class PhotoHolder(
 
         Glide.with(itemView)
             .load(photo.user?.profileImage?.medium)
-            .circleCrop()
             .into(itemProfileImage)
 
         Glide.with(itemView)
             .load(photo.urls?.small)
-            .transform(CenterCrop(), RoundedCorners(16))
             .placeholder(itemView.context.getProgressBar())
             .into(itemImage)
 

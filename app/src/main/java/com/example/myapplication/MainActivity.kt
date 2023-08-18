@@ -6,7 +6,9 @@ import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.general_screen.presentation.general_screen.GeneralFragment
 import com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
@@ -42,3 +44,4 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 }
+

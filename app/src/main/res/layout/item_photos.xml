@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_profile_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/margin_8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular"
         tools:src="@color/black" />
 
     <TextView
@@ -40,16 +41,18 @@
         app:layout_constraintTop_toBottomOf="@id/item_name"
         tools:text="Location" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/margin_16"
+        android:adjustViewBounds="true"
         android:paddingBottom="@dimen/margin_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_profile_image"
+        app:shapeAppearanceOverlay="@style/RoundCorner"
         tools:src="@drawable/plant5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.MainActivity
 import com.example.myapplication.common.observeData
 import com.example.myapplication.databinding.FragmentGeneralBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GeneralFragment : Fragment(), PhotoListClickListener {
 
     private val viewModel: GeneralViewModel by viewModels()

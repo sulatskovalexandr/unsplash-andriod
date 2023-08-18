@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapplication.common.formated
 import com.example.myapplication.common.observeData
 import com.example.myapplication.constants.Const.PHOTO_ID_KEY
 import com.example.myapplication.databinding.FragmentPhotoDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PhotoDetailsFragment : Fragment() {
     private val viewModel: PhotoDetailsViewModel by viewModels()
+    private val adapter = PhotoDetailsAdapter()
 
     private var _binding: FragmentPhotoDetailsBinding? = null
     private val binding get() = requireNotNull(_binding)
@@ -30,6 +33,10 @@ class PhotoDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.fpdRvListTags.adapter = adapter
+        binding.fpdRvListTags.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         val photoId = arguments?.getString(PHOTO_ID_KEY) ?: error("error")
         viewModel.setPhotoId(photoId)
 
@@ -42,7 +49,6 @@ class PhotoDetailsFragment : Fragment() {
             Glide
                 .with(view)
                 .load(photoDetails.user?.profileImage?.medium)
-                .circleCrop()
                 .into(binding.fpdProfileImage)
             binding.fpdUserName.text = photoDetails.user?.name
             if (photoDetails.exif?.model != null) {
@@ -84,6 +90,9 @@ class PhotoDetailsFragment : Fragment() {
             } else {
                 binding.fpdLocation.visibility = View.GONE
             }
+            photoDetails.tags?.let {
+                adapter.addTags(it)
+            }
         }
 
         observeData(viewModel.photoStatistics) { photoStatistics ->
@@ -91,6 +100,10 @@ class PhotoDetailsFragment : Fragment() {
 
             binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total.formated
 //            binding.fpdTvNumberOfLikesInfo.text = photoStatistics.likes?.total.toString()
+        }
+
+        binding.fpdToolbar.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
         }
     }
 

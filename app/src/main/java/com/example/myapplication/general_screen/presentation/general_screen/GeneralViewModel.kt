@@ -2,19 +2,20 @@ package com.example.myapplication.general_screen.presentation.general_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.general_screen.data.repository.PhotoRepositoryImpl
 import com.example.myapplication.general_screen.domain.general_usecases.GetPhotoUseCase
 import com.example.myapplication.main.presentation.general_screen.Photos
-import com.example.myapplication.services.PhotoApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GeneralViewModel : ViewModel() {
+@HiltViewModel
+class GeneralViewModel @Inject constructor(
+    private val getPhotoUseCase: GetPhotoUseCase,
+) : ViewModel() {
 
-    private val photoRepository = PhotoRepositoryImpl(PhotoApiService())
-    private val getPhotoUseCase = GetPhotoUseCase(photoRepository)
 
     private val _photoList: MutableStateFlow<List<Photos>?> = MutableStateFlow(null)
     val photoList: StateFlow<List<Photos>?> = _photoList.asStateFlow()

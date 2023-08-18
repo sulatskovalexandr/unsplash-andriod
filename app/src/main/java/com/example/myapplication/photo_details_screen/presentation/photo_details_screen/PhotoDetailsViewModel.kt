@@ -3,20 +3,21 @@ package com.example.myapplication.photo_details_screen.presentation.photo_detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.general_screen.domain.model.PhotoDetails
-import com.example.myapplication.photo_details_screen.data.repository.PhotoDetailsRepositoryImpl
 import com.example.myapplication.photo_details_screen.domain.model.PhotoStatistics
-import com.example.myapplication.photo_details_screen.domain.photo_details_usecases.GetPhotoDetailsById
+import com.example.myapplication.photo_details_screen.domain.photo_details_usecases.GetPhotoDetailsUseCase
 import com.example.myapplication.photo_details_screen.domain.photo_details_usecases.GetPhotoStatisticsUseCase
-import com.example.myapplication.services.PhotoApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PhotoDetailsViewModel : ViewModel() {
-    private val photoDetailsRepository = PhotoDetailsRepositoryImpl(PhotoApiService())
-    private val getPhotoDetails = GetPhotoDetailsById(photoDetailsRepository)
-    private val getPhotoStatistics = GetPhotoStatisticsUseCase(photoDetailsRepository)
+@HiltViewModel
+class PhotoDetailsViewModel @Inject constructor(
+    private val getPhotoDetails: GetPhotoDetailsUseCase,
+    private val getPhotoStatistics: GetPhotoStatisticsUseCase
+) : ViewModel() {
 
     private val _photoDetails: MutableStateFlow<PhotoDetails?> = MutableStateFlow(null)
     val photoDetails: Flow<PhotoDetails> = _photoDetails.filterNotNull()
@@ -35,6 +36,10 @@ class PhotoDetailsViewModel : ViewModel() {
         viewModelScope.launch {
             _photoStatistics.value = getPhotoStatistics.execute(photoId = photoId)
         }
+    }
+
+    fun onRefreshPhotosStatistic(photoId: String) {
+        loadStatisticsPhoto(photoId = photoId)
     }
 
     fun setPhotoId(photoId: String) {
