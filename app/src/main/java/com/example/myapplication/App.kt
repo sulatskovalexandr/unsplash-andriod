@@ -1,14 +1,21 @@
 package com.example.myapplication
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.example.myapplication.di.*
 
-@HiltAndroidApp
+lateinit var appComponent: AppComponent
+    private set
+
 class App : Application() {
+
 
     override fun onCreate() {
         super.onCreate()
+        appComponent = DaggerAppComponent.builder()
+            .application(this)
+            .dbModule(DbModule())
+            .networkModule(NetworkModule())
+            .repositoryModule(RepositoryModule())
+            .build()
     }
-
-
 }

@@ -1,17 +1,19 @@
 package com.example.myapplication.di
 
+import android.content.Context
+import com.example.myapplication.common.NetworkChecker
 import com.example.myapplication.constants.Const.BASE_URL
-import com.example.myapplication.services.PhotoApiService
-import com.example.myapplication.services.UnsplashPhotoApi
+import com.example.myapplication.services.ApiService.PhotoApiService
+import com.example.myapplication.services.ApiService.UnsplashPhotoApi
+import com.example.myapplication.services.photoDownloadService.AndroidPhotoDownloader
+import com.example.myapplication.services.photoDownloadService.PhotoDownloader
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-@InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     @Provides
@@ -33,5 +35,11 @@ class NetworkModule {
     fun providePhotoApiService(unsplashPhotoApi: UnsplashPhotoApi): PhotoApiService =
         PhotoApiService(unsplashPhotoApi)
 
+    @Provides
+    fun providePhotoDownloader(context: Context): PhotoDownloader =
+        AndroidPhotoDownloader(context)
 
+    @Provides
+    fun provideNetworkConnected(context: Context): NetworkChecker =
+        NetworkChecker(context)
 }

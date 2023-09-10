@@ -3,20 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/generalFragment">
+    app:startDestination="@id/photoFragment">
+
+
+    <action
+        android:id="@+id/go_to_photoFragment"
+        app:destination="@id/photoFragment" />
+    <action
+        android:id="@+id/go_to_collectionFragment"
+        app:destination="@id/collectionFragment" />
+    <action
+        android:id="@+id/go_to_profileFragment"
+        app:destination="@id/profileFragment" />
 
     <fragment
-        android:id="@+id/generalFragment"
-        android:name="com.example.myapplication.general_screen.presentation.general_screen.GeneralFragment"
-        android:label="fragment_general"
-        tools:layout="@layout/fragment_general">
+        android:id="@+id/photoFragment"
+        android:name="com.example.myapplication.screens.photos_screens.photo_screen.presentation.photo_screen.PhotoFragment"
+        android:label="PhotoFragment">
         <action
-            android:id="@+id/to_photoDetailsFragment"
+            android:id="@+id/action_photoFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
-        android:name="com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment"
-        android:label="fragment_photo_details"
-        tools:layout="@layout/fragment_photo_details" />
+        android:name="com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment"
+        android:label="PhotoDetailsFragment">
+        <action
+            android:id="@+id/action_photoDetailsFragment_to_photoZoomFragment"
+            app:destination="@id/photoZoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.example.myapplication.screens.collections_screens.collection_screen.presentation.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myapplication.screens.profile_screen.presentation.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/photoZoomFragment"
+        android:name="com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_zoom_screen.PhotoZoomFragment"
+        android:label="fragment_photo_zoom"
+        tools:layout="@layout/fragment_photo_zoom">
+        <action
+            android:id="@+id/action_photoZoomFragment_to_photoDetailsFragment2"
+            app:destination="@id/photoDetailsFragment" />
+    </fragment>
 </navigation>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fgLlContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/app_bar_menu"
+            app:title="@string/fg_toolbar_title"
+            app:titleTextColor="@color/black" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/fgSrlRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fgRvListPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+    <!--        android:id="@+id/fdpBottomAppBar"-->
+    <!--        style="@style/BottomAppBarTheme"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="?attr/actionBarSize"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        app:backgroundTint="@color/white"-->
+    <!--        app:fabAlignmentMode="center"-->
+    <!--        app:hideOnScroll="true"-->
+    <!--        app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior" />-->
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fgFlAddButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:adjustViewBounds="true"-->
+    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
+    <!--        android:backgroundTint="@color/black"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        app:borderWidth="0dp"-->
+    <!--        app:layout_anchor="@id/fdpBottomAppBar"-->
+    <!--        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"-->
+    <!--        app:shapeAppearance="@style/FabDiamondOverlay"-->
+    <!--        app:srcCompat="@drawable/baseline_add_24"-->
+    <!--        app:tint="@color/white"-->
+    <!--        tools:ignore="ContentDescription" />-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
