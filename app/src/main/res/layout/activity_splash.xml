@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/u_letter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:fontFamily="@font/lexend_light"
+        android:text="U"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="n"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/u_letter"
+        app:layout_constraintEnd_toStartOf="@id/sLetter"
+        app:layout_constraintStart_toEndOf="@id/u_letter"
+        app:layout_constraintTop_toTopOf="@id/u_letter" />
+
+    <TextView
+        android:id="@+id/sLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="s"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/nLetter"
+        app:layout_constraintEnd_toStartOf="@id/pLetter"
+        app:layout_constraintStart_toEndOf="@id/nLetter"
+        app:layout_constraintTop_toTopOf="@id/nLetter" />
+
+    <TextView
+        android:id="@+id/pLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="p"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/sLetter"
+        app:layout_constraintEnd_toStartOf="@id/lLetter"
+        app:layout_constraintStart_toEndOf="@id/sLetter"
+        app:layout_constraintTop_toTopOf="@id/sLetter" />
+
+    <TextView
+        android:id="@+id/lLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="l"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/pLetter"
+        app:layout_constraintEnd_toStartOf="@id/aLetter"
+        app:layout_constraintStart_toEndOf="@id/pLetter"
+        app:layout_constraintTop_toTopOf="@id/pLetter" />
+
+    <TextView
+        android:id="@+id/aLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="a"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/lLetter"
+        app:layout_constraintEnd_toStartOf="@id/sLetter2"
+        app:layout_constraintStart_toEndOf="@id/lLetter"
+        app:layout_constraintTop_toTopOf="@id/lLetter" />
+
+    <TextView
+        android:id="@+id/sLetter2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lexend_light"
+        android:text="s"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/aLetter"
+        app:layout_constraintEnd_toStartOf="@id/hLetter"
+        app:layout_constraintStart_toEndOf="@id/aLetter"
+        app:layout_constraintTop_toTopOf="@id/aLetter" />
+
+    <TextView
+        android:id="@+id/hLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:fontFamily="@font/lexend_light"
+        android:text="h"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_splash"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/sLetter2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sLetter2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

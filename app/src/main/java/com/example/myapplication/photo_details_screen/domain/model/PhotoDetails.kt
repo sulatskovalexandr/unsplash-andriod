@@ -1,7 +1,5 @@
-package com.example.myapplication.general_screen.domain.model
+package com.example.myapplication.general_screen.domain.dto
 
-import com.example.myapplication.main.presentation.general_screen.Urls
-import com.example.myapplication.main.presentation.general_screen.User
 import com.google.gson.annotations.SerializedName
 
 data class PhotoDetails(
@@ -13,7 +11,7 @@ data class PhotoDetails(
     val location: Location?,
     val tags: List<Tag>?,
     val urls: Urls?,
-    val user: User?
+    val user: UserDto?
 )
 
 class Exif(
@@ -36,6 +34,9 @@ class Tag(
     val title: String? = ""
 )
 
+class DownloadPhotoUrl(
+    val url: String? = ""
+)
 
 
 

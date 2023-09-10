@@ -1,12 +1,14 @@
 package com.example.myapplication.common
 
 import android.content.Context
+import android.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -31,6 +33,7 @@ inline fun <T> Fragment.observeData(
  */
 fun Context.getProgressBar(): CircularProgressDrawable {
     val circularProgressDrawable = CircularProgressDrawable(this)
+    circularProgressDrawable.setColorSchemeColors(Color.GRAY)
     circularProgressDrawable.strokeWidth = 5f
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()
@@ -49,7 +52,11 @@ val Int.formated: String
         String.format("%.1fK", this / 1000.0)
     } else this.toString()
 
-
+fun Fragment.snackbar(msg: String) {
+    view?.apply {
+        Snackbar.make(this, msg, Snackbar.LENGTH_LONG).show()
+    }
+}
 
 
 

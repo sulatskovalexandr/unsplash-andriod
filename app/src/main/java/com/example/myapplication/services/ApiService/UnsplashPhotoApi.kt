@@ -1,9 +1,10 @@
-package com.example.myapplication.services
+package com.example.myapplication.services.ApiService
 
 import com.example.myapplication.constants.Const.PER_PAGE
 import com.example.myapplication.constants.Const.YOUR_ACCESS_KEY
-import com.example.myapplication.general_screen.domain.model.PhotoDetails
-import com.example.myapplication.main.presentation.general_screen.Photos
+import com.example.myapplication.general_screen.domain.dto.DownloadPhotoUrl
+import com.example.myapplication.general_screen.domain.dto.PhotoDetails
+import com.example.myapplication.general_screen.domain.dto.PhotoDto
 import com.example.myapplication.photo_details_screen.domain.model.PhotoStatistics
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -19,7 +20,7 @@ interface UnsplashPhotoApi {
         @Query("page") page: Int?,
         @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
-    ): List<Photos>
+    ): List<PhotoDto>
 
     @GET("photos/{id}")
     suspend fun getPhotoDetails(
@@ -34,4 +35,11 @@ interface UnsplashPhotoApi {
         photoId: String,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): PhotoStatistics?
+
+    @GET("photos/{id}/download")
+    suspend fun getDownloadPhotoUri(
+        @Path("id")
+        photoId: String,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): DownloadPhotoUrl?
 }

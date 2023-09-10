@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.common.getProgressBar
 import com.example.myapplication.databinding.ItemPhotosBinding
-import com.example.myapplication.main.presentation.general_screen.Photos
-
+import com.example.myapplication.general_screen.domain.model.Photo
 
 class PhotosAdapter(val clickListener: PhotoListClickListener) :
     RecyclerView.Adapter<PhotoHolder>() {
 
 
-    private val listPhotos = mutableListOf<Photos>()
+    private val listPhotos = mutableListOf<Photo>()
 
     /**
      * Создание холдера (представление элемента списка в виде макета item_photos,
@@ -41,7 +41,7 @@ class PhotosAdapter(val clickListener: PhotoListClickListener) :
     /**
      * Добавление всех объектов в listPhotos
      */
-    fun addPhoto(photo: List<Photos>) {
+    fun addPhoto(photo: List<Photo>) {
         listPhotos.addAll(photo)
         notifyDataSetChanged()
     }
@@ -62,34 +62,33 @@ class PhotoHolder(
 
     /**
      * Передачи данных в разметку
-     *
      */
-    fun bindPhoto(photo: Photos) = with(binding) {
+    fun bindPhoto(photo: Photo) = with(binding) {
 
         Glide.with(itemView)
-            .load(photo.user?.profileImage?.medium)
+            .load(photo.profileImage)
             .into(itemProfileImage)
 
         Glide.with(itemView)
-            .load(photo.urls?.small)
+            .load(photo.urls)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .placeholder(itemView.context.getProgressBar())
             .into(itemImage)
 
-        itemName.text = photo.user?.name
 
+        itemName.text = photo.userName
 //        if (photo.user?.location != null) {
 //            itemLocation.text = photo.user.location
 //        } else
         itemLocation.visibility = View.GONE
-
         binding.itemImage.setOnClickListener {
-            clickListener.onPhotoClick(photo.id)
+            clickListener.onPhotoClick(photo.id, photo.urls)
         }
     }
 }
 
 interface PhotoListClickListener {
-    fun onPhotoClick(photoId: String)
+    fun onPhotoClick(photoId: String, photoUrl: String)
 }
 
 

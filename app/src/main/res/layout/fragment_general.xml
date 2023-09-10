@@ -9,6 +9,7 @@
     tools:context=".general_screen.presentation.general_screen.GeneralFragment">
 
     <Toolbar
+
         android:id="@+id/fgToolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -27,7 +28,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fgRvListPhotos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_photos" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

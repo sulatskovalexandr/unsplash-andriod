@@ -13,6 +13,7 @@
     <string name="fpd_text_number_of_view">Просмотров</string>
     <string name="fpd_text_number_of_downlands">Скачиваний</string>
     <string name="fpd_text_number_of_likes">Лайков</string>
+    <string name="error_text">Ошибка интернет соединения</string>
 
 
 </resources>

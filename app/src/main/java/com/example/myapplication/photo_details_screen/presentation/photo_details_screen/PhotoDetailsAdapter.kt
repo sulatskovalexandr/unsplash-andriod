@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ItemTagsBinding
-import com.example.myapplication.general_screen.domain.model.Tag
+import com.example.myapplication.general_screen.domain.dto.Tag
 
 class PhotoDetailsAdapter() : RecyclerView.Adapter<PhotoDetailsHolder>() {
     private val tagList = mutableListOf<Tag>()
@@ -37,7 +37,6 @@ class PhotoDetailsHolder(
 
     fun bindTeg(tag: Tag) = with(binding) {
         itemTag.text = tag.title
-
     }
 }
 

@@ -1,34 +1,17 @@
-package com.example.myapplication.main.presentation.general_screen
+package com.example.myapplication.general_screen.domain.model
 
-import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Photos(
-    val id: String,
-    val user: User?,
-    val urls: Urls?,
-)
-
-class User(
-    val id: String,
-    val name: String,
-    @SerializedName("username")
+@Entity(tableName = Photo.TABLE_NAME)
+data class Photo(
+    @PrimaryKey val id: String,
     val userName: String,
-    val location: String? = "",
-    @SerializedName("profile_image")
-    val profileImage: ProfileImage?,
-
-    )
-
-class ProfileImage(
-    val medium: String? = "",
-)
-
-class Urls(
-    val regular: String? = "",
-    val small: String? = ""
-)
-
-
-
-
-
+    val profileImage: String,
+    val urls: String,
+    val createdTime: Long
+) {
+    companion object {
+        const val TABLE_NAME = "photos"
+    }
+}

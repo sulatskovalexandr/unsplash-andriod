@@ -9,11 +9,8 @@ import com.example.myapplication.photo_details_screen.domain.photo_details_useca
 import com.example.myapplication.photo_details_screen.domain.repository.PhotoDetailsRepository
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
 class RepositoryModule {
 
     @Provides

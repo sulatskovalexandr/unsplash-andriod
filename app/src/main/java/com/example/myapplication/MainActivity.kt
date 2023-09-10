@@ -1,15 +1,16 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.general_screen.presentation.general_screen.GeneralFragment
 import com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+
+class
+MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +34,19 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun openPhotoDetailsScreen(photoId: String) {
+    fun openPhotoDetailsScreen(photoId: String, photoUrl: String) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, PhotoDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(Const.PHOTO_ID_KEY, photoId)
-                }
-            })
+            .replace(R.id.fragment_container, PhotoDetailsFragment.create(photoId, photoUrl))
             .addToBackStack(null)
             .commit()
+    }
+
+    /**
+     * Проверка
+     */
+    fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
     }
 }
 
