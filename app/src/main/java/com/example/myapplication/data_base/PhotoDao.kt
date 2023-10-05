@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
-import com.example.myapplication.screens.photos_screens.photo_screen.domain.model.Photo
+import com.example.myapplication.domain.model.Photo
 
 @Dao
 interface PhotoDao {

@@ -3,7 +3,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.myapplication.data_base.PhotoDao
 import com.example.myapplication.data_base.PhotoDataBase
-import com.example.myapplication.screens.photos_screens.photo_screen.domain.model.Photo
+import com.example.myapplication.domain.model.Photo
 import dagger.Module
 import dagger.Provides
 

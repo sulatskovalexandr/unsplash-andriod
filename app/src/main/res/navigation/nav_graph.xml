@@ -13,42 +13,72 @@
         android:id="@+id/go_to_collectionFragment"
         app:destination="@id/collectionFragment" />
     <action
-        android:id="@+id/go_to_profileFragment"
-        app:destination="@id/profileFragment" />
+        android:id="@+id/go_to_userFragment"
+        app:destination="@id/userFragment" />
+    <action
+        android:id="@+id/go_to_authFragment"
+        app:destination="@+id/authFragment" />
 
     <fragment
         android:id="@+id/photoFragment"
-        android:name="com.example.myapplication.screens.photos_screens.photo_screen.presentation.photo_screen.PhotoFragment"
+        android:name="com.example.myapplication.ui.photo_screen.PhotoFragment"
         android:label="PhotoFragment">
         <action
             android:id="@+id/action_photoFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
+        <action
+            android:id="@+id/action_photoFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
-        android:name="com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment"
+        android:name="com.example.myapplication.ui.photo_screen.photo_details_screen.PhotoDetailsFragment"
         android:label="PhotoDetailsFragment">
         <action
             android:id="@+id/action_photoDetailsFragment_to_photoZoomFragment"
             app:destination="@id/photoZoomFragment" />
+        <action
+            android:id="@+id/action_photoDetailsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.example.myapplication.screens.collections_screens.collection_screen.presentation.CollectionFragment"
+        android:name="com.example.myapplication.ui.collection_screens.CollectionFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.myapplication.screens.profile_screen.presentation.ProfileFragment"
+        android:id="@+id/userFragment"
+        android:name="com.example.myapplication.ui.user_screen.UserFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_profileFragment_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_photoZoomFragment"
+            app:destination="@id/photoZoomFragment" />
+    </fragment>
     <fragment
         android:id="@+id/photoZoomFragment"
-        android:name="com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_zoom_screen.PhotoZoomFragment"
+        android:name="com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment"
         android:label="fragment_photo_zoom"
         tools:layout="@layout/fragment_photo_zoom">
         <action
             android:id="@+id/action_photoZoomFragment_to_photoDetailsFragment2"
+            app:destination="@id/photoDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.myapplication.ui.user_screen.auth_screen.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/usersPhotoFragment"
+        android:name="com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment"
+        android:label="fragment_user_photo"
+        tools:layout="@layout/fragment_user_photo">
+        <action
+            android:id="@+id/action_usersPhotoFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
     </fragment>
 </navigation>

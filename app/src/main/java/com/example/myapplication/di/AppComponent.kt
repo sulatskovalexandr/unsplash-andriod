@@ -1,8 +1,13 @@
 package com.example.myapplication.di
 
 import android.content.Context
-import com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_details_screen.PhotoDetailsFragment
-import com.example.myapplication.screens.photos_screens.photo_screen.presentation.photo_screen.PhotoFragment
+import com.example.myapplication.MainActivity
+import com.example.myapplication.ui.collection_screens.CollectionFragment
+import com.example.myapplication.ui.photo_screen.PhotoFragment
+import com.example.myapplication.ui.photo_screen.photo_details_screen.PhotoDetailsFragment
+import com.example.myapplication.ui.user_screen.UserFragment
+import com.example.myapplication.ui.user_screen.user_collection.UserCollectionFragment
+import com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -33,4 +38,9 @@ interface AppComponent {
 
     fun inject(fragment: PhotoFragment)
     fun inject(fragment: PhotoDetailsFragment)
+    fun inject(fragment: UserFragment)
+    fun inject(fragment: UserPhotoFragment)
+    fun inject(fragment: UserCollectionFragment)
+    fun inject(fragment: CollectionFragment)
+    fun inject(activity: MainActivity)
 }

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ipClContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_16">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/item_profile_image"
+        android:id="@+id/fpItemProfileImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/margin_24"
@@ -19,42 +20,55 @@
         tools:src="@color/black" />
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/fpItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_name"
-        app:layout_constraintBottom_toTopOf="@id/item_location"
-        app:layout_constraintStart_toEndOf="@id/item_profile_image"
-        app:layout_constraintTop_toTopOf="@id/item_profile_image"
-        tools:text="Name" />
+        app:layout_constraintBottom_toTopOf="@id/fpItemLocation"
+        app:layout_constraintStart_toEndOf="@id/fpItemProfileImage"
+        app:layout_constraintTop_toTopOf="@id/fpItemProfileImage"
+        tools:text="username" />
 
     <TextView
-        android:id="@+id/item_location"
+        android:id="@+id/fpItemLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_16"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_location"
-        app:layout_constraintBottom_toBottomOf="@id/item_profile_image"
-        app:layout_constraintStart_toEndOf="@id/item_profile_image"
-        app:layout_constraintTop_toBottomOf="@id/item_name"
+        app:layout_constraintBottom_toBottomOf="@id/fpItemProfileImage"
+        app:layout_constraintStart_toStartOf="@id/fpItemName"
+        app:layout_constraintTop_toBottomOf="@id/fpItemName"
         tools:text="Location" />
 
+    <ImageView
+        android:id="@+id/fpItemImageBack"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:adjustViewBounds="true"
+        android:background="@color/alpha_0"
+        android:paddingBottom="@dimen/margin_16"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fpItemProfileImage"
+        app:shapeAppearanceOverlay="@style/RoundCorner" />
+
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/item_image"
+        android:id="@+id/fpItemImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/margin_16"
         android:adjustViewBounds="true"
-        android:paddingBottom="@dimen/margin_16"
         android:scaleType="fitXY"
+        android:src="@drawable/image1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_profile_image"
-        app:shapeAppearanceOverlay="@style/RoundCorner"
-        tools:src="@drawable/image1" />
+        app:layout_constraintTop_toBottomOf="@id/fpItemProfileImage"
+        app:shapeAppearanceOverlay="@style/RoundCorner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

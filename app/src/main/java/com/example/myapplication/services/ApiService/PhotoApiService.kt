@@ -1,17 +1,21 @@
 package com.example.myapplication.services.ApiService
 
-import com.example.myapplication.screens.photos_screens.photo_details_screen.domain.model.DownloadPhotoUrl
-import com.example.myapplication.screens.photos_screens.photo_details_screen.domain.model.PhotoDetails
-import com.example.myapplication.screens.photos_screens.photo_details_screen.domain.model.PhotoStatistics
-import com.example.myapplication.screens.photos_screens.photo_screen.domain.dto.PhotoDto
+import com.example.myapplication.domain.model.*
+import com.example.myapplication.domain.model.Collection
+import com.example.myapplication.domain.model.dto.PhotoDto
 import javax.inject.Inject
 
 
 class PhotoApiService @Inject constructor(private val unsplashPhotoApi: UnsplashPhotoApi) {
+    /**
+     * photo
+     */
+    suspend fun getPhotos(page: Int, perPage: Int, orderBy: String): List<PhotoDto> =
+        unsplashPhotoApi.getPhotos(page, perPage, orderBy)
 
-    suspend fun getPhotos(page: Int, perPage: Int): List<PhotoDto> =
-        unsplashPhotoApi.getPhotos(page, perPage)
-
+    /**
+     * photo_details
+     */
     suspend fun getPhotoDetails(photoId: String): PhotoDetails? =
         unsplashPhotoApi.getPhotoDetails(photoId)
 
@@ -20,4 +24,28 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
 
     suspend fun getDownloadPhotoUrl(photoId: String): DownloadPhotoUrl? =
         unsplashPhotoApi.getDownloadPhotoUri(photoId)
+
+    /**
+     * collection
+     * */
+
+    suspend fun getCollections(
+        page: Int,
+        perPage: Int
+    ): List<Collection> =
+        unsplashPhotoApi.getCollections(page, perPage)
+
+    /**
+     * user
+     */
+    suspend fun getUser(userName: String): User =
+        unsplashPhotoApi.getUser(userName)
+
+    suspend fun getUsersPhoto(userName: String, page: Int): List<UserPhoto> =
+        unsplashPhotoApi.getUsersPhoto(userName, page)
+
+    suspend fun getUserCollection(userName: String, page: Int): List<Collection> =
+        unsplashPhotoApi.getUserCollections(userName, page)
+
+
 }

@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    tools:context=".screens.photos_screens.photo_details_screen.presentation.photo_zoom_screen.PhotoZoomFragment">
+    tools:context=".ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment">
 
     <com.jsibbold.zoomage.ZoomageView
-        android:id="@+id/pzfImage"
+        android:id="@+id/fpzImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -23,7 +22,7 @@
         tools:src="@drawable/image1" />
 
     <ImageView
-        android:id="@+id/pzfBackButton"
+        android:id="@+id/fpzBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"

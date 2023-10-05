@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user_screen.UserFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fprAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/fprCollapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_grey"
+            android:fitsSystemWindows="true"
+            android:navigationIcon="@drawable/ic_back"
+            android:paddingBottom="@dimen/margin_8"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fpClContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                app:layout_collapseMode="parallax">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/fprProfileImage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/Circular"
+                    tools:src="@color/black" />
+
+                <TextView
+                    android:id="@+id/fprQuantityOfPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/fprTextPhoto"
+                    app:layout_constraintEnd_toEndOf="@id/fprTextPhoto"
+                    app:layout_constraintStart_toStartOf="@id/fprTextPhoto"
+                    tools:text="202" />
+
+                <TextView
+                    android:id="@+id/fprTextPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="@string/pf_text_photo"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/fprProfileImage"
+                    app:layout_constraintEnd_toStartOf="@id/fprTextLikes"
+                    app:layout_constraintStart_toEndOf="@id/fprProfileImage"
+                    app:layout_constraintTop_toTopOf="@id/fprProfileImage" />
+
+                <TextView
+                    android:id="@+id/fprQuantityOfLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/fprTextLikes"
+                    app:layout_constraintEnd_toEndOf="@id/fprTextLikes"
+                    app:layout_constraintStart_toStartOf="@id/fprTextLikes"
+                    tools:text="202" />
+
+                <TextView
+                    android:id="@+id/fprTextLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pf_text_likes"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/fprTextPhoto"
+                    app:layout_constraintEnd_toStartOf="@id/fprTextCollection"
+                    app:layout_constraintStart_toEndOf="@id/fprTextPhoto"
+                    app:layout_constraintTop_toTopOf="@id/fprTextPhoto" />
+
+                <TextView
+                    android:id="@+id/fprQuantityOfCollection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/fprTextPhoto"
+                    app:layout_constraintEnd_toEndOf="@id/fprTextCollection"
+                    app:layout_constraintStart_toStartOf="@id/fprTextCollection"
+                    app:layout_constraintTop_toTopOf="@id/fprQuantityOfLikes"
+                    tools:text="202" />
+
+                <TextView
+                    android:id="@+id/fprTextCollection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pf_text_collection"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/fprTextLikes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fprTextLikes"
+                    app:layout_constraintTop_toTopOf="@id/fprTextLikes" />
+
+                <TextView
+                    android:id="@+id/fprName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/fprProfileImage"
+                    app:layout_constraintTop_toBottomOf="@+id/fprProfileImage"
+                    tools:text="name" />
+
+                <TextView
+                    android:id="@+id/fprLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/fprName"
+                    app:layout_constraintTop_toBottomOf="@id/fprName"
+                    tools:text="Location" />
+
+                <TextView
+                    android:id="@+id/fprDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingEnd="@dimen/margin_16"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/fprName"
+                    app:layout_constraintTop_toBottomOf="@id/fprLocation"
+                    tools:text="asmasldnakjdnakjsdbakjddkdkdkdkdkddkdkdkdkdkdkdkdkkdkdkdd kdkdkdkd kkdkd dkdkd dk bakjdbakjdbakdbakdbakbdakbdkadbkabdkjbdkab" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/pfToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/white"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="username" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fprViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:animationCache="false"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/fprTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="top"
+            app:tabTextColor="@color/black" />
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

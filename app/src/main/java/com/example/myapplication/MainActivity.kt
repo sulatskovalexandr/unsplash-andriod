@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.screens.photos_screens.photo_details_screen.presentation.photo_zoom_screen.PhotoZoomFragment
+import com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
 
 
 @Suppress("UNREACHABLE_CODE")
@@ -18,13 +18,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        appComponent.inject(this)
         setContentView(binding?.root)
 
         binding?.maBottomBar?.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bnbItemPhoto -> replaceFragment(R.id.go_to_photoFragment)
                 R.id.bnbItemCollection -> replaceFragment(R.id.go_to_collectionFragment)
-                R.id.bnbItemProfile -> replaceFragment(R.id.go_to_profileFragment)
+                R.id.bnbItemProfile -> replaceFragment(R.id.authFragment)
                 else -> false
             }
         }
@@ -66,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
     fun goneNavBar() {
         binding?.maBottomBar?.visibility = View.GONE
 
@@ -80,6 +80,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+
+
+
 
 
 

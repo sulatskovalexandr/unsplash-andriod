@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.io.File
 
+
 /**
  * Запускает (и перезапускает) на фрагменте collect для переданного flow только в состоянии активности
  */
@@ -87,7 +88,6 @@ fun isPhotoExists(context: Context, fileName: String): Boolean {
         return File(UNSPLASH_LEGACY_PATH, "$fileName.jpg").exists()
     }
 }
-
 
 
 
