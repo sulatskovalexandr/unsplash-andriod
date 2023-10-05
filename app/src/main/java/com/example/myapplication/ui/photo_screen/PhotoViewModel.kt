@@ -28,7 +28,6 @@ class PhotoViewModel @Inject constructor(
     private val _messageFlow = MutableStateFlow<Messages?>(null)
     val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
 
-
     private var param = ListPhotoParam(1, GetPhotoUseCase.Companion.Order.LATEST)
     private var isLoading = false
     private var isSuccess = false
@@ -62,6 +61,7 @@ class PhotoViewModel @Inject constructor(
                         getDataBasePhotoUseCase.invoke(1)
                             .onSuccess {
                                 _photoList.value = Event.success(it)
+                                _messageFlow.value = Messages.HideShimmer
                             }.onFailure {
                                 _messageFlow.value = Messages.NetworkIsDisconnected
                             }
@@ -93,7 +93,6 @@ class PhotoViewModel @Inject constructor(
             }
         }
 
-
     }
 
     fun onRefreshPhotos() {
@@ -114,8 +113,6 @@ class PhotoViewModel @Inject constructor(
     fun loadListPopularPhoto() {
         loadPhoto(param = param.copy(page = 1, orderBy = GetPhotoUseCase.Companion.Order.POPULAR))
     }
-
-
     fun clearMessage() {
         _messageFlow.value = null
     }

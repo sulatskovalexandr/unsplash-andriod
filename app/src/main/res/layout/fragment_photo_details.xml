@@ -38,11 +38,10 @@
                 android:layout_gravity="start|bottom"
                 android:layout_marginStart="@dimen/margin_16"
                 android:layout_marginBottom="@dimen/margin_16"
-                android:drawablePadding="4dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:visibility="gone"
-                app:drawableStartCompat="@drawable/baseline_location_on_24"
+                android:drawableStart="@drawable/baseline_location_on_24"
+                android:drawablePadding="4dp"
                 app:layout_constraintBottom_toBottomOf="@id/fpdImage"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="location" />

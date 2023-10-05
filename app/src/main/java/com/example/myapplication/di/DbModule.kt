@@ -18,7 +18,6 @@ class DbModule {
     )
         .build()
 
-
     @Provides
     fun providePhotoDao(dataBase: PhotoDataBase): PhotoDao =
         dataBase.photoDao()

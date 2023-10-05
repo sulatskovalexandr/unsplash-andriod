@@ -75,5 +75,4 @@ class RepositoryModule {
     fun provideGetCollectionUseCase(collectionRepository: CollectionRepository): GetCollectionUseCase =
         GetCollectionUseCase(collectionRepository)
 
-
 }

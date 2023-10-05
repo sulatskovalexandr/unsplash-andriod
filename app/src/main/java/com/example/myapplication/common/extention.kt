@@ -1,7 +1,6 @@
 package com.example.myapplication.common
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -39,7 +38,6 @@ inline fun <T> Fragment.observeData(
  */
 fun Context.getProgressBar(): CircularProgressDrawable {
     val circularProgressDrawable = CircularProgressDrawable(this)
-    circularProgressDrawable.setColorSchemeColors(Color.GRAY)
     circularProgressDrawable.strokeWidth = 5f
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()

@@ -1,5 +1,6 @@
 package com.example.myapplication.domain.model.dto
 
+
 import com.google.gson.annotations.SerializedName
 
 data class PhotoDto(

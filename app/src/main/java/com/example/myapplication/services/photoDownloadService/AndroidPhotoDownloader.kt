@@ -27,20 +27,4 @@ class AndroidPhotoDownloader(
             )
         return downloadManager.enqueue(request)
     }
-
-
-//    override fun isPhotoExists(fileName: String): Boolean {
-//        val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
-//        val selection = //"${MediaStore.MediaColumns.RELATIVE_PATH} like ? and " +
-//            "${MediaStore.MediaColumns.DISPLAY_NAME} = ?"
-//        val relativePath = "${Environment.DIRECTORY_DOWNLOADS}${"fileName.jpg"}"
-//        val selectionArgs = arrayOf(
-//            //"%$relativePath%",
-//            fileName
-//        )
-//        val uri = MediaStore.Images.Media.INTERNAL_CONTENT_URI
-//        context.contentResolver.query(uri, projection, selection, selectionArgs, null)?.use {
-//            return it.count > 0
-//        } ?: return false
-//    }
 }

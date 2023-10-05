@@ -149,16 +149,16 @@ class PhotoFragment : Fragment(), ClickListener {
             }
             dialog.show()
         }
-//
-//        binding.fpToolbar.setOnMenuItemClickListener {
-//            if (it.itemId == R.id.item_order) {
-//                showDialog()
-//            } else if (it.itemId == R.id.item_search) {
-//
-//            }
-//            return@setOnMenuItemClickListener false
-//
-//        }
+
+        binding.fpToolbar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.item_order) {
+                showDialog()
+            } else if (it.itemId == R.id.item_search) {
+
+            }
+            return@setOnMenuItemClickListener false
+
+        }
 
 
     }

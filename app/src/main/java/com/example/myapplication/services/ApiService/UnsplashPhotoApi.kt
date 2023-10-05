@@ -90,7 +90,4 @@ interface UnsplashPhotoApi {
         @Query("per_page") perPage: Int? = PER_PAGE_PHOTO,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): List<Collection>
-
-
 }
-

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.photo_screen.photo_details_screen
+package com.example.myapplication.photo_details_screen.presentation.photo_details_screen
 
 import android.view.LayoutInflater
 import android.view.View

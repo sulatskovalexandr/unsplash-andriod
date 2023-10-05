@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        appComponent.inject(this)
         setContentView(binding?.root)
 
         binding?.maBottomBar?.setOnItemSelectedListener { item ->

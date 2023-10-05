@@ -1,7 +1,6 @@
 package com.example.myapplication.di
 
 import android.content.Context
-import com.example.myapplication.MainActivity
 import com.example.myapplication.ui.collection_screens.CollectionFragment
 import com.example.myapplication.ui.photo_screen.PhotoFragment
 import com.example.myapplication.ui.photo_screen.photo_details_screen.PhotoDetailsFragment
@@ -42,5 +41,4 @@ interface AppComponent {
     fun inject(fragment: UserPhotoFragment)
     fun inject(fragment: UserCollectionFragment)
     fun inject(fragment: CollectionFragment)
-    fun inject(activity: MainActivity)
 }
