@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fpdClContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/spdProfileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular" />
+
+    <TextView
+        android:id="@+id/spdUserName"
+        android:layout_width="100dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/margin_10"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="@id/spdProfileImage"
+        app:layout_constraintStart_toEndOf="@id/spdProfileImage"
+        app:layout_constraintTop_toTopOf="@id/spdProfileImage" />
+
+    <ImageView
+        android:id="@+id/spdBtnFavorite"
+        android:layout_width="@dimen/margin_32"
+        android:layout_height="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_24"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="@id/spdProfileImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spdProfileImage" />
+
+    <ImageView
+        android:id="@+id/spdBtnLike"
+        android:layout_width="@dimen/margin_32"
+        android:layout_height="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@color/light_grey"
+        app:layout_constraintEnd_toStartOf="@id/spdBtnFavorite"
+        app:layout_constraintTop_toTopOf="@id/spdBtnFavorite" />
+
+    <ImageView
+        android:id="@+id/spdBtnDownland"
+        android:layout_width="@dimen/margin_32"
+        android:layout_height="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@color/light_grey"
+        app:layout_constraintEnd_toStartOf="@id/spdBtnLike"
+        app:layout_constraintTop_toTopOf="@+id/spdBtnLike" />
+
+    <View
+        android:id="@+id/spdLine1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/spdProfileImage" />
+
+    <TextView
+        android:id="@+id/spdTvCamera"
+        android:layout_width="50dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="18dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdLine1"
+        app:layout_constraintTop_toBottomOf="@id/spdLine1" />
+
+    <TextView
+        android:id="@+id/spdTvCameraInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvCamera"
+        app:layout_constraintTop_toBottomOf="@id/spdTvCamera" />
+
+    <TextView
+        android:id="@+id/spdTvFocus"
+        android:layout_width="140dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdLine1"
+        app:layout_constraintTop_toBottomOf="@id/spdTvCameraInfo" />
+
+    <TextView
+        android:id="@+id/spdTvFocusInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvFocus"
+        app:layout_constraintTop_toBottomOf="@id/spdTvFocus" />
+
+
+    <TextView
+        android:id="@+id/spdTvIso"
+        android:layout_width="25dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvFocusInfo"
+        app:layout_constraintTop_toBottomOf="@id/spdTvFocusInfo" />
+
+    <TextView
+        android:id="@+id/spdTvIsoInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvIso"
+        app:layout_constraintTop_toBottomOf="@id/spdTvIso" />
+
+    <TextView
+        android:id="@+id/spdTvAperture"
+        android:layout_width="63dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="@id/spdLine1"
+        app:layout_constraintTop_toBottomOf="@id/spdLine1" />
+
+    <TextView
+        android:id="@+id/spdTvApertureInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvAperture"
+        app:layout_constraintTop_toBottomOf="@id/spdTvAperture" />
+
+    <TextView
+        android:id="@+id/spdTvExposition"
+        android:layout_width="80dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvApertureInfo"
+        app:layout_constraintTop_toBottomOf="@id/spdTvApertureInfo" />
+
+    <TextView
+        android:id="@+id/spdTvExpositionInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvExposition"
+        app:layout_constraintTop_toBottomOf="@id/spdTvExposition" />
+
+    <TextView
+        android:id="@+id/spdTvResolution"
+        android:layout_width="83dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvExpositionInfo"
+        app:layout_constraintTop_toBottomOf="@id/spdTvExpositionInfo" />
+
+    <TextView
+        android:id="@+id/spdTvResolutionInfo"
+        android:layout_width="80dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/spdTvResolution"
+        app:layout_constraintTop_toBottomOf="@id/spdTvResolution" />
+
+    <View
+        android:id="@+id/spdLine2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/spdTvIsoInfo" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfView"
+        android:layout_width="80dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toStartOf="@id/spdTvNumberOfDownland"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spdLine2" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfViewInfo"
+        android:layout_width="60dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfView"
+        app:layout_constraintStart_toStartOf="@id/spdTvNumberOfView"
+        app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfView" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfDownland"
+        android:layout_width="80dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toStartOf="@id/spdTvNumberOfLikes"
+        app:layout_constraintStart_toEndOf="@id/spdTvNumberOfView"
+        app:layout_constraintTop_toBottomOf="@id/spdLine2" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfDownlandInfo"
+        android:layout_width="60dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfDownland"
+        app:layout_constraintStart_toStartOf="@id/spdTvNumberOfDownland"
+        app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfDownland" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfLikes"
+        android:layout_width="50dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spdTvNumberOfDownland"
+        app:layout_constraintTop_toBottomOf="@id/spdLine2" />
+
+    <TextView
+        android:id="@+id/spdTvNumberOfLikesInfo"
+        android:layout_width="60dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfLikes"
+        app:layout_constraintStart_toStartOf="@id/spdTvNumberOfLikes"
+        app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfLikes" />
+
+    <View
+        android:id="@+id/spdLine3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfViewInfo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintTop_toBottomOf="@id/spdLine3">
+
+        <TextView
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:background="@drawable/round_corner_view"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:background="@drawable/round_corner_view"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:background="@drawable/round_corner_view"
+            android:padding="8dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_16">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/fcItemProfileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular"
+        app:strokeColor="@android:color/transparent"
+        tools:src="@color/black" />
+
+    <TextView
+        android:id="@+id/fcItemUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_name"
+        app:layout_constraintStart_toEndOf="@id/fcItemProfileImage"
+        app:layout_constraintTop_toTopOf="@id/fcItemProfileImage"
+        tools:text="Collection Name" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/fcItemImage"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fcItemProfileImage"
+        app:shapeAppearanceOverlay="@style/RoundCorner" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/fcItemImageDark"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:background="@color/black_alpha_10"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fcItemProfileImage"
+        app:shapeAppearanceOverlay="@style/RoundCorner" />
+
+    <TextView
+        android:id="@+id/fcQuantityPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fcItemImage"
+        app:layout_constraintStart_toStartOf="@id/fcItemImage"
+        tools:text="@string/pf_text_photo" />
+
+    <TextView
+        android:id="@+id/fcItemCollectionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Name of collection"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/fcQuantityPhoto"
+        app:layout_constraintStart_toStartOf="@id/fcQuantityPhoto" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
+    tools:context=".ui.user_screen.users_photo.UserPhotoFragment">
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/fppShimmerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_user_photo" />
+
+            <include layout="@layout/shimmer_user_photo" />
+
+            <include layout="@layout/shimmer_user_photo" />
+
+            <include layout="@layout/shimmer_user_photo" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/fppSrlRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fppRvListPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:visibility="gone"
+            tools:listitem="@layout/item_user_photo" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</FrameLayout>
