@@ -27,7 +27,6 @@ import com.example.myapplication.constants.Const.USER_NAME_KEY
 import com.example.myapplication.databinding.FragmentPhotoDetailsBinding
 import com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsAdapter
 import com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
-import com.example.myapplication.ui.user_screen.UserFragment
 import javax.inject.Inject
 
 
@@ -98,13 +97,10 @@ class PhotoDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.fpdRvListTags.adapter = adapter
         binding.fpdRvListTags.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel.setPhotoId(photoId)
-
 
         Glide
             .with(view)
@@ -180,6 +176,16 @@ class PhotoDetailsFragment : Fragment() {
                     bundle
                 )
             }
+            binding.fpdProfileImage.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
+                bundle.putString(USER_NAME_KEY, userName)
+                findNavController().navigate(
+                    R.id.action_photoDetailsFragment_to_userFragment,
+                    bundle
+                )
+            }
+
         }
 
         observeData(viewModel.photoStatistics) { photoStatistics ->
@@ -270,19 +276,6 @@ class PhotoDetailsFragment : Fragment() {
                 else -> {}
             }
             viewModel.clearMessage()
-        }
-
-        binding.fpdProfileImage.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
-            bundle.putString(USER_NAME_KEY, userName)
-            val profileFragment = UserFragment()
-            profileFragment.arguments = bundle
-
-            findNavController().navigate(
-                R.id.action_photoDetailsFragment_to_userFragment,
-                bundle
-            )
         }
     }
 

@@ -12,7 +12,6 @@ import com.example.myapplication.appComponent
 import com.example.myapplication.common.observeData
 import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.FragmentUserBinding
-import com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment
 import javax.inject.Inject
 
 class UserFragment : Fragment() {
@@ -92,11 +91,5 @@ class UserFragment : Fragment() {
                 )
             }
         }
-        val userPhotoFragment = UserPhotoFragment()
-//        val userCollectionFragment = UserCollectionFragment()
-        val bundle = Bundle()
-        bundle.putString(Const.USER_NAME_KEY, userName)
-        userPhotoFragment.arguments = bundle
-//        userCollectionFragment.arguments = bundle
     }
 }

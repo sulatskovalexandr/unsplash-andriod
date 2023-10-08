@@ -24,13 +24,17 @@ class CollectionViewModel @Inject constructor(
     private val _messageFlow = MutableStateFlow<Messages?>(null)
     val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
 
-    val page = 1
-
+    private var page = 1
     private var isLoading = false
     private var isSuccess = false
 
     init {
-        loadCollection(1)
+        if (page == 1) {
+            loadCollection(page)
+            _messageFlow.value = Messages.ShowShimmer
+        } else {
+            _messageFlow.value = Messages.HideShimmer
+        }
     }
 
     private fun loadCollection(page: Int) {
@@ -44,6 +48,7 @@ class CollectionViewModel @Inject constructor(
                         isSuccess = true
                         _collectionList.value = Event.success(it)
                         _messageFlow.value = Messages.HideShimmer
+                        this@CollectionViewModel.page = page + 1
 
                     }.onFailure {
                         _messageFlow.value = Messages.ShowShimmer
@@ -56,7 +61,7 @@ class CollectionViewModel @Inject constructor(
 
     fun onLoadCollection() {
         if (!isLoading && isSuccess) {
-            loadCollection(page + 1)
+            loadCollection(page)
         }
     }
 

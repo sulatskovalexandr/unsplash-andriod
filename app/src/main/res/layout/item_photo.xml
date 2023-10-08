@@ -45,7 +45,7 @@
     <ImageView
         android:id="@+id/fpItemImageBack"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/margin_16"

@@ -1,11 +1,12 @@
 package com.example.myapplication.domain.model.dto
 
 
+import com.example.myapplication.domain.model.User
 import com.google.gson.annotations.SerializedName
 
 data class PhotoDto(
     val id: String,
-    val user: UserDto?,
+    val user: User,
     val urls: Urls?,
     @SerializedName("created_at") val createdAt: String,
 )

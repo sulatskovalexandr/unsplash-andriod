@@ -77,6 +77,7 @@ class PhotoViewModel @Inject constructor(
                         _messageFlow.value = Messages.NetworkIsDisconnected
                     }
             }
+
 //            currentPage += 1
             isLoading = false
 //            _photoList.value = getPhotoUseCase.execute(page)
@@ -87,6 +88,7 @@ class PhotoViewModel @Inject constructor(
         if (networkChecker.isNetworkConnected()) {
             if (!isLoading && isSuccess) {
                 loadPhoto(param)
+                _messageFlow.value = Messages.HideShimmer
             } else {
                 isLoading = false
                 loadPhoto(param.copy(page = 1))
@@ -107,12 +109,23 @@ class PhotoViewModel @Inject constructor(
     }
 
     fun loadListOldestPhoto() {
-        loadPhoto(param = param.copy(page = 1, orderBy = GetPhotoUseCase.Companion.Order.OLDEST))
+        loadPhoto(
+            param = param.copy(
+                page = param.page,
+                orderBy = GetPhotoUseCase.Companion.Order.OLDEST
+            )
+        )
     }
 
     fun loadListPopularPhoto() {
-        loadPhoto(param = param.copy(page = 1, orderBy = GetPhotoUseCase.Companion.Order.POPULAR))
+        loadPhoto(
+            param = param.copy(
+                page = param.page,
+                orderBy = GetPhotoUseCase.Companion.Order.POPULAR
+            )
+        )
     }
+
     fun clearMessage() {
         _messageFlow.value = null
     }

@@ -154,7 +154,7 @@ class PhotoFragment : Fragment(), ClickListener {
             if (it.itemId == R.id.item_order) {
                 showDialog()
             } else if (it.itemId == R.id.item_search) {
-
+                findNavController().navigate(R.id.action_photoFragment_to_searchFragment)
             }
             return@setOnMenuItemClickListener false
 

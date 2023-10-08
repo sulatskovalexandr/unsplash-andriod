@@ -1,10 +1,17 @@
 package com.example.myapplication.common
 
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.ContextWrapper
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
+import android.widget.EditText
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -87,6 +94,24 @@ fun isPhotoExists(context: Context, fileName: String): Boolean {
     }
 }
 
+fun EditText.showKeyboard() {
+    if (requestFocus()) {
+        (getActivity()?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
+            .showSoftInput(this, SHOW_IMPLICIT)
+        setSelection(text.length)
+    }
+}
+
+fun View.getActivity(): AppCompatActivity? {
+    var context = this.context
+    while (context is ContextWrapper) {
+        if (context is AppCompatActivity) {
+            return context
+        }
+        context = context.baseContext
+    }
+    return null
+}
 
 
 
