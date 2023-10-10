@@ -15,5 +15,5 @@ class GetUserPhotoUseCase @Inject constructor(private val usersPhotoRepository: 
 
 data class UserPhotoParam(
     val userName: String,
-    val page: Int
+    val page: Int,
 )

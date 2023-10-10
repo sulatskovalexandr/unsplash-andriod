@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.photo_screen.photo_details_screen
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.common.Messages
 import com.example.myapplication.common.NetworkChecker
@@ -10,6 +9,7 @@ import com.example.myapplication.domain.use_case.photo_details_usecase.GetDataBa
 import com.example.myapplication.domain.use_case.photo_details_usecase.GetPhotoDetailsUseCase
 import com.example.myapplication.domain.use_case.photo_details_usecase.GetPhotoStatisticsUseCase
 import com.example.myapplication.domain.use_case.photo_details_usecase.PhotoDownloadUrl
+import com.example.myapplication.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -22,7 +22,7 @@ class PhotoDetailsViewModel @Inject constructor(
     private val photoDownloadUrl: PhotoDownloadUrl,
     private val networkChecker: NetworkChecker,
     private val getDataBasePhotoDetailsUseCase: GetDataBasePhotoDetailsUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _photoDetails: MutableStateFlow<PhotoDetails?> = MutableStateFlow(null)
     val photoDetails: Flow<PhotoDetails> = _photoDetails.filterNotNull()
@@ -33,6 +33,13 @@ class PhotoDetailsViewModel @Inject constructor(
     private val _messageFlow = MutableStateFlow<Messages?>(null)
     val messageFlow: Flow<Messages> = _messageFlow.filterNotNull()
 
+    private lateinit var photoId: String
+
+    override fun onViewCreated() {
+        loadDetailsPhoto(photoId)
+        loadStatisticsPhoto(photoId)
+    }
+
     private fun loadDetailsPhoto(photoId: String) {
         viewModelScope.launch {
             if (networkChecker.isNetworkConnected()) {
@@ -41,7 +48,6 @@ class PhotoDetailsViewModel @Inject constructor(
                 _messageFlow.value = Messages.HideShimmer
             } else {
                 getDataBasePhotoDetailsUseCase.invoke(photoId)
-//
             }
         }
     }
@@ -57,10 +63,8 @@ class PhotoDetailsViewModel @Inject constructor(
         }
     }
 
-
     fun setPhotoId(photoId: String) {
-        loadDetailsPhoto(photoId)
-        loadStatisticsPhoto(photoId)
+        this.photoId = photoId
     }
 
     fun onDownloadClick(photoId: String) {

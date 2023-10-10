@@ -1,12 +1,12 @@
 package com.example.myapplication.ui.user_screen.user_collection
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.Event
 import com.example.myapplication.common.Messages
 import com.example.myapplication.domain.model.Collection
 import com.example.myapplication.domain.use_case.user_usecase.GetUserCollectionUseCase
 import com.example.myapplication.domain.use_case.user_usecase.UserPhotoParam
+import com.example.myapplication.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 class UserCollectionViewModel @Inject constructor(
     private val getUserCollectionUseCase: GetUserCollectionUseCase
-) : ViewModel() {
-
+) : BaseViewModel() {
 
     private val _userCollectionList =
         MutableStateFlow<Event<List<Collection>>>(Event.loading())
@@ -30,7 +29,11 @@ class UserCollectionViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
-    fun loadUserCollection(param: UserPhotoParam) {
+    override fun onViewCreated() {
+        loadUserCollection(param)
+    }
+
+    private fun loadUserCollection(param: UserPhotoParam) {
         isLoading = true
         viewModelScope.launch {
             _userCollectionList.value = Event.loading()
@@ -40,6 +43,7 @@ class UserCollectionViewModel @Inject constructor(
                     _userCollectionList.value = Event.success(it)
                     _messageFlow.value = Messages.HideShimmer
                     this@UserCollectionViewModel.param = param.copy(page = param.page + 1)
+                    isLoading = it.size != 10
                 }.onFailure {
                     _messageFlow.value = Messages.ShowShimmer
                 }
@@ -58,9 +62,8 @@ class UserCollectionViewModel @Inject constructor(
         _messageFlow.value = Messages.ShowShimmer
     }
 
-
     fun setArgs(userName: String) {
         param = param.copy(userName = userName)
-        loadUserCollection(param)
+
     }
 }

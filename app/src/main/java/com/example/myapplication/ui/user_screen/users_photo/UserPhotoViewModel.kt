@@ -1,12 +1,12 @@
 package com.example.myapplication.ui.user_screen.users_photo
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.Event
 import com.example.myapplication.common.Messages
 import com.example.myapplication.domain.model.UserPhoto
 import com.example.myapplication.domain.use_case.user_usecase.GetUserPhotoUseCase
 import com.example.myapplication.domain.use_case.user_usecase.UserPhotoParam
+import com.example.myapplication.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class UserPhotoViewModel @Inject constructor(
     private val getUserPhotoUseCase: GetUserPhotoUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _userPhotoList =
         MutableStateFlow<Event<List<UserPhoto>>>(Event.loading())
@@ -28,6 +28,10 @@ class UserPhotoViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
+    override fun onViewCreated() {
+        loadUserPhoto(param)
+    }
+
     private fun loadUserPhoto(param: UserPhotoParam) {
         isLoading = true
         viewModelScope.launch {
@@ -38,18 +42,18 @@ class UserPhotoViewModel @Inject constructor(
                     _userPhotoList.value = Event.success(it)
                     _messageFlow.value = Messages.HideShimmer
                     this@UserPhotoViewModel.param = param.copy(page = param.page + 1)
+                    isLoading = it.size == 10
                 }.onFailure {
                     _messageFlow.value = Messages.ShowShimmer
                 }
             isLoading = false
         }
-
     }
-
 
     fun onLoadUserPhotos() {
         if (!isLoading && isSuccess) {
             loadUserPhoto(param)
+            _messageFlow.value = Messages.HideShimmer
         }
     }
 
@@ -58,9 +62,8 @@ class UserPhotoViewModel @Inject constructor(
         _messageFlow.value = Messages.ShowShimmer
     }
 
-
     fun setArgs(userName: String) {
         param = param.copy(userName = userName)
-        loadUserPhoto(param)
+
     }
 }

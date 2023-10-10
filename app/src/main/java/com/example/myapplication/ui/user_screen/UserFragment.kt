@@ -1,10 +1,7 @@
 package com.example.myapplication.ui.user_screen
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
@@ -12,52 +9,26 @@ import com.example.myapplication.appComponent
 import com.example.myapplication.common.observeData
 import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.FragmentUserBinding
-import javax.inject.Inject
+import com.example.myapplication.ui.base.BaseFragment
 
-class UserFragment : Fragment() {
+class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
 
-    @Inject
-    lateinit var viewModel: UserViewModel
+    override val viewModelClass: Class<UserViewModel>
+        get() = UserViewModel::class.java
 
-    private var _binding: FragmentUserBinding? = null
-    private val binding get() = requireNotNull(_binding)
+    override fun createViewBinding(): FragmentUserBinding =
+        FragmentUserBinding.inflate(layoutInflater)
+
+    override fun inject() {
+        appComponent.inject(this)
+    }
 
     private val photoProfile: String
         get() = arguments?.getString(Const.PHOTO_PROFILE_KEY) ?: error("error")
     private val userName: String
         get() = arguments?.getString(Const.USER_NAME_KEY) ?: error("error")
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appComponent.inject(this)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentUserBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.fprViewPager.adapter = UserPagerAdapter(
-            fm = childFragmentManager,
-            userName = userName
-        )
-        viewModel.setUserName(userName)
-
-        Glide
-            .with(view)
-            .load(photoProfile)
-            .into(binding.fprProfileImage)
-
-
-        binding.pfToolbar.title = userName
-
+    override fun observeViewModel() {
         observeData(viewModel.user) { user ->
             binding.fprQuantityOfPhoto.text = user?.totalPhotos.toString()
             binding.fprQuantityOfLikes.text = user?.totalLikes.toString()
@@ -91,5 +62,22 @@ class UserFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.setUserName(userName)
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.fprViewPager.adapter = UserPagerAdapter(
+            fm = childFragmentManager,
+            userName = userName
+        )
+
+        Glide
+            .with(view)
+            .load(photoProfile)
+            .into(binding.fprProfileImage)
+
+        binding.pfToolbar.title = userName
     }
 }

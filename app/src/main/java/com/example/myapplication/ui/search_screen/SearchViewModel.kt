@@ -1,4 +1,6 @@
 package com.example.myapplication.ui.search_screen
 
-class SearchViewModel {
+import com.example.myapplication.ui.base.BaseViewModel
+
+class SearchViewModel : BaseViewModel() {
 }

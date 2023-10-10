@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.view.setPadding
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -26,17 +25,24 @@ import com.example.myapplication.constants.Const.PHOTO_URL_KEY
 import com.example.myapplication.constants.Const.USER_NAME_KEY
 import com.example.myapplication.databinding.FragmentPhotoDetailsBinding
 import com.example.myapplication.photo_details_screen.presentation.photo_details_screen.PhotoDetailsAdapter
+import com.example.myapplication.ui.base.BaseFragment
 import com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
-import javax.inject.Inject
 
 
-class PhotoDetailsFragment : Fragment() {
-    @Inject
-    lateinit var viewModel: PhotoDetailsViewModel
+class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDetailsBinding>() {
+
+    override val viewModelClass: Class<PhotoDetailsViewModel>
+        get() = PhotoDetailsViewModel::class.java
+
     private val adapter = PhotoDetailsAdapter()
 
-    private var _binding: FragmentPhotoDetailsBinding? = null
-    private val binding get() = requireNotNull(_binding)
+    override fun createViewBinding(): FragmentPhotoDetailsBinding =
+        FragmentPhotoDetailsBinding.inflate(layoutInflater)
+
+    override fun inject() {
+        appComponent.inject(this)
+    }
+
     private val photoUrl: String
         get() = arguments?.getString(PHOTO_URL_KEY) ?: error("error")
     private val photoId: String
@@ -46,75 +52,7 @@ class PhotoDetailsFragment : Fragment() {
     private val userName: String
         get() = arguments?.getString(USER_NAME_KEY) ?: error("error")
 
-
-    private val writeLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                viewModel.onDownloadClick(photoId)
-            } else {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.error_access_text),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-    @RequiresApi(Build.VERSION_CODES.R)
-    private val manageLauncher =
-        registerForActivityResult(ManageStorageContract()) { isGranted ->
-            if (isGranted) {
-                viewModel.onDownloadClick(photoId)
-            } else {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.error_access_text),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appComponent.inject(this)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentPhotoDetailsBinding.inflate(inflater, container, false)
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            activity?.window?.insetsController?.hide(WindowInsets.Type.statusBars())
-//        } else {
-////            activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//        }
-        return binding.root
-    }
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.fpdRvListTags.adapter = adapter
-        binding.fpdRvListTags.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        viewModel.setPhotoId(photoId)
-
-        Glide
-            .with(view)
-            .load(photoUrl)
-            .transition(DrawableTransitionOptions.withCrossFade())
-//            .override(2, 2)
-            .into(binding.fpdImage)
-
-        Glide
-            .with(view)
-            .load(photoProfile)
-            .into(binding.fpdProfileImage)
-        binding.fpdUserName.text = userName
-
+    override fun observeViewModel() {
         observeData(viewModel.photoDetails) { photoDetails ->
 
             if (photoDetails.exif?.model != null) {
@@ -185,71 +123,12 @@ class PhotoDetailsFragment : Fragment() {
                     bundle
                 )
             }
-
         }
 
         observeData(viewModel.photoStatistics) { photoStatistics ->
 
             binding.fpdTvNumberOfViewInfo.text = photoStatistics.views.total.formated
             binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total.formated
-        }
-
-        binding.fdpToolBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
-
-        fun downloadPhoto() {
-            binding.fpdBtnDownland.setImageResource(R.drawable.baseline_download_24)
-            binding.fpdBtnDownland.setPadding(4)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                if (Environment.isExternalStorageManager()) {
-                    viewModel.onDownloadClick(photoId)
-                    Toast.makeText(
-                        context,
-                        getString(R.string.start_of_the_download_text),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    manageLauncher.launch(Unit)
-                }
-
-            } else if (checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                viewModel.onDownloadClick(photoId)
-                Toast.makeText(
-                    context,
-                    getString(R.string.start_of_the_download_text),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                writeLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-        }
-
-        fun showDownloadDialog() {
-            val dialog = AlertDialog.Builder(requireContext())
-            dialog.setTitle("Скачать снова?")
-            dialog.setMessage("Это фото уже загружено. Вы хотите загрузить его еще раз?")
-            dialog.setNegativeButton("Нет") { d, w ->
-                d.cancel()
-            }
-            dialog.setPositiveButton("Да") { d, w ->
-                downloadPhoto()
-            }
-            dialog.create()
-            dialog.show()
-        }
-
-        binding.fpdBtnDownland.setOnClickListener {
-            if (isPhotoExists(requireContext(), photoId)) {
-                showDownloadDialog()
-            } else {
-                downloadPhoto()
-            }
         }
 
         observeData(viewModel.messageFlow) { message ->
@@ -271,17 +150,116 @@ class PhotoDetailsFragment : Fragment() {
                 Messages.HideShimmer -> {
                     binding.fpdShimmerFrameLayout.stopShimmer()
                     binding.fpdShimmerFrameLayout.visibility = View.GONE
-
                 }
-                else -> {}
             }
             viewModel.clearMessage()
         }
     }
 
-    override fun onDestroy() {
-        _binding = null
-//        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        super.onDestroy()
+    private val writeLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                viewModel.onDownloadClick(photoId)
+            } else {
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.error_access_text),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private val manageLauncher =
+        registerForActivityResult(ManageStorageContract()) { isGranted ->
+            if (isGranted) {
+                viewModel.onDownloadClick(photoId)
+            } else {
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.error_access_text),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.setPhotoId(photoId)
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.fpdRvListTags.adapter = adapter
+        binding.fpdRvListTags.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        Glide
+            .with(view)
+            .load(photoUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+//            .override(2, 2)
+            .into(binding.fpdImage)
+
+        Glide
+            .with(view)
+            .load(photoProfile)
+            .into(binding.fpdProfileImage)
+        binding.fpdUserName.text = userName
+
+        binding.fdpToolBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.fpdBtnDownland.setOnClickListener {
+            if (isPhotoExists(requireContext(), photoId)) {
+                showDownloadDialog()
+            } else {
+                downloadPhoto()
+            }
+        }
     }
+
+    private fun downloadPhoto() {
+        binding.fpdBtnDownland.setImageResource(R.drawable.baseline_download_24)
+        binding.fpdBtnDownland.setPadding(4)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+                viewModel.onDownloadClick(photoId)
+                Toast.makeText(
+                    context,
+                    getString(R.string.start_of_the_download_text),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                manageLauncher.launch(Unit)
+            }
+
+        } else if (checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            viewModel.onDownloadClick(photoId)
+            Toast.makeText(
+                context,
+                getString(R.string.start_of_the_download_text),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            writeLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }
+
+    private fun showDownloadDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle("Скачать снова?")
+        dialog.setMessage("Это фото уже загружено. Вы хотите загрузить его еще раз?")
+        dialog.setNegativeButton("Нет") { d, w ->
+            d.cancel()
+        }
+        dialog.setPositiveButton("Да") { d, w ->
+            downloadPhoto()
+        }
+        dialog.create()
+        dialog.show()
+    }
+
 }

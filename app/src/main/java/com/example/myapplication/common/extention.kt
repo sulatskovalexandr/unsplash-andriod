@@ -112,10 +112,3 @@ fun View.getActivity(): AppCompatActivity? {
     }
     return null
 }
-
-
-
-
-
-
-

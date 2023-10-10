@@ -45,16 +45,6 @@ class PhotoZoomFragment : Fragment() {
         binding.fpzBackButton.setOnClickListener {
             findNavController().popBackStack()
         }
-//        var counter = 0
-//        binding.pzfImage.setOnClickListener {
-//            counter++
-//            if (counter % 2 != 0){
-//                activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//            }else{
-//                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//
-//            }
-//        }
     }
 
     override fun onDestroyView() {
