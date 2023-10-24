@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Unsplash 2.0</string>
+    <string name="app_name">Unsplash</string>
     <string name="fpd_toolbar_title">Photo details</string>
     <string name="fpd_text_camera">Камера</string>
     <string name="fpd_text_focus">Фокусное растояние</string>
@@ -28,6 +28,6 @@
     <string name="fc_toolbar_title">Коллекции</string>
     <string name="fp_toolbar_title">Фото</string>
     <string name="fs_search_text">Поиск</string>
-
+    <string name="unsplash_join_url">https://unsplash.com/join</string>
 
 </resources>

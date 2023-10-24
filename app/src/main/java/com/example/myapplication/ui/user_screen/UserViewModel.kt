@@ -26,12 +26,10 @@ class UserViewModel @Inject constructor(
     private fun loadUser(userName: String) {
         viewModelScope.launch {
             _user.value = getUser.execute(userName)
-
         }
     }
 
     fun setUserName(userName: String) {
         this.userName = userName
     }
-
 }

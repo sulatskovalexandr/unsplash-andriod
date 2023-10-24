@@ -17,15 +17,10 @@ data class ListPhotoParam(
  */
 class GetPhotoUseCase @Inject constructor(private val photoRepository: PhotoRepository) :
     UseCase<ListPhotoParam, List<Photo>>(Dispatchers.IO) {
-//    override suspend fun execute(param: Int): List<Photo> =
-//        photoRepository.getListPhoto(param)
-
     override suspend fun execute(param: ListPhotoParam): List<Photo> =
         photoRepository.getListPhoto(param.page, param.orderBy.value)
 
-
     companion object {
-
         enum class Order(val titleRes: Int, val value: String) {
             LATEST(R.string.order_by_latest_text, "latest"),
             OLDEST(R.string.order_by_oldest_text, "oldest"),

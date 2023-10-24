@@ -106,7 +106,7 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
 
             binding.fpdImage.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString(PHOTO_URL_KEY, photoDetails.urls?.full)
+                bundle.putString(PHOTO_URL_KEY, photoUrl)
                 val photoZoomFragment = PhotoZoomFragment()
                 photoZoomFragment.arguments = bundle
                 findNavController().navigate(
@@ -261,5 +261,4 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
         dialog.create()
         dialog.show()
     }
-
 }

@@ -1,13 +1,7 @@
 package com.example.myapplication.di
 
-import com.example.myapplication.data.repository.CollectionRepositoryImpl
-import com.example.myapplication.data.repository.PhotoDetailsRepositoryImpl
-import com.example.myapplication.data.repository.PhotoRepositoryImpl
-import com.example.myapplication.data.repository.UserRepositoryImpl
-import com.example.myapplication.domain.repository.CollectionRepository
-import com.example.myapplication.domain.repository.PhotoDetailsRepository
-import com.example.myapplication.domain.repository.PhotoRepository
-import com.example.myapplication.domain.repository.UserRepository
+import com.example.myapplication.data.repository.*
+import com.example.myapplication.domain.repository.*
 import dagger.Module
 import dagger.Provides
 
@@ -38,11 +32,18 @@ class RepositoryModule {
     fun provideUsersPhotoRepository(usersRepository: UserRepositoryImpl): UserRepository =
         usersRepository
 
-
     /**
      *collection
      */
     @Provides
     fun provideCollectionPhotoRepository(collectionRepository: CollectionRepositoryImpl): CollectionRepository =
         collectionRepository
+
+    /**
+     * login
+     */
+
+    @Provides
+    fun provideLoginRepository(loginRepository: LoginRepositoryImpl):LoginRepository =
+        loginRepository
 }

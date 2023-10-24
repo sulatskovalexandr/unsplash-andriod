@@ -76,9 +76,9 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.myapplication.ui.user_screen.auth_screen.AuthFragment"
+        android:name="com.example.myapplication.ui.login_screen.LoginFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/usersPhotoFragment"
         android:name="com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment"

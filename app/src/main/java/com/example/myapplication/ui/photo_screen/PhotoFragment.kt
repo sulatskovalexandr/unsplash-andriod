@@ -126,8 +126,7 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Clic
         }
 
         fun showDialog() {
-            val builder =
-                AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
+            val builder = AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
             val inflater = activity?.layoutInflater
             val viewAlertDialog = inflater?.inflate(R.layout.order_dialog, null)
             val radioGroup = viewAlertDialog?.findViewById<RadioGroup>(R.id.radioGroup)
@@ -182,6 +181,4 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Clic
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
     }
-
-
 }

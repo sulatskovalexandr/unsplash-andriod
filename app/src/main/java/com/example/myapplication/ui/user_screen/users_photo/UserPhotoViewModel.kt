@@ -64,6 +64,5 @@ class UserPhotoViewModel @Inject constructor(
 
     fun setArgs(userName: String) {
         param = param.copy(userName = userName)
-
     }
 }

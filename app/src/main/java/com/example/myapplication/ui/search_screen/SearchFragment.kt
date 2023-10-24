@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.appComponent
 import com.example.myapplication.common.showKeyboard
 import com.example.myapplication.databinding.FragmentSearchBinding
 import com.example.myapplication.ui.base.BaseFragment
@@ -20,7 +21,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         FragmentSearchBinding.inflate(layoutInflater)
 
     override fun inject() {
-//      appComponent.inject(this)
+      appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +36,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         binding.fsEditText.addTextChangedListener {
             if (it != null) {
                 binding.fsDeleteButton.isVisible = it.toString().isNotEmpty()
-
             }
         }
         binding.fsDeleteButton.setOnClickListener {
