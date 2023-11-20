@@ -12,9 +12,9 @@ data class PhotoDto(
 )
 
 class UserDto(
-    val id: String,
+    val id: String = "",
     @SerializedName("username")
-    val userName: String,
+    val userName: String = "",
 //    val name: String,
     val location: String? = "",
     @SerializedName("profile_image")

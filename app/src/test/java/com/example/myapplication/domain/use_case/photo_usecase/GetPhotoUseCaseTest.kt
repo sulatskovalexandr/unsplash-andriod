@@ -1,6 +1,6 @@
 package com.example.myapplication.domain.use_case.photo_usecase
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.myapplication.domain.model.Photo
 import com.example.myapplication.domain.repository.PhotoRepository
 import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
@@ -11,15 +11,15 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(JUnit4::class)
+//@LargeTest
 class GetPhotoUseCaseTest {
     @RelaxedMockK
     private lateinit var photoRepository: PhotoRepository
     private lateinit var useCase: GetPhotoUseCase
-    private var param = ListPhotoParam(1, GetPhotoUseCase.Companion.Order.LATEST)
-
-//    val photoRepository = mock<PhotoRepository>()
+    private val param = ListPhotoParam(1, GetPhotoUseCase.Companion.Order.LATEST)
 
     @Before
     fun beforeTest() {
@@ -27,24 +27,24 @@ class GetPhotoUseCaseTest {
         useCase = GetPhotoUseCase(photoRepository)
     }
 
-//    @Test
-//    fun `success test GetPhotoUseCaseTest`(param: ListPhotoParam) = runTest {
-//        coEvery {
-//            photoRepository.getListPhoto(1, "")
-//        } coAnswers {
-//            listOf(Photo(id = "", userName = "", profileImage = "", urls = "", createdTime = 0))
-//        }
-//
-//        val testResult = useCase(param).isSuccess
-//
-//        withClue("testResult should be true") {
-//            testResult shouldBe true
-//        }
-//    }
+    @Test
+    fun `success test GetPhotoUseCaseTest`() = runTest {
+        coEvery {
+            photoRepository.getListPhoto(param.page, param.orderBy.value)
+        } coAnswers {
+            listOf(Photo(id = "", userName = "", profileImage = "", urls = "", createdTime = 0))
+        }
+        val testResult = useCase(param).isSuccess
+
+        withClue("testResult should be true") {
+            testResult shouldBe true
+        }
+    }
+
     @Test
     fun `negative test GetPhotosUseCaseTest`() = runTest {
         coEvery {
-            photoRepository.getListPhoto(1,"")
+            photoRepository.getListPhoto(param.page, param.orderBy.value)
         } coAnswers {
             throw Throwable()
         }
@@ -55,7 +55,6 @@ class GetPhotoUseCaseTest {
         }
     }
 }
-
 //    @Test
 //    suspend fun shouldReturnTheSameDataAsInPhotoRepository(photo: Photo) {
 //        val testListPhoto: List<Photo> =

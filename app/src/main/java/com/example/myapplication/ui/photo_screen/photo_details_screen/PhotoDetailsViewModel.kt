@@ -42,24 +42,35 @@ class PhotoDetailsViewModel @Inject constructor(
 
     private fun loadDetailsPhoto(photoId: String) {
         viewModelScope.launch {
-            if (networkChecker.isNetworkConnected()) {
-                val execute: PhotoDetails? = getPhotoDetails.execute(photoId = photoId)
-                _photoDetails.value = execute
-                _messageFlow.value = Messages.HideShimmer
-            } else {
-                getDataBasePhotoDetailsUseCase.invoke(photoId)
-            }
+//            if (networkChecker.isNetworkConnected()) {
+            getPhotoDetails.invoke(photoId)
+                .onSuccess {
+//                val execute: PhotoDetails? = getPhotoDetails.execute(photoId = photoId)
+                    _photoDetails.value = it
+                    _messageFlow.value = Messages.HideShimmer
+                }.onFailure {
+                    getDataBasePhotoDetailsUseCase.invoke(photoId)
+                }
+//            } else {
+
+//            }
         }
     }
 
     private fun loadStatisticsPhoto(photoId: String) {
         viewModelScope.launch {
-            if (networkChecker.isNetworkConnected()) {
-                _photoStatistics.value = getPhotoStatistics.execute(photoId = photoId)
-                _messageFlow.value = Messages.HideShimmer
-            } else {
-                _messageFlow.value = Messages.NetworkIsDisconnected
-            }
+//            if (networkChecker.isNetworkConnected()) {
+            getPhotoStatistics.invoke(photoId)
+                .onSuccess {
+                    _photoStatistics.value = it
+                    _messageFlow.value = Messages.HideShimmer
+                }.onFailure {
+                    _messageFlow.value = Messages.NetworkIsDisconnected
+                }
+//            } else {
+
+//            }
+//        }
         }
     }
 

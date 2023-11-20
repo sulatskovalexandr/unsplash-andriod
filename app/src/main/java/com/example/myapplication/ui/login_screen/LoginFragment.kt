@@ -65,9 +65,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.authButton.setOnClickListener { openUnsplashLoginTab() }
-
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
