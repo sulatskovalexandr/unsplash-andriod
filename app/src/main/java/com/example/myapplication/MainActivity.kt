@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.ui.login_screen.LoginFragment
 import com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
 
 
@@ -64,6 +66,12 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
         return true
+    }
+    override fun onNewIntent(intent: Intent?) {
+        val navFragment = supportFragmentManager.findFragmentById(R.id.maFragmentContainer)
+        val fragment = navFragment?.childFragmentManager?.primaryNavigationFragment
+        (fragment as? LoginFragment)?.onNewIntent(intent)
+        super.onNewIntent(intent)
     }
 
     fun goneNavBar() {

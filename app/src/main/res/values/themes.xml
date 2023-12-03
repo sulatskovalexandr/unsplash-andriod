@@ -29,22 +29,5 @@
         <item name="colorControlActivated">@color/grey</item>
     </style>
 
-    <!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
-    <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-    <!--        <item name="colorPrimary">@color/white</item>-->
-    <!--        <item name="colorPrimaryDark">@color/dark_grey</item>-->
-    <!--        <item name="android:actionMenuTextColor">@android:color/black</item>-->
-    <!--    </style>-->
-
-    <!--    <style name="FabDiamondOverlay" parent="">-->
-    <!--        <item name="cornerFamily">rounded</item>-->
-    <!--        <item name="cornerSize">30dp</item>-->
-    <!--    </style>-->
-
-    <!--    <style name="BottomAppBarTheme" parent="Widget.MaterialComponents.BottomAppBar.Colored">-->
-    <!--        <item name="android:itemBackground">@android:color/white</item>-->
-    <!--    </style>-->
-
-
 </resources>
 

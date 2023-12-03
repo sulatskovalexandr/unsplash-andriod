@@ -4,21 +4,46 @@ import com.example.myapplication.domain.model.dto.ProfileImage
 import com.google.gson.annotations.SerializedName
 
 class User(
-    val id: String,
+    val id: String = "",
     @SerializedName("username")
-    val userName: String,
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("bio")
-    val bio: String,
-    @SerializedName("location")
-    val location: String,
+    val userName: String = "",
+    val name: String = "",
+    val bio: String = "",
+    val location: String = "",
     @SerializedName("total_likes")
-    val totalLikes: Int,
+    val totalLikes: Int = 0,
     @SerializedName("total_photos")
-    val totalPhotos: Int,
+    val totalPhotos: Int = 0,
     @SerializedName("total_collections")
-    val totalCollections: Int,
+    val totalCollections: Int = 0,
+    @SerializedName("profile_image")
+    val profileImage: ProfileImage
+)
+
+class AccessToken(
+    @SerializedName("access_token")
+    val accessToken: String = "",
+    @SerializedName("token_type")
+    val tokenType: String? = "",
+    val scope: String? = "",
+    @SerializedName("create_at")
+    val createAt: Int? = 0
+)
+
+class Me(
+    val id: String = "",
+    @SerializedName("username")
+    val userName: String = "",
+    val name: String = "",
+    val email: String = "",
+    val bio: String = "",
+    val location: String = "",
+    @SerializedName("total_likes")
+    val totalLikes: Int = 0,
+    @SerializedName("total_photos")
+    val totalPhotos: Int = 0,
+    @SerializedName("total_collections")
+    val totalCollections: Int = 0,
     @SerializedName("profile_image")
     val profileImage: ProfileImage
 )

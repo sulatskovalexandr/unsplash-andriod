@@ -2,13 +2,9 @@ package com.example.myapplication.ui.photo_screen
 
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextThemeWrapper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,32 +22,71 @@ import com.example.myapplication.constants.Const.PHOTO_URL_KEY
 import com.example.myapplication.constants.Const.USER_NAME_KEY
 import com.example.myapplication.databinding.FragmentPhotoBinding
 import com.example.myapplication.domain.model.Photo
-import javax.inject.Inject
+import com.example.myapplication.ui.base.BaseFragment
 
 
-class PhotoFragment : Fragment(), ClickListener {
+class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), ClickListener {
 
-    @Inject
-    lateinit var viewModel: PhotoViewModel
+    override val viewModelClass: Class<PhotoViewModel>
+        get() = PhotoViewModel::class.java
 
     private val adapter = PhotoAdapter(this) // Передача адаптера
 
-    private var _binding: FragmentPhotoBinding? = null
-    private val binding get() = requireNotNull(_binding)
+    override fun createViewBinding(): FragmentPhotoBinding =
+        FragmentPhotoBinding.inflate(layoutInflater)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun inject() {
         appComponent.inject(this)
     }
 
-    /**
-     * Создание view, сам GeneralFragment уже создан в onCreate
-     */
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPhotoBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun observeViewModel() {
+
+        observeData(viewModel.photoList) { event ->
+            when (event) {
+                is Event.Loading -> onProgress()
+                is Event.Success -> onSuccess(event.data)
+                is Event.Error -> onError()
+            }
+        }
+
+        observeData(viewModel.messageFlow) { message ->
+            when (message) {
+                is Messages.NetworkIsDisconnected ->
+                    snackbar(getString(R.string.network_is_disconnected_text))
+                is Messages.ShowShimmer -> {
+                    binding.fpShimmerFrameLayout.startShimmer()
+                    binding.fpShimmerFrameLayout.visibility = View.VISIBLE
+                }
+                is Messages.HideShimmer -> {
+                    binding.fpShimmerFrameLayout.stopShimmer()
+                    binding.fpShimmerFrameLayout.visibility = View.GONE
+                }
+                else -> {
+                }
+            }
+            viewModel.clearMessage()
+        }
+    }
+
+    override fun onPhotoClick(
+        photoId: String,
+        photoUrl: String,
+        photoProfile: String,
+        userName: String
+    ) {
+        val bundle = Bundle()
+        bundle.putString(Const.PHOTO_ID_KEY, photoId)
+        bundle.putString(PHOTO_URL_KEY, photoUrl)
+        bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
+        bundle.putString(USER_NAME_KEY, userName)
+        findNavController().navigate(R.id.action_photoFragment_to_photoDetailsFragment, bundle)
+    }
+
+    override fun onProfileImageClick(photoProfile: String, userName: String) {
+        val bundle = Bundle()
+        bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
+        bundle.putString(USER_NAME_KEY, userName)
+        findNavController().navigate(R.id.action_photoFragment_to_userFragment, bundle)
     }
 
     /**
@@ -82,70 +117,40 @@ class PhotoFragment : Fragment(), ClickListener {
         })
 
         /**
-         *
-         */
-        observeData(viewModel.photoList) { event ->
-            when (event) {
-                is Event.Loading -> onProgress()
-                is Event.Success -> onSuccess(event.data)
-                is Event.Error -> onError()
-            }
-        }
-
-        /**
          * Обработчик свайпа на обновление данных в списке
          */
+
         binding.fpSrlRefresh.setOnRefreshListener {
             adapter.clear()
             viewModel.onRefreshPhotos()
         }
 
-        observeData(viewModel.messageFlow) { message ->
-            when (message) {
-                is Messages.NetworkIsDisconnected ->
-                    snackbar(getString(R.string.network_is_disconnected_text))
-                is Messages.ShowShimmer -> {
-                    binding.fpShimmerFrameLayout.startShimmer()
-                    binding.fpShimmerFrameLayout.visibility = View.VISIBLE
-                }
-                is Messages.HideShimmer -> {
-                    binding.fpShimmerFrameLayout.stopShimmer()
-                    binding.fpShimmerFrameLayout.visibility = View.GONE
-                }
-                else -> {
-                }
-            }
-            viewModel.clearMessage()
-        }
-
         fun showDialog() {
-            val builder = AlertDialog.Builder(activity as MainActivity)
+            val builder = AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
             val inflater = activity?.layoutInflater
-            val view = inflater?.inflate(R.layout.order_dialog, null)
-            val radioGroup = view?.findViewById<RadioGroup>(R.id.radiogroup)
-            val radioStyle = ContextThemeWrapper(radioGroup?.context, R.style.MyRadioButton)
-            builder.setView(view)
+            val viewAlertDialog = inflater?.inflate(R.layout.order_dialog, null)
+            val radioGroup = viewAlertDialog?.findViewById<RadioGroup>(R.id.radioGroup)
+            builder.setView(viewAlertDialog)
             val dialog = builder.create()
             radioGroup?.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
-                    R.id.rb_order_by_latest -> {
+                    R.id.rbOrderByLatest -> {
                         adapter.clear()
                         viewModel.onLoadPhotos()
                         dialog.dismiss()
                     }
-                    R.id.rb_order_by_oldest -> {
+                    R.id.rbOrderByOldest -> {
                         adapter.clear()
                         viewModel.loadListOldestPhoto()
                         dialog.dismiss()
                     }
-                    R.id.rb_order_by_popular -> {
+                    R.id.rbOrderByPopular -> {
                         adapter.clear()
                         viewModel.loadListPopularPhoto()
                         dialog.dismiss()
                     }
                 }
                 dialog.dismiss()
-
             }
             dialog.show()
         }
@@ -154,13 +159,10 @@ class PhotoFragment : Fragment(), ClickListener {
             if (it.itemId == R.id.item_order) {
                 showDialog()
             } else if (it.itemId == R.id.item_search) {
-
+                findNavController().navigate(R.id.action_photoFragment_to_searchFragment)
             }
             return@setOnMenuItemClickListener false
-
         }
-
-
     }
 
     private fun onProgress() {
@@ -178,31 +180,5 @@ class PhotoFragment : Fragment(), ClickListener {
 
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
-
-    override fun onPhotoClick(
-        photoId: String,
-        photoUrl: String,
-        photoProfile: String,
-        userName: String
-    ) {
-        val bundle = Bundle()
-        bundle.putString(Const.PHOTO_ID_KEY, photoId)
-        bundle.putString(PHOTO_URL_KEY, photoUrl)
-        bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
-        bundle.putString(USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_photoFragment_to_photoDetailsFragment, bundle)
-    }
-
-    override fun onProfileImageClick(photoProfile: String, userName: String) {
-        val bundle = Bundle()
-        bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
-        bundle.putString(USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_photoFragment_to_userFragment, bundle)
     }
 }

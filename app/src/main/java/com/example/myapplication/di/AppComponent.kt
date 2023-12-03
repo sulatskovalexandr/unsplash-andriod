@@ -5,6 +5,8 @@ import com.example.myapplication.ui.collection_screens.CollectionFragment
 import com.example.myapplication.ui.photo_screen.PhotoFragment
 import com.example.myapplication.ui.photo_screen.photo_details_screen.PhotoDetailsFragment
 import com.example.myapplication.ui.user_screen.UserFragment
+import com.example.myapplication.ui.login_screen.LoginFragment
+import com.example.myapplication.ui.search_screen.SearchFragment
 import com.example.myapplication.ui.user_screen.user_collection.UserCollectionFragment
 import com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment
 import dagger.BindsInstance
@@ -41,4 +43,6 @@ interface AppComponent {
     fun inject(fragment: UserPhotoFragment)
     fun inject(fragment: UserCollectionFragment)
     fun inject(fragment: CollectionFragment)
+    fun inject(fragment: LoginFragment)
+    fun inject(fragment: SearchFragment)
 }

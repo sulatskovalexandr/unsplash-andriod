@@ -7,15 +7,15 @@ data class PhotoStatistics(
 )
 
 class Downloads(
-    val total: Int
+    val total: Int = 0
 )
 
 class Views(
-    val total: Int
+    val total: Int = 0
 )
 
 class Likes(
-    val total: Int
+    val total: Int = 0
 )
 
 

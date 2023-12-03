@@ -1,12 +1,16 @@
 package com.example.myapplication.services.ApiService
 
-import com.example.myapplication.constants.Const.PER_PAGE_PHOTO
+import com.example.myapplication.constants.Const.GRANT_TYPE
+import com.example.myapplication.constants.Const.PER_PAGE
+import com.example.myapplication.constants.Const.REDIRECT_URI
 import com.example.myapplication.constants.Const.YOUR_ACCESS_KEY
+import com.example.myapplication.constants.Const.YOUR_SECRET_KEY
 import com.example.myapplication.domain.model.*
 import com.example.myapplication.domain.model.Collection
 import com.example.myapplication.domain.model.dto.PhotoDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -22,7 +26,7 @@ interface UnsplashPhotoApi {
 
     suspend fun getPhotos(
         @Query("page") page: Int?,
-        @Query("per_page") perPage: Int? = PER_PAGE_PHOTO,
+        @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("order_by") orderBy: String,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): List<PhotoDto>
@@ -53,16 +57,19 @@ interface UnsplashPhotoApi {
     ): DownloadPhotoUrl?
 
     /**
+     *collection
+     */
+
+    @GET("collections")
+    suspend fun getCollections(
+        @Query("page") page: Int?,
+        @Query("per_page") perPage: Int? = PER_PAGE,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): List<Collection>
+
+    /**
      *user
      */
-    @GET("users/{username}/photos")
-    suspend fun getUsersPhoto(
-        @Path("username")
-        userName: String,
-        @Query("page") page: Int?,
-        @Query("per_page") perPage: Int? = PER_PAGE_PHOTO,
-        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
-    ): List<UserPhoto>
 
     @GET("users/{username}")
     suspend fun getUser(
@@ -71,23 +78,33 @@ interface UnsplashPhotoApi {
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): User
 
-    /**
-     *collection
-     */
-
-    @GET("collections")
-    suspend fun getCollections(
+    @GET("users/{username}/photos")
+    suspend fun getUsersPhoto(
+        @Path("username")
+        userName: String,
         @Query("page") page: Int?,
-        @Query("per_page") perPage: Int? = PER_PAGE_PHOTO,
+        @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
-    ): List<Collection>
+    ): List<UserPhoto>
 
     @GET("users/{username}/collections")
     suspend fun getUserCollections(
         @Path("username")
         userName: String,
         @Query("page") page: Int?,
-        @Query("per_page") perPage: Int? = PER_PAGE_PHOTO,
+        @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
     ): List<Collection>
+
+    @GET("me")
+    suspend fun getMe(): Me
+
+    @POST("oauth/token")
+    suspend fun userAuthorization(
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY,
+        @Query("client_secret") clientSecret:String = YOUR_SECRET_KEY,
+        @Query("redirect_uri") redirectUri:String = REDIRECT_URI,
+        @Query("code") code: String,
+        @Query("grant_type") grantType: String = GRANT_TYPE
+    ):AccessToken
 }

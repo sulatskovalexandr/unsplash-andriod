@@ -1,4 +1,7 @@
 package com.example.myapplication.ui.search_screen
 
-class SearchViewModel {
+import com.example.myapplication.ui.base.BaseViewModel
+import javax.inject.Inject
+
+class SearchViewModel @Inject constructor() : BaseViewModel() {
 }
