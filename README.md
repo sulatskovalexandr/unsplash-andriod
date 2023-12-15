@@ -11,4 +11,4 @@ ___
 
 ![image](https://raw.githubusercontent.com/sulatskovalexandr/unsplash-andriod/master/anim/image.gif)
 
-![user_profile](https://raw.githubusercontent.com/sulatskovalexandr/unsplash-andriod/master/anim/image.gif)
+![user_profile](https://raw.githubusercontent.com/sulatskovalexandr/unsplash-andriod/master/anim/user_profile.gif)
