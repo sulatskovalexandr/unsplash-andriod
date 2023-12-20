@@ -8,20 +8,23 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_bg">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/fsToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back">
+            app:navigationIcon="@drawable/ic_back"
+            >
 
             <EditText
                 android:id="@+id/fsEditText"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginEnd="60dp"
-                android:background="@color/white"
+                android:background="@color/text_button"
+                android:textColor="@color/text_primary"
                 android:ems="10"
                 android:hint="@string/fs_search_text"
                 android:inputType="textPersonName"
@@ -47,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="?attr/actionBarSize"
         android:animationCache="false"
+        android:background="@color/screen_bg"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <com.google.android.material.tabs.TabLayout
@@ -54,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="top"
-            app:tabTextColor="@color/black" />
+            app:tabTextColor="@color/text_primary" />
 
     </androidx.viewpager.widget.ViewPager>
 

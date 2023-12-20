@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="70dp"
-        android:text="Список коллекций пуст"
+        android:text="@string/fuc_list_collection_text"
         android:textColor="@color/grey"
         android:textSize="16sp"
         android:visibility="gone" />

@@ -17,7 +17,7 @@
     </style>
 
     <style name="MultiChoiceAlertDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/alert_dialog_bg</item>
         <item name="android:textColorPrimary">@color/light_grey</item>
         <item name="colorControlNormal">@color/light_grey</item>
         <item name="colorControlActivated">@color/black</item>

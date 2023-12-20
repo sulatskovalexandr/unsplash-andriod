@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fgLlContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/screen_bg">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_bg">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/fpToolbar"
-
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:layout_anchor="@+id/appBarLayout"
+            app:layout_anchorGravity="center"
             app:menu="@menu/app_bar_menu"
             app:title="@string/fp_toolbar_title"
-            app:titleTextColor="@color/black" />
+            app:titleTextColor="@color/text_primary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,8 +56,7 @@
         android:id="@+id/fpSrlRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="?attr/actionBarSize">
+        android:layout_marginTop="?attr/actionBarSize">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fpRvListPhotos"

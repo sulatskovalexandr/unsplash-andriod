@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/margin_16"
     android:background="@drawable/round_corner_view"
+    android:textColor="@color/text_button"
     android:padding="8dp"
     android:textAlignment="center"
-    android:textColor="@color/black"
-    tools:text="tag about photo" />
+    tools:text="tag about photo"
+    />

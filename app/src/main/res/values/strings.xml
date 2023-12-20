@@ -29,5 +29,6 @@
     <string name="fp_toolbar_title">Фото</string>
     <string name="fs_search_text">Поиск</string>
     <string name="unsplash_join_url">https://unsplash.com/join</string>
+    <string name="fuc_list_collection_text">Список коллекций пуст</string>
 
 </resources>

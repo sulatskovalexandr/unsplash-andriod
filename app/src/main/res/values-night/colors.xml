@@ -9,26 +9,23 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_grey">#525252</color>
     <color name="grey">#ACACAC</color>
-    <color name="night_theme_grey">#D21E1E1E</color>
-    <color name="night_theme_white">#1E1E1E</color>
     <color name="light_grey">#DCDCDC</color>
     <color name="alpha_0">#00FFFFFF</color>
     <color name="white_alpha_50">#80FFFFFF</color>
     <color name="black_alpha_10">#1A000000</color>
 
-    <color name="toolbar_bg">#ffffffff</color>
-    <color name="screen_bg">#FFFFFF</color>
+    <color name="toolbar_bg">#99000000</color>
+    <color name="screen_bg">#99000000</color>
 
-    <color name="button_bg">#000000</color>
-    <color name="text_button">#ffffff</color>
+    <color name="button_bg">#ffffff</color>
+    <color name="text_button">#000000</color>
 
-    <color name="text_primary">#de000000</color>
-    <color name="text_medium">#99000000</color>
-    <color name="text_disabled">#61000000</color>
+    <color name="text_primary">#deffffff</color>
+    <color name="text_medium">#99FFFFFF</color>
+    <color name="text_disabled">#61FFFFFF</color>
 
-    <color name="alert_dialog_bg">#ffffff</color>
-    <color name="alert_dialog_text">#000000</color>
-
+    <color name="alert_dialog_bg">#000000</color>
+    <color name="alert_dialog_text">#ffffff</color>
 
 
 

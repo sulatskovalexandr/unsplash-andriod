@@ -3,26 +3,29 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/alert_dialog_bg">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/order_dialog_text"
-        android:textColor="#000"
+        android:textColor="@color/alert_dialog_text"
         android:textSize="20sp" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16">
+        android:layout_marginTop="@dimen/margin_16"
+        android:clickable="true">
 
         <RadioButton
             android:id="@+id/rbOrderByLatest"
             style="@style/MyRadioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/alert_dialog_text"
             android:text="@string/order_by_latest_text"
             android:textSize="@dimen/margin_16" />
 
@@ -32,13 +35,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/order_by_oldest_text"
-            android:textSize="@dimen/margin_16" />
+            android:textColor="@color/alert_dialog_text"
+            android:textSize="@dimen/margin_16"
+            />
 
         <RadioButton
             android:id="@+id/rbOrderByPopular"
             style="@style/MyRadioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/alert_dialog_text"
             android:text="@string/order_by_popular_text"
             android:textSize="@dimen/margin_16" />
 
