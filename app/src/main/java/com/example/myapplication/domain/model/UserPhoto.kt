@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 class UserPhoto(
     @SerializedName("id")
-    val id: String,
+    val id: String?="",
     @SerializedName("user")
     val user: User,
     @SerializedName("urls")

@@ -13,13 +13,15 @@ import com.example.myapplication.appComponent
 import com.example.myapplication.common.Messages
 import com.example.myapplication.common.observeData
 import com.example.myapplication.common.snackbar
+import com.example.myapplication.constants.Const
 import com.example.myapplication.databinding.FragmentCollectionBinding
 import com.example.myapplication.domain.model.Collection
 import com.example.myapplication.ui.base.BaseFragment
 
-class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionBinding>() {
+class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionBinding>(),
+    CollectionClickListener {
 
-    private val adapter = CollectionAdapter()
+    private val adapter = CollectionAdapter(this)
 
     override val viewModelClass: Class<CollectionViewModel>
         get() = CollectionViewModel::class.java
@@ -95,11 +97,6 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         }
     }
 
-    override fun onDestroy() {
-        binding.fcShimmerFrameLayout.stopShimmer()
-        super.onDestroy()
-    }
-
     private fun onProgress() {
         binding.fcSrlRefresh.isRefreshing = false
     }
@@ -115,6 +112,13 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
 
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
+    }
+
+    override fun onProfileImageClick(photoProfile: String, userName: String) {
+        val bundle = Bundle()
+        bundle.putString(Const.PHOTO_PROFILE_KEY, photoProfile)
+        bundle.putString(Const.USER_NAME_KEY, userName)
+        findNavController().navigate(R.id.action_collectionFragment_to_userFragment, bundle)
     }
 
 

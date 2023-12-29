@@ -23,7 +23,6 @@ interface UnsplashPhotoApi {
     @Headers(
         "Accept-Version: v1",
     )
-
     suspend fun getPhotos(
         @Query("page") page: Int?,
         @Query("per_page") perPage: Int? = PER_PAGE,

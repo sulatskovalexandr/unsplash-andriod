@@ -27,7 +27,6 @@ class UserCollectionAdapter(private val listener: ClickListener) :
 
     override fun onBindViewHolder(holder: UserCollectionHolder, position: Int) {
         holder.bindUserPhoto(listUsersCollection[position])
-
     }
 
     fun addUsersPhoto(collection: List<com.example.myapplication.domain.model.Collection>) {
@@ -50,8 +49,16 @@ class UserCollectionHolder(itemView: View, var listener: ClickListener) :
         with(binding) {
             Glide
                 .with(itemView)
-                .load(userCollection.coverPhoto.url.regular)
+                .load(userCollection.coverPhoto.url?.regular)
                 .transition(DrawableTransitionOptions.withCrossFade())
+                .thumbnail(
+                    Glide.with(itemView)
+                        .load(userCollection.coverPhoto.url?.regular)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .error(R.drawable.ic_error)
+                        .override(2, 2)
+                )
+//                .placeholder(itemView.context.getProgressBar())
                 .into(fucItemImage)
 
             binding.fucCollectionName.text = userCollection.title

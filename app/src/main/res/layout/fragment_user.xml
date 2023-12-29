@@ -16,7 +16,6 @@
             android:id="@+id/fprCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_grey"
             android:fitsSystemWindows="true"
             android:navigationIcon="@drawable/ic_back"
             android:paddingBottom="@dimen/margin_8"
@@ -159,7 +158,6 @@
                 android:layout_gravity="top"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_back"
-                app:navigationIconTint="@color/navigation_icon_tint"
                 app:title="username"
                 android:background="@color/toolbar_bg"/>
 

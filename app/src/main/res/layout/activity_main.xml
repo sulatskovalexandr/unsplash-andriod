@@ -17,6 +17,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_bar_menu" />
 
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/maViewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:animationCache="false"-->
+<!--        android:background="@color/screen_bg"-->
+<!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">-->
+
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/maTabLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:background="@color/screen_bg"-->
+<!--            app:tabTextColor="@color/text_primary" />-->
+
+<!--    </androidx.viewpager.widget.ViewPager>-->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/maFragmentContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"

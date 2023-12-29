@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.R
+import com.example.myapplication.common.getProgressBar
 import com.example.myapplication.databinding.ItemUserPhotoBinding
 import com.example.myapplication.domain.model.UserPhoto
 
@@ -46,19 +47,28 @@ class UserPhotoHolder(itemView: View, var listener: ClickListener) :
     private val binding = ItemUserPhotoBinding.bind(itemView)
 
 
-    fun bindUserPhoto(userPhoto: UserPhoto) = with(binding) {
+    fun bindUserPhoto(userPhoto: UserPhoto?) = with(binding) {
         Glide
             .with(itemView)
-            .load(userPhoto.url.regular)
+            .load(userPhoto?.url?.regular)
             .transition(DrawableTransitionOptions.withCrossFade())
+            .thumbnail(
+                Glide.with(itemView)
+                    .load(userPhoto?.url?.regular)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error)
+                    .override(2, 2)
+            )
+            .error(R.drawable.ic_error)
+            .placeholder(itemView.context.getProgressBar())
             .into(fppItemImage)
 
         binding.fppItemImage.setOnClickListener {
             listener.onPhotoClick(
-                userPhoto.id,
-                userPhoto.url.regular.toString(),
-                userPhoto.user.profileImage.medium.toString(),
-                userPhoto.user.userName
+                userPhoto?.id.toString(),
+                userPhoto?.url?.regular.toString(),
+                userPhoto?.user?.profileImage?.medium.toString(),
+                userPhoto?.user?.userName.toString()
             )
         }
     }

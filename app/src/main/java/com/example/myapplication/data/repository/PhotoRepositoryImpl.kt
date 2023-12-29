@@ -17,9 +17,9 @@ class PhotoRepositoryImpl @Inject constructor(
         val photos = photoApiService.getPhotos(page = page, 10, oderBy).map { photo ->
             Photo(
                 photo.id,
-                photo.user?.userName.orEmpty(),
+                photo.user.userName.orEmpty(),
 //                photo.user?.name.orEmpty(),
-                photo.user?.profileImage?.medium.toString(),
+                photo.user.profileImage?.medium.toString(),
                 photo.urls?.regular.toString(),
                 1L
             )
@@ -28,6 +28,6 @@ class PhotoRepositoryImpl @Inject constructor(
         return photos
     }
 
-    override suspend fun getDataBaseListPhoto(page: Int): List<Photo> =
+    override suspend fun getDataBaseListPhoto(page: Int, oderBy: String): List<Photo> =
         photoDao.getPhotos(10)
 }

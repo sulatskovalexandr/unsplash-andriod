@@ -4,18 +4,18 @@ import com.example.myapplication.domain.model.dto.ProfileImage
 import com.google.gson.annotations.SerializedName
 
 class User(
-    val id: String = "",
+    val id: String? = "",
     @SerializedName("username")
-    val userName: String = "",
-    val name: String = "",
-    val bio: String = "",
-    val location: String = "",
+    val userName: String? = "",
+    val name: String? = "",
+    val bio: String? = "",
+    val location: String? = "",
     @SerializedName("total_likes")
-    val totalLikes: Int = 0,
+    val totalLikes: Int? = 0,
     @SerializedName("total_photos")
-    val totalPhotos: Int = 0,
+    val totalPhotos: Int? = 0,
     @SerializedName("total_collections")
-    val totalCollections: Int = 0,
+    val totalCollections: Int? = 0,
     @SerializedName("profile_image")
     val profileImage: ProfileImage
 )
@@ -35,13 +35,13 @@ class Me(
     @SerializedName("username")
     val userName: String = "",
     val name: String = "",
-    val email: String = "",
-    val bio: String = "",
-    val location: String = "",
+    val email: String? = "",
+    val bio: String? = "",
+    val location: String? = "",
     @SerializedName("total_likes")
-    val totalLikes: Int = 0,
+    val totalLikes: Int? = 0,
     @SerializedName("total_photos")
-    val totalPhotos: Int = 0,
+    val totalPhotos: Int? = 0,
     @SerializedName("total_collections")
     val totalCollections: Int = 0,
     @SerializedName("profile_image")

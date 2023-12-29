@@ -55,10 +55,11 @@ class PhotoViewModel @Inject constructor(
                     this@PhotoViewModel.param = param.copy(page = param.page + 1)
                 }.onFailure {
                     _messageFlow.value = Messages.NetworkIsDisconnected
-                    getDataBasePhotoUseCase.invoke(1)
+                    getDataBasePhotoUseCase.invoke(param)
                         .onSuccess {
                             _photoList.value = Event.success(it)
                             _messageFlow.value = Messages.HideShimmer
+                            isLoading = false
                         }.onFailure {
                             _messageFlow.value = Messages.NetworkIsDisconnected
                         }
@@ -77,7 +78,6 @@ class PhotoViewModel @Inject constructor(
     fun onRefreshPhotos() {
         loadPhoto(param.copy(page = 1))
         _messageFlow.value = Messages.ShowShimmer
-        _messageFlow.value = Messages.NetworkIsDisconnected
     }
 
     fun loadListOldestPhoto() {

@@ -50,7 +50,7 @@ class CollectionViewModel @Inject constructor(
                     this@CollectionViewModel.page = page + 1
 
                 }.onFailure {
-                    _messageFlow.value = Messages.ShowShimmer
+                    _messageFlow.value = Messages.HideShimmer
                     _collectionList.value = Event.error(0)
                     _messageFlow.value = Messages.NetworkIsDisconnected
                 }

@@ -27,6 +27,6 @@
     <color name="alert_dialog_bg">#000000</color>
     <color name="alert_dialog_text">#ffffff</color>
 
-
+    <color name="image_bg">#99303030</color>
 
 </resources>

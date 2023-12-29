@@ -3,7 +3,6 @@ package com.example.myapplication.ui.photo_screen
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,12 +24,13 @@ import com.example.myapplication.domain.model.Photo
 import com.example.myapplication.ui.base.BaseFragment
 
 
-class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), ClickListener {
+class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), PhotoClickListener {
 
     override val viewModelClass: Class<PhotoViewModel>
         get() = PhotoViewModel::class.java
 
     private val adapter = PhotoAdapter(this) // Передача адаптера
+    var checkedItemId = 0
 
     override fun createViewBinding(): FragmentPhotoBinding =
         FragmentPhotoBinding.inflate(layoutInflater)
@@ -126,33 +126,59 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Clic
         }
 
         fun showDialog() {
-            val builder = AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
-            val inflater = activity?.layoutInflater
-            val viewAlertDialog = inflater?.inflate(R.layout.order_dialog, null)
-            val radioGroup = viewAlertDialog?.findViewById<RadioGroup>(R.id.radioGroup)
-            builder.setView(viewAlertDialog)
-            val dialog = builder.create()
-            radioGroup?.setOnCheckedChangeListener { group, checkedId ->
-                when (checkedId) {
-                    R.id.rbOrderByLatest -> {
-                        adapter.clear()
-                        viewModel.onLoadPhotos()
-                        dialog.dismiss()
+            AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
+                .setTitle(R.string.order_dialog_text)
+                .setSingleChoiceItems(R.array.sort, checkedItemId) { d, checkedId ->
+                    when (checkedId) {
+                        0 -> {
+                            checkedItemId = 0
+                            adapter.clear()
+                            viewModel.onLoadPhotos()
+                            d.dismiss()
+                        }
+                        1 -> {
+                            checkedItemId = 1
+                            adapter.clear()
+                            viewModel.loadListOldestPhoto()
+                            d.dismiss()
+                        }
+                        2 -> {
+                            checkedItemId = 2
+                            adapter.clear()
+                            viewModel.loadListPopularPhoto()
+                            d.dismiss()
+                        }
                     }
-                    R.id.rbOrderByOldest -> {
-                        adapter.clear()
-                        viewModel.loadListOldestPhoto()
-                        dialog.dismiss()
-                    }
-                    R.id.rbOrderByPopular -> {
-                        adapter.clear()
-                        viewModel.loadListPopularPhoto()
-                        dialog.dismiss()
-                    }
-                }
-                dialog.dismiss()
-            }
-            dialog.show()
+                }.create()
+                .show()
+//            val viewAlertDialog = layoutInflater.inflate(R.layout.order_dialog, null)
+//            val radioGroup = viewAlertDialog.findViewById<RadioGroup>(R.id.radioGroup)
+//            builder.setView(viewAlertDialog)
+//            val dialog = builder.create()
+//            radioGroup?.setOnCheckedChangeListener { group, checkedId ->
+//                when (checkedId) {
+//                    R.id.rbOrderByLatest -> {
+//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByLatest).isChecked = true
+//                        adapter.clear()
+//                        viewModel.onLoadPhotos()
+//                        dialog.dismiss()
+//                    }
+//                    R.id.rbOrderByOldest -> {
+//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByOldest).isChecked = true
+//                        adapter.clear()
+//                        viewModel.loadListOldestPhoto()
+//                        dialog.dismiss()
+//                    }
+//                    R.id.rbOrderByPopular -> {
+//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByPopular).isChecked = true
+//                        adapter.clear()
+//                        viewModel.loadListPopularPhoto()
+//                        dialog.dismiss()
+//                    }
+//                }
+//                dialog.dismiss()
+//            }
+//            dialog.show()
         }
 
         binding.fpToolbar.setOnMenuItemClickListener {

@@ -12,8 +12,13 @@ import javax.inject.Inject
  */
 
 class GetDataBasePhotoUseCase @Inject constructor(private val photoRepository: PhotoRepository) :
-    UseCase<Int, List<Photo>>(Dispatchers.IO) {
+    UseCase<ListPhotoParam, List<Photo>>(Dispatchers.IO) {
 
-    override suspend fun execute(param: Int): List<Photo> =
-        photoRepository.getDataBaseListPhoto(param)
+//    override suspend fun execute(param: Int): List<Photo> =
+//        photoRepository.getDataBaseListPhoto(param)
+
+    override suspend fun execute(param: ListPhotoParam): List<Photo> =
+        photoRepository.getDataBaseListPhoto(param.page, param.orderBy.value)
+
+
 }

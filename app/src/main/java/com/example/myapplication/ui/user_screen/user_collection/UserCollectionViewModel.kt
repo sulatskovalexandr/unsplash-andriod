@@ -7,6 +7,7 @@ import com.example.myapplication.domain.model.Collection
 import com.example.myapplication.domain.use_case.user_usecase.GetUserCollectionUseCase
 import com.example.myapplication.domain.use_case.user_usecase.UserPhotoParam
 import com.example.myapplication.ui.base.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +31,11 @@ class UserCollectionViewModel @Inject constructor(
     private var isSuccess = false
 
     override fun onViewCreated() {
-        loadUserCollection(param)
+        if (param.page == 1) {
+            loadUserCollection(param)
+            _messageFlow.value = Messages.ShowShimmer
+        } else
+            _messageFlow.value = Messages.HideShimmer
     }
 
     private fun loadUserCollection(param: UserPhotoParam) {
@@ -40,20 +45,23 @@ class UserCollectionViewModel @Inject constructor(
             getUserCollectionUseCase.invoke(param)
                 .onSuccess {
                     isSuccess = true
+                    isLoading = it.size != 10
                     _userCollectionList.value = Event.success(it)
                     _messageFlow.value = Messages.HideShimmer
                     this@UserCollectionViewModel.param = param.copy(page = param.page + 1)
-                    isLoading = it.size != 10
                 }.onFailure {
-                    _messageFlow.value = Messages.ShowShimmer
+                    delay(1000)
+                    isLoading = false
+                    _messageFlow.value = Messages.HideShimmer
+                    _messageFlow.value = Messages.NetworkIsDisconnected
                 }
-            isLoading = false
         }
     }
 
     fun onLoadUserCollection() {
         if (!isLoading && isSuccess) {
             loadUserCollection(param)
+            _messageFlow.value = Messages.HideShimmer
         }
     }
 
@@ -64,6 +72,5 @@ class UserCollectionViewModel @Inject constructor(
 
     fun setArgs(userName: String) {
         param = param.copy(userName = userName)
-
     }
 }

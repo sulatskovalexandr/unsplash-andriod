@@ -127,15 +127,17 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
 
         observeData(viewModel.photoStatistics) { photoStatistics ->
 
-            binding.fpdTvNumberOfViewInfo.text = photoStatistics.views.total.formated
-            binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total.formated
+            binding.fpdTvNumberOfViewInfo.text = photoStatistics.views.total?.formated
+            binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total?.formated
         }
 
         observeData(viewModel.messageFlow) { message ->
             when (message) {
-                Messages.NetworkIsDisconnected ->
-                    snackbar(getString(R.string.network_is_disconnected_text))
-
+                Messages.NetworkIsDisconnected -> {
+//                    snackbar(getString(R.string.network_is_disconnected_text))
+                    binding.fpdClContainer.visibility = View.GONE
+                    binding.fdpDisconnected.visibility = View.VISIBLE
+                }
                 Messages.AlreadyDownloaded ->
                     showDownloadDialog()
 

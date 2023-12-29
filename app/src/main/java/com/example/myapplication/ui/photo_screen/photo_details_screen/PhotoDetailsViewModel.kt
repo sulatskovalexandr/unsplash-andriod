@@ -10,6 +10,7 @@ import com.example.myapplication.domain.use_case.photo_details_usecase.GetPhotoD
 import com.example.myapplication.domain.use_case.photo_details_usecase.GetPhotoStatisticsUseCase
 import com.example.myapplication.domain.use_case.photo_details_usecase.PhotoDownloadUrl
 import com.example.myapplication.ui.base.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -49,7 +50,10 @@ class PhotoDetailsViewModel @Inject constructor(
                     _photoDetails.value = it
                     _messageFlow.value = Messages.HideShimmer
                 }.onFailure {
+                    delay(1000)
                     getDataBasePhotoDetailsUseCase.invoke(photoId)
+                    _messageFlow.value = Messages.HideShimmer
+
                 }
 //            } else {
 
@@ -65,6 +69,7 @@ class PhotoDetailsViewModel @Inject constructor(
                     _photoStatistics.value = it
                     _messageFlow.value = Messages.HideShimmer
                 }.onFailure {
+                    delay(1000)
                     _messageFlow.value = Messages.NetworkIsDisconnected
                 }
 //            } else {

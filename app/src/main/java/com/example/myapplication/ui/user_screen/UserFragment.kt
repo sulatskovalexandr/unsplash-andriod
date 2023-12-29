@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.R
 import com.example.myapplication.appComponent
 import com.example.myapplication.common.observeData
@@ -76,6 +77,13 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
         Glide
             .with(view)
             .load(photoProfile)
+            .thumbnail(
+                Glide.with(view)
+                    .load(photoProfile)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error)
+                    .override(2, 2)
+            )
             .into(binding.fprProfileImage)
 
         binding.pfToolbar.title = userName

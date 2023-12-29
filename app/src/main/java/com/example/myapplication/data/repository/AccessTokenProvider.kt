@@ -38,12 +38,14 @@ class AccessTokenProvider @Inject constructor(context: Context) {
 
     fun saveAccessToken(accessToken: AccessToken) = sharedPreferences.edit {
         putString(ACCESS_TOKEN_KEY, accessToken.accessToken)
+            .apply()
     }
 
     fun saveUserProfile(me: Me) = sharedPreferences.edit {
         putString(USERNAME_KEY, me.userName)
         putString(EMAIL_KEY, me.email)
-        putString(PROFILE_IMAGE_KEY, me.profileImage?.large)
+        putString(PROFILE_IMAGE_KEY, me.profileImage.large)
+            .apply()
     }
 
     fun reset() = sharedPreferences.edit {
@@ -51,6 +53,7 @@ class AccessTokenProvider @Inject constructor(context: Context) {
         putString(USERNAME_KEY, null)
         putString(EMAIL_KEY, null)
         putString(PROFILE_IMAGE_KEY, null)
+            .apply()
     }
 
     companion object {

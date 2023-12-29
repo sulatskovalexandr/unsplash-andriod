@@ -12,12 +12,14 @@ import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
 import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.example.myapplication.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -44,10 +46,12 @@ inline fun <T> Fragment.observeData(
  * Progress bar
  */
 fun Context.getProgressBar(): CircularProgressDrawable {
-    val circularProgressDrawable = CircularProgressDrawable(this)
-    circularProgressDrawable.strokeWidth = 5f
-    circularProgressDrawable.centerRadius = 30f
-    circularProgressDrawable.start()
+    val circularProgressDrawable = CircularProgressDrawable(this).apply {
+        strokeWidth = 7f
+        centerRadius = 40f
+        setColorSchemeColors(ContextCompat.getColor(this@getProgressBar, R.color.text_disabled))
+        start()
+    }
     return circularProgressDrawable
 }
 
@@ -78,14 +82,11 @@ val UNSPLASH_LEGACY_PATH =
 fun isPhotoExists(context: Context, fileName: String): Boolean {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
-        val selection = //"${MediaStore.MediaColumns.RELATIVE_PATH} like ? and " +
-            "${MediaStore.MediaColumns.DISPLAY_NAME} = ?"
+        val selection = "${MediaStore.MediaColumns.RELATIVE_PATH} like ? and " +
+                "${MediaStore.MediaColumns.DISPLAY_NAME} = ?"
         val relativePath = UNSPLASH_RELATIVE_PATH
-        val selectionArgs = arrayOf(
-            "%$relativePath%",
-            fileName
-        )
-        val uri = MediaStore.Images.Media.INTERNAL_CONTENT_URI
+        val selectionArgs = arrayOf("%$relativePath%", "$fileName.jpg")
+        val uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         context.contentResolver.query(uri, projection, selection, selectionArgs, null)?.use {
             return it.count > 0
         } ?: return false

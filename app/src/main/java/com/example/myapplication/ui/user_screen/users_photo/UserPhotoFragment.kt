@@ -17,7 +17,8 @@ import com.example.myapplication.databinding.FragmentUserPhotoBinding
 import com.example.myapplication.domain.model.UserPhoto
 import com.example.myapplication.ui.base.BaseFragment
 
-class UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>(),
+class
+UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>(),
     ClickListener {
 
 
@@ -54,6 +55,9 @@ class UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBind
                 is Messages.ShowShimmer -> {
                     binding.fppShimmerFrameLayout.visibility = View.VISIBLE
                     binding.fppShimmerFrameLayout.startShimmer()
+                }
+                is Messages.NetworkIsDisconnected -> {
+                    binding.fupDisconnected.visibility = View.VISIBLE
                 }
                 else -> {
                 }
@@ -92,6 +96,7 @@ class UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBind
                     viewModel.onLoadUserPhotos()
                     (binding.fppRvListPhoto.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
                         false
+
                 }
                 super.onScrolled(recyclerView, dx, dy)
             }
@@ -100,6 +105,8 @@ class UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBind
         binding.fppSrlRefresh.setOnRefreshListener {
             adapter.clear()
             viewModel.onRefreshUserPhoto()
+            binding.fupDisconnected.visibility = View.GONE
+            binding.fupEmptyList.visibility = View.GONE
         }
     }
 
@@ -111,6 +118,10 @@ class UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBind
         try {
             binding.fppRvListPhoto.visibility = View.VISIBLE
             adapter.addUsersPhoto(data)
+
+            if (adapter.itemCount == 0)
+                binding.fupEmptyList.visibility = View.VISIBLE
+
         } catch (t: Throwable) {
             t.printStackTrace()
         }

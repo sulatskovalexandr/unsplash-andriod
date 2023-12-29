@@ -54,6 +54,9 @@ class UserCollectionFragment :
                     binding.fppShimmerFrameLayout.visibility = View.VISIBLE
                     binding.fppShimmerFrameLayout.startShimmer()
                 }
+                is Messages.NetworkIsDisconnected -> {
+                    binding.fucDisconnected.visibility = View.VISIBLE
+                }
                 else -> {
                 }
             }
@@ -94,6 +97,7 @@ class UserCollectionFragment :
         binding.fpcSrlRefresh.setOnRefreshListener {
             adapter.clear()
             viewModel.onRefreshUserCollection()
+            binding.fucDisconnected.visibility = View.GONE
         }
     }
 
@@ -117,5 +121,6 @@ class UserCollectionFragment :
 
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
+
     }
 }

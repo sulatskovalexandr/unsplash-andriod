@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.myapplication.R
+import com.example.myapplication.common.getProgressBar
 import com.example.myapplication.databinding.ItemPhotoBinding
 import com.example.myapplication.domain.model.Photo
 
-class PhotoAdapter(private val clickListener: ClickListener) :
+class PhotoAdapter(private val clickListener: PhotoClickListener) :
     RecyclerView.Adapter<PhotoHolder>() {
 
     private val listPhotos = mutableListOf<Photo>()
@@ -55,7 +57,7 @@ class PhotoAdapter(private val clickListener: ClickListener) :
 }
 
 class PhotoHolder(
-    var clickListener: ClickListener,
+    var clickListener: PhotoClickListener,
     itemView: View,
 ) : RecyclerView.ViewHolder(itemView) {
 
@@ -70,12 +72,27 @@ class PhotoHolder(
 
         Glide.with(itemView)
             .load(photo.profileImage)
+            .thumbnail(
+                Glide.with(itemView)
+                    .load(photo.profileImage)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error)
+                    .override(2, 2)
+            )
             .into(fpItemProfileImage)
 
         Glide.with(itemView)
             .load(photo.urls)
             .transition(DrawableTransitionOptions.withCrossFade())
-//            .placeholder(itemView.context.getProgressBar())
+            .thumbnail(
+                Glide.with(itemView)
+                    .load(photo.urls)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error)
+                    .override(2, 2)
+            )
+            .error(R.drawable.ic_error)
+            .placeholder(itemView.context.getProgressBar())
             .into(fpItemImage)
 
         fpItemName.text = photo.userName
@@ -96,7 +113,7 @@ class PhotoHolder(
     }
 }
 
-interface ClickListener {
+interface PhotoClickListener {
     fun onPhotoClick(photoId: String, photoUrl: String, photoProfile: String, userName: String)
 
     fun onProfileImageClick(photoProfile: String, userName: String)

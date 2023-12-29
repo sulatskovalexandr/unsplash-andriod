@@ -18,10 +18,10 @@ class Collection(
 
 class CoverPhoto(
     val id: String = "",
-    val likes: Int = 0,
-    val description: String = "",
+    val likes: Int? = 0,
+    val description: String? = "",
     val user: User,
     @SerializedName("urls")
-    val url: Urls,
+    val url: Urls?,
 
     )

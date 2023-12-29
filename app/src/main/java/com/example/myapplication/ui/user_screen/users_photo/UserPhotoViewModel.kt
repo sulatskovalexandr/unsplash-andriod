@@ -7,6 +7,7 @@ import com.example.myapplication.domain.model.UserPhoto
 import com.example.myapplication.domain.use_case.user_usecase.GetUserPhotoUseCase
 import com.example.myapplication.domain.use_case.user_usecase.UserPhotoParam
 import com.example.myapplication.ui.base.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,7 +30,11 @@ class UserPhotoViewModel @Inject constructor(
     private var isSuccess = false
 
     override fun onViewCreated() {
-        loadUserPhoto(param)
+        if (param.page == 1) {
+            loadUserPhoto(param)
+            _messageFlow.value = Messages.ShowShimmer
+        } else
+            _messageFlow.value = Messages.HideShimmer
     }
 
     private fun loadUserPhoto(param: UserPhotoParam) {
@@ -39,14 +44,16 @@ class UserPhotoViewModel @Inject constructor(
             getUserPhotoUseCase.invoke(param)
                 .onSuccess {
                     isSuccess = true
+                    isLoading = it.size != 10
                     _userPhotoList.value = Event.success(it)
                     _messageFlow.value = Messages.HideShimmer
                     this@UserPhotoViewModel.param = param.copy(page = param.page + 1)
-                    isLoading = it.size == 10
                 }.onFailure {
-                    _messageFlow.value = Messages.ShowShimmer
+                    delay(1000)
+                    isLoading = false
+                    _messageFlow.value = Messages.HideShimmer
+                    _messageFlow.value = Messages.NetworkIsDisconnected
                 }
-            isLoading = false
         }
     }
 
