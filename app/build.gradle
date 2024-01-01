@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myapplication'
+    namespace 'com.unsplash.sulatskov'
     compileSdk 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.unsplash.sulatskov"
         minSdk 24
         targetSdk 33
         versionCode 1

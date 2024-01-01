@@ -8,8 +8,9 @@
     android:background="@color/screen_bg">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fcAppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbar_bg">
 
         <com.google.android.material.appbar.MaterialToolbar
