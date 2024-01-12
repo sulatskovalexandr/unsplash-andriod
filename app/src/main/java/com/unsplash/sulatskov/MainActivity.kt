@@ -2,6 +2,7 @@ package com.unsplash.sulatskov
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import com.aghajari.zoomhelper.ZoomHelper
 import com.unsplash.sulatskov.databinding.ActivityMainBinding
 import com.unsplash.sulatskov.ui.login_screen.LoginFragment
 import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
@@ -120,6 +122,10 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return ZoomHelper.getInstance().dispatchTouchEvent(ev!!,this) || super.dispatchTouchEvent(ev)
+    }
+
     fun goneNavBar() {
         binding?.maBottomBar?.visibility = View.GONE
     }
@@ -128,10 +134,3 @@ class MainActivity : AppCompatActivity() {
         binding?.maBottomBar?.visibility = View.VISIBLE
     }
 }
-
-
-
-
-
-
-
