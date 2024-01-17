@@ -144,6 +144,7 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
      */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
+        binding.fcRvListCollection.visibility = View.VISIBLE
     }
 
     /**

@@ -1,27 +1,19 @@
 package com.unsplash.sulatskov.domain.model
 
-import com.unsplash.sulatskov.domain.model.dto.Urls
-import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class Collection(
-    val id: String = "",
-    val title: String = "",
-    val description: String = "",
-    @SerializedName("total_photos")
+@Entity(tableName = Collection.TABLE_NAME)
+data class Collection(
+    @PrimaryKey val id: String,
+    val userName: String,
+    val profileImage: String,
+    val title: String,
+    val urls: String,
     val totalPhoto: Int = 0,
-    @SerializedName("cover_photo")
-    val coverPhoto: CoverPhoto,
-    val user: User,
-    val private: Boolean
-
-)
-
-class CoverPhoto(
-    val id: String = "",
-    val likes: Int? = 0,
-    val description: String? = "",
-    val user: User,
-    @SerializedName("urls")
-    val url: Urls?,
-
-    )
+    val createdTime: Long
+) {
+    companion object {
+        const val TABLE_NAME = "collection"
+    }
+}

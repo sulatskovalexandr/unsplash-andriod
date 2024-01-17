@@ -3,7 +3,7 @@ package com.unsplash.sulatskov.ui.user_screen.user_collection
 import androidx.lifecycle.viewModelScope
 import com.unsplash.sulatskov.Event
 import com.unsplash.sulatskov.common.Messages
-import com.unsplash.sulatskov.domain.model.Collection
+import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.domain.use_case.user_usecase.GetUserCollectionUseCase
 import com.unsplash.sulatskov.domain.use_case.user_usecase.UserPhotoParam
 import com.unsplash.sulatskov.ui.base.BaseViewModel
@@ -18,10 +18,10 @@ class UserCollectionViewModel @Inject constructor(
     private val getUserCollectionUseCase: GetUserCollectionUseCase
 ) : BaseViewModel() {
 
-    private val _userCollectionList =
-        MutableStateFlow<Event<List<Collection>>>(Event.loading())
-    val userCollectionList: StateFlow<Event<List<Collection>>> =
-        _userCollectionList.asStateFlow()
+    private val _userCollectionListDtoDto =
+        MutableStateFlow<Event<List<CollectionDto>>>(Event.loading())
+    val userCollectionListDtoDto: StateFlow<Event<List<CollectionDto>>> =
+        _userCollectionListDtoDto.asStateFlow()
 
     private val _messageFlow = MutableStateFlow<Messages?>(null)
     val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
@@ -47,12 +47,12 @@ class UserCollectionViewModel @Inject constructor(
     private fun loadUserCollection(param: UserPhotoParam) {
         isLoading = true
         viewModelScope.launch {
-            _userCollectionList.value = Event.loading()
+            _userCollectionListDtoDto.value = Event.loading()
             getUserCollectionUseCase.invoke(param)
                 .onSuccess {
                     isSuccess = true
                     isLoading = it.size != 10
-                    _userCollectionList.value = Event.success(it)
+                    _userCollectionListDtoDto.value = Event.success(it)
                     _messageFlow.value = Messages.HideShimmer
                     this@UserCollectionViewModel.param = param.copy(page = param.page + 1)
                 }.onFailure {

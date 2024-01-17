@@ -1,12 +1,11 @@
 package com.unsplash.sulatskov.domain.repository
-
-import com.unsplash.sulatskov.domain.model.Collection
+ import com.unsplash.sulatskov.domain.model.Collection
 
 /**
  * Репозиторий для коллекций
  */
 interface CollectionRepository {
-    suspend fun getListCollections(
-        page: Int,
-    ): List<Collection>
+    suspend fun getListCollections(page: Int): List<Collection>
+
+    suspend fun getDataBaseListCollections(page: Int ): List<Collection>
 }

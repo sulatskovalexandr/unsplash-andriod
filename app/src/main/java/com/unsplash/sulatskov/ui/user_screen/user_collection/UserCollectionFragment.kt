@@ -13,7 +13,7 @@ import com.unsplash.sulatskov.common.observeData
 import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const
 import com.unsplash.sulatskov.databinding.FragmentUserCollectionBinding
-import com.unsplash.sulatskov.domain.model.Collection
+import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.ui.base.BaseFragment
 
 
@@ -43,7 +43,7 @@ class UserCollectionFragment :
         /**
          * Получение и обновление данных о списке коллекций из UserPhotoViewModel
          */
-        observeData(viewModel.userCollectionList) { event ->
+        observeData(viewModel.userCollectionListDtoDto) { event ->
             when (event) {
                 is Event.Loading -> onProgress()
                 is Event.Success -> onSuccess(event.data)
@@ -125,7 +125,7 @@ class UserCollectionFragment :
     /**
      * Действия в момент успешной загрузки данных
      */
-    private fun onSuccess(data: List<Collection>) {
+    private fun onSuccess(data: List<CollectionDto>) {
         try {
             binding.fpcRvListCollection.visibility = View.VISIBLE
             adapter.addUsersPhoto(data)

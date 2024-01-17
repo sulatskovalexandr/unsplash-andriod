@@ -5,6 +5,7 @@ import com.unsplash.sulatskov.Event
 import com.unsplash.sulatskov.common.Messages
 import com.unsplash.sulatskov.domain.model.Collection
 import com.unsplash.sulatskov.domain.use_case.collection_usecase.GetCollectionUseCase
+import com.unsplash.sulatskov.domain.use_case.collection_usecase.GetDataBaseCollectionUseCase
 import com.unsplash.sulatskov.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,6 +15,7 @@ import javax.inject.Inject
 
 class CollectionViewModel @Inject constructor(
     private val getCollectionUseCase: GetCollectionUseCase,
+    private val getDataBaseCollectionUseCase: GetDataBaseCollectionUseCase
 ) : BaseViewModel() {
 
     private val _collectionList = MutableStateFlow<Event<List<Collection>>>(Event.loading())
@@ -46,7 +48,6 @@ class CollectionViewModel @Inject constructor(
         viewModelScope.launch {
 //            delay(2000)
             _collectionList.value = Event.loading()
-
             getCollectionUseCase.invoke(page)
                 .onSuccess {
                     isSuccess = true
@@ -55,9 +56,16 @@ class CollectionViewModel @Inject constructor(
                     this@CollectionViewModel.page = page + 1
 
                 }.onFailure {
-                    _messageFlow.value = Messages.HideShimmer
-                    _collectionList.value = Event.error(0)
                     _messageFlow.value = Messages.NetworkIsDisconnected
+                    getDataBaseCollectionUseCase.invoke(page)
+                        .onSuccess {
+                            _collectionList.value = Event.success(it)
+                            _messageFlow.value = Messages.HideShimmer
+                            isLoading = false
+                        }.onFailure {
+                            _messageFlow.value = Messages.NetworkIsDisconnected
+                            _messageFlow.value = Messages.HideShimmer
+                        }
                 }
             isLoading = false
         }

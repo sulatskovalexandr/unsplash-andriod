@@ -8,13 +8,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.databinding.ItemUserCollectionBinding
+import com.unsplash.sulatskov.domain.model.CollectionDto
 
 class UserCollectionAdapter(private val listener: ClickListener) :
     RecyclerView.Adapter<UserCollectionHolder>() {
 
 
-    private val listUsersCollection =
-        mutableListOf<com.unsplash.sulatskov.domain.model.Collection>()
+    private val listUsersCollectionDto =
+        mutableListOf<CollectionDto>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserCollectionHolder {
         val view =
@@ -23,19 +24,19 @@ class UserCollectionAdapter(private val listener: ClickListener) :
         return UserCollectionHolder(view, listener)
     }
 
-    override fun getItemCount(): Int = listUsersCollection.size
+    override fun getItemCount(): Int = listUsersCollectionDto.size
 
     override fun onBindViewHolder(holder: UserCollectionHolder, position: Int) {
-        holder.bindUserPhoto(listUsersCollection[position])
+        holder.bindUserPhoto(listUsersCollectionDto[position])
     }
 
-    fun addUsersPhoto(collection: List<com.unsplash.sulatskov.domain.model.Collection>) {
-        listUsersCollection.addAll(collection)
-        notifyItemInserted(listUsersCollection.size - 1)
+    fun addUsersPhoto(collectionDto: List<CollectionDto>) {
+        listUsersCollectionDto.addAll(collectionDto)
+        notifyItemInserted(listUsersCollectionDto.size - 1)
     }
 
     fun clear() {
-        listUsersCollection.clear()
+        listUsersCollectionDto.clear()
         notifyDataSetChanged()
     }
 }
@@ -45,15 +46,15 @@ class UserCollectionHolder(itemView: View, var listener: ClickListener) :
 
     private val binding = ItemUserCollectionBinding.bind(itemView)
 
-    fun bindUserPhoto(userCollection: com.unsplash.sulatskov.domain.model.Collection) =
+    fun bindUserPhoto(userCollectionDto: CollectionDto) =
         with(binding) {
             Glide
                 .with(itemView)
-                .load(userCollection.coverPhoto.url?.regular)
+                .load(userCollectionDto.coverPhoto.url?.regular)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .thumbnail(
                     Glide.with(itemView)
-                        .load(userCollection.coverPhoto.url?.regular)
+                        .load(userCollectionDto.coverPhoto.url?.regular)
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .override(2, 2)
                 )
@@ -61,8 +62,8 @@ class UserCollectionHolder(itemView: View, var listener: ClickListener) :
 //                .placeholder(itemView.context.getProgressBar())
                 .into(fucItemImage)
 
-            binding.fucCollectionName.text = userCollection.title
-            binding.fucQuantityPhoto.text = "${userCollection.totalPhoto} Фотографии"
+            binding.fucCollectionName.text = userCollectionDto.title
+            binding.fucQuantityPhoto.text = "${userCollectionDto.totalPhoto} Фотографии"
 
             binding.fucItemImage.setOnClickListener {
 

@@ -63,6 +63,7 @@ class PhotoHolder(
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .override(2, 2)
             )
+            .error(R.drawable.error_circle_image)
             .into(fpItemProfileImage)
 
         Glide.with(itemView)

@@ -28,12 +28,11 @@ class PhotoRepositoryImpl @Inject constructor(
 
         val photos = photoApiService.getPhotos(page = page, 10, oderBy).map { photo ->
             Photo(
-                photo.id,
-                photo.user.userName.orEmpty(),
-//                photo.user?.name.orEmpty(),
-                photo.user.profileImage?.medium.toString(),
-                photo.urls?.regular.toString(),
-                1L
+                id = photo.id,
+                userName = photo.user.userName.orEmpty(),
+                profileImage = photo.user.profileImage?.medium.toString(),
+                urls = photo.urls?.regular.toString(),
+                createdTime = 1L
             )
         }
         photoDao.insertPhotos(photos)

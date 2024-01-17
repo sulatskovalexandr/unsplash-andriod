@@ -6,7 +6,7 @@ import com.unsplash.sulatskov.constants.Const.REDIRECT_URI
 import com.unsplash.sulatskov.constants.Const.YOUR_ACCESS_KEY
 import com.unsplash.sulatskov.constants.Const.YOUR_SECRET_KEY
 import com.unsplash.sulatskov.domain.model.*
-import com.unsplash.sulatskov.domain.model.Collection
+import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.domain.model.dto.PhotoDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -62,7 +62,7 @@ interface UnsplashPhotoApi {
         @Query("page") page: Int?,
         @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
-    ): List<Collection>
+    ): List<CollectionDto>
 
     /**
      *user
@@ -90,7 +90,7 @@ interface UnsplashPhotoApi {
         @Query("page") page: Int?,
         @Query("per_page") perPage: Int? = PER_PAGE,
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY
-    ): List<Collection>
+    ): List<CollectionDto>
 
     @GET("me")
     suspend fun getMe(): Me

@@ -1,11 +1,11 @@
-package com.unsplash.sulatskov.domain.use_case.user_usecase
+package com.unsplash.sulatskov.domain.use_case.collection_usecase
 
-import com.unsplash.sulatskov.domain.model.Collection
+import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.domain.model.CoverPhoto
 import com.unsplash.sulatskov.domain.model.User
 import com.unsplash.sulatskov.domain.model.dto.ProfileImage
 import com.unsplash.sulatskov.domain.model.dto.Urls
-import com.unsplash.sulatskov.domain.repository.UserRepository
+import com.unsplash.sulatskov.domain.repository.CollectionRepository
 import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
@@ -17,39 +17,34 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-
 @RunWith(JUnit4::class)
-class GetUserCollectionUseCaseTest {
-
+class GetCollectionUseCaseTestDtoDto {
     @RelaxedMockK
-    private lateinit var userRepository: UserRepository
-    private lateinit var useCase: GetUserCollectionUseCase
-    private val param = UserPhotoParam("userName", 1)
+    private lateinit var collectionRepository: CollectionRepository
+    private lateinit var useCase: GetCollectionUseCase
 
     @Before
     fun beforeTest() {
         MockKAnnotations.init(this)
-        useCase = GetUserCollectionUseCase(userRepository)
+        useCase = GetCollectionUseCase(collectionRepository)
     }
 
     @Test
-    fun `success test GetUserCollectionUseCaseTest`() = runTest {
+    fun `success test GetCollectionUseCaseTest`() = runTest {
         coEvery {
-            userRepository.getUserCollection(param.userName, param.page)
+            collectionRepository.getListCollections(1)
         } coAnswers {
             listOf(
-                Collection(
+                CollectionDto(
                     coverPhoto = CoverPhoto(
                         user = User(profileImage = ProfileImage()),
                         url = Urls()
-                    ),
-                    user = User(profileImage = ProfileImage()),
-                    private = false
+                    ), private = false,
+                    user = User(profileImage = ProfileImage())
                 )
             )
         }
-
-        val testResult = useCase.invoke(param).isSuccess
+        val testResult = useCase.invoke(1).isSuccess
 
         withClue("testResult should be true") {
             testResult shouldBe true
@@ -57,14 +52,13 @@ class GetUserCollectionUseCaseTest {
     }
 
     @Test
-    fun `negative test GetUserCollectionUseCaseTest`() = runTest {
+    fun `negative test GetCollectionUseCaseTest`() = runTest {
         coEvery {
-            userRepository.getUserCollection(param.userName, param.page)
+            collectionRepository.getListCollections(1)
         } coAnswers {
-            throw Throwable()
+         throw Throwable()
         }
-
-        val testResult = useCase.invoke(param).isFailure
+        val testResult = useCase.invoke(1).isFailure
 
         withClue("testResult should be true") {
             testResult shouldBe true

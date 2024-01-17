@@ -13,7 +13,7 @@ import com.unsplash.sulatskov.domain.model.Collection
 class CollectionAdapter(val clickListener: CollectionClickListener) :
     RecyclerView.Adapter<CollectionHolder>() {
 
-    private val listCollection = mutableListOf<Collection>()
+    private val listCollectionDto = mutableListOf<Collection>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionHolder {
@@ -22,19 +22,19 @@ class CollectionAdapter(val clickListener: CollectionClickListener) :
         return CollectionHolder(view, clickListener)
     }
 
-    override fun getItemCount(): Int = listCollection.size
+    override fun getItemCount(): Int = listCollectionDto.size
 
     override fun onBindViewHolder(holder: CollectionHolder, position: Int) {
-        holder.bindCollection(listCollection[position])
+        holder.bindCollection(listCollectionDto[position])
     }
 
-    fun addCollection(collections: List<Collection>) {
-        listCollection.addAll(collections)
-        notifyItemInserted(listCollection.size - 1)
+    fun addCollection(collectionDtos: List<Collection>) {
+        listCollectionDto.addAll(collectionDtos)
+        notifyItemInserted(listCollectionDto.size - 1)
     }
 
     fun clear() {
-        listCollection.clear()
+        listCollectionDto.clear()
         notifyDataSetChanged()
     }
 }
@@ -48,11 +48,11 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
 
         Glide
             .with(itemView)
-            .load(collection.coverPhoto.url?.regular)
+            .load(collection.urls)
             .transition(DrawableTransitionOptions.withCrossFade())
             .thumbnail(
                 Glide.with(itemView)
-                    .load(collection.coverPhoto.url?.regular)
+                    .load(collection.urls)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .override(2, 2)
             )
@@ -61,24 +61,24 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
             .into(fcItemImage)
 
         Glide.with(itemView)
-            .load(collection.user.profileImage.medium)
+            .load(collection.profileImage)
             .thumbnail(
                 Glide.with(itemView)
-                    .load(collection.user.profileImage.medium)
+                    .load(collection.profileImage)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .override(2, 2)
             )
             .error(R.drawable.error_circle_image)
             .into(fcItemProfileImage)
 
-        binding.fcItemUserName.text = collection.user.name
+        binding.fcItemUserName.text = collection.userName
         binding.fcItemCollectionTitle.text = collection.title
         binding.fcQuantityPhoto.text = "${collection.totalPhoto} Фотографии"
 
         binding.fcItemProfileImage.setOnClickListener {
             clickListener.onProfileImageClick(
-                photoProfile = collection.user.profileImage.medium.toString(),
-                collection.user.userName.toString()
+                photoProfile = collection.profileImage,
+                collection.userName
             )
         }
     }

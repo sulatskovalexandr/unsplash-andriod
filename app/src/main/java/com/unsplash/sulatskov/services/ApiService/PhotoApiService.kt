@@ -1,7 +1,7 @@
 package com.unsplash.sulatskov.services.ApiService
 
 import com.unsplash.sulatskov.domain.model.*
-import com.unsplash.sulatskov.domain.model.Collection
+import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.domain.model.dto.PhotoDto
 import javax.inject.Inject
 
@@ -11,14 +11,12 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
     /**
      * photo
      */
-
     suspend fun getPhotos(page: Int, perPage: Int, orderBy: String): List<PhotoDto> =
         unsplashPhotoApi.getPhotos(page, perPage, orderBy)
 
     /**
      * photo_details
      */
-
     suspend fun getPhotoDetails(photoId: String): PhotoDetails? =
         unsplashPhotoApi.getPhotoDetails(photoId)
 
@@ -34,7 +32,7 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
     suspend fun getCollections(
         page: Int,
         perPage: Int
-    ): List<Collection> =
+    ): List<CollectionDto> =
         unsplashPhotoApi.getCollections(page, perPage)
 
     /**
@@ -46,7 +44,7 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
     suspend fun getUsersPhoto(userName: String, page: Int): List<UserPhoto> =
         unsplashPhotoApi.getUsersPhoto(userName, page)
 
-    suspend fun getUserCollection(userName: String, page: Int): List<Collection> =
+    suspend fun getUserCollection(userName: String, page: Int): List<CollectionDto> =
         unsplashPhotoApi.getUserCollections(userName, page)
 
     suspend fun getMe(): Me =
