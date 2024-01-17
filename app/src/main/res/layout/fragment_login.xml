@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login_screen.LoginFragment">
+    tools:context=".ui.login_screen.LoginFragment"
+    android:background="@color/screen_bg">
 
     <Button
         android:id="@+id/authButton"
@@ -13,6 +14,7 @@
         android:layout_margin="@dimen/margin_10"
         android:background="@drawable/round_corner_view_button"
         android:text="@string/auth_text"
-        android:textColor="@color/white" />
+        android:textColor="@color/text_button"
+        />
 
 </FrameLayout>

@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/photoFragment"
-        android:name="com.example.myapplication.ui.photo_screen.PhotoFragment"
+        android:name="com.unsplash.sulatskov.ui.photo_screen.PhotoFragment"
         android:label="PhotoFragment">
         <action
             android:id="@+id/action_photoFragment_to_photoDetailsFragment"
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
-        android:name="com.example.myapplication.ui.photo_screen.photo_details_screen.PhotoDetailsFragment"
+        android:name="com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.PhotoDetailsFragment"
         android:label="PhotoDetailsFragment">
         <action
             android:id="@+id/action_photoDetailsFragment_to_photoZoomFragment"
@@ -46,16 +46,19 @@
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.example.myapplication.ui.collection_screens.CollectionFragment"
+        android:name="com.unsplash.sulatskov.ui.collection_screens.CollectionFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_collectionFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_collectionFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.myapplication.ui.user_screen.UserFragment"
+        android:name="com.unsplash.sulatskov.ui.user_screen.UserFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_user">
         <action
@@ -67,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/photoZoomFragment"
-        android:name="com.example.myapplication.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment"
+        android:name="com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment"
         android:label="fragment_photo_zoom"
         tools:layout="@layout/fragment_photo_zoom">
         <action
@@ -76,12 +79,12 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.myapplication.ui.login_screen.LoginFragment"
+        android:name="com.unsplash.sulatskov.ui.login_screen.LoginFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/usersPhotoFragment"
-        android:name="com.example.myapplication.ui.user_screen.users_photo.UserPhotoFragment"
+        android:name="com.unsplash.sulatskov.ui.user_screen.users_photo.UserPhotoFragment"
         android:label="fragment_user_photo"
         tools:layout="@layout/fragment_user_photo">
         <action
@@ -90,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.myapplication.ui.search_screen.SearchFragment"
+        android:name="com.unsplash.sulatskov.ui.search_screen.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>

@@ -9,13 +9,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/fprAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_bg">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/fprCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_grey"
             android:fitsSystemWindows="true"
             android:navigationIcon="@drawable/ic_back"
             android:paddingBottom="@dimen/margin_8"
@@ -43,11 +43,10 @@
 
                 <TextView
                     android:id="@+id/fprQuantityOfPhoto"
+                    style="@style/fuTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toTopOf="@id/fprTextPhoto"
                     app:layout_constraintEnd_toEndOf="@id/fprTextPhoto"
                     app:layout_constraintStart_toStartOf="@id/fprTextPhoto"
@@ -55,12 +54,12 @@
 
                 <TextView
                     android:id="@+id/fprTextPhoto"
+                    style="@style/fuTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10"
                     android:text="@string/pf_text_photo"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="@id/fprProfileImage"
                     app:layout_constraintEnd_toStartOf="@id/fprTextLikes"
                     app:layout_constraintStart_toEndOf="@id/fprProfileImage"
@@ -68,11 +67,10 @@
 
                 <TextView
                     android:id="@+id/fprQuantityOfLikes"
+                    style="@style/fuTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toTopOf="@id/fprTextLikes"
                     app:layout_constraintEnd_toEndOf="@id/fprTextLikes"
                     app:layout_constraintStart_toStartOf="@id/fprTextLikes"
@@ -80,11 +78,11 @@
 
                 <TextView
                     android:id="@+id/fprTextLikes"
+                    style="@style/fuTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pf_text_likes"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="@id/fprTextPhoto"
                     app:layout_constraintEnd_toStartOf="@id/fprTextCollection"
                     app:layout_constraintStart_toEndOf="@id/fprTextPhoto"
@@ -92,11 +90,10 @@
 
                 <TextView
                     android:id="@+id/fprQuantityOfCollection"
+                    style="@style/fuTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toTopOf="@id/fprTextPhoto"
                     app:layout_constraintEnd_toEndOf="@id/fprTextCollection"
                     app:layout_constraintStart_toStartOf="@id/fprTextCollection"
@@ -105,11 +102,11 @@
 
                 <TextView
                     android:id="@+id/fprTextCollection"
+                    style="@style/fuTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pf_text_collection"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="@id/fprTextLikes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/fprTextLikes"
@@ -120,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fprProfileImage"
@@ -131,7 +128,7 @@
                     android:id="@+id/fprLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/text_medium"
                     android:textSize="14sp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/fprName"
@@ -145,7 +142,7 @@
                     android:layout_marginTop="@dimen/margin_8"
                     android:paddingStart="@dimen/margin_16"
                     android:paddingEnd="@dimen/margin_16"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/fprName"
@@ -159,10 +156,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:background="@color/white"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_back"
-                app:title="username" />
+                app:title="username"
+                android:background="@color/toolbar_bg"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -172,8 +169,8 @@
         android:id="@+id/fprViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="?attr/actionBarSize"
         android:animationCache="false"
+        android:background="@color/screen_bg"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <com.google.android.material.tabs.TabLayout
@@ -181,9 +178,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="top"
-            app:tabTextColor="@color/black" />
+            android:background="@color/screen_bg"
+            app:tabTextColor="@color/text_primary" />
 
     </androidx.viewpager.widget.ViewPager>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

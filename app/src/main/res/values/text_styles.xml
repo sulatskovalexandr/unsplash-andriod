@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="fpdTextStyle">
+    <item name="android:textColor">@color/text_disabled</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+
+  <style name="fpdTextInfoStyle">
+    <item name="android:textColor">@color/text_medium</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+
+  <style name="fuTextStyle">
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+
+  <style name="fuTextInfoStyle">
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">16sp</item>
+  </style>
+
+</resources>

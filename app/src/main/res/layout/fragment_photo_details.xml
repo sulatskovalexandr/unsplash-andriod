@@ -2,8 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:defaultNavHost="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -38,13 +40,13 @@
                 android:layout_gravity="start|bottom"
                 android:layout_marginStart="@dimen/margin_16"
                 android:layout_marginBottom="@dimen/margin_16"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:drawableStart="@drawable/baseline_location_on_24"
                 android:drawablePadding="4dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/fpdImage"
                 app:layout_constraintStart_toStartOf="parent"
-                android:visibility="gone"
                 tools:text="location" />
 
             <android.widget.Toolbar
@@ -59,6 +61,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/screen_bg"
         android:paddingTop="@dimen/margin_16"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -76,8 +79,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/fpdProfileImage"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/fpd_profile_image_size"
+                    android:layout_height="@dimen/fpd_profile_image_size"
                     android:layout_marginStart="@dimen/margin_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -89,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_10"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_name"
                     app:layout_constraintBottom_toBottomOf="@id/fpdProfileImage"
                     app:layout_constraintStart_toEndOf="@id/fpdProfileImage"
@@ -148,42 +151,40 @@
 
                 <TextView
                     android:id="@+id/fpdTvCamera"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_camera"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fpdLine1"
                     app:layout_constraintTop_toBottomOf="@id/fpdLine1" />
 
                 <TextView
                     android:id="@+id/fpdTvCameraInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvCamera"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvCamera"
                     tools:text="Неизвестно" />
 
                 <TextView
                     android:id="@+id/fpdTvFocus"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_focus"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fpdLine1"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvCameraInfo" />
 
                 <TextView
                     android:id="@+id/fpdTvFocusInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvFocus"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvFocus"
                     tools:text="Неизвестно" />
@@ -191,82 +192,77 @@
 
                 <TextView
                     android:id="@+id/fpdTvIso"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_iso"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fpdTvFocusInfo"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvFocusInfo" />
 
                 <TextView
                     android:id="@+id/fpdTvIsoInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvIso"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvIso"
                     tools:text="Неизвестно" />
 
                 <TextView
                     android:id="@+id/fpdTvAperture"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:layout_marginEnd="100dp"
                     android:text="@string/fg_text_aperture"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@id/fpdLine1"
                     app:layout_constraintTop_toBottomOf="@id/fpdLine1" />
 
                 <TextView
                     android:id="@+id/fpdTvApertureInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvAperture"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvAperture"
                     tools:text="Неизвестно" />
 
                 <TextView
                     android:id="@+id/fpdTvExposition"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fg_text_exposition"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fpdTvApertureInfo"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvApertureInfo" />
 
                 <TextView
                     android:id="@+id/fpdTvExpositionInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvExposition"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvExposition"
                     tools:text="Неизвестно" />
 
                 <TextView
                     android:id="@+id/fpdTvResolution"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fg_text_resolution"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/fpdTvExpositionInfo"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvExpositionInfo" />
 
                 <TextView
                     android:id="@+id/fpdTvResolutionInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintStart_toStartOf="@id/fpdTvResolution"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvResolution"
                     tools:text="Неизвестно" />
@@ -283,21 +279,20 @@
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfView"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_number_of_view"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/fpdTvNumberOfDownland"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fpdLine2" />
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfViewInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfView"
                     app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfView"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfView"
@@ -305,21 +300,20 @@
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfDownland"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_number_of_downlands"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/fpdTvNumberOfLikes"
                     app:layout_constraintStart_toEndOf="@id/fpdTvNumberOfView"
                     app:layout_constraintTop_toBottomOf="@id/fpdLine2" />
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfDownlandInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfDownland"
                     app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfDownland"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfDownland"
@@ -327,21 +321,20 @@
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfLikes"
+                    style="@style/fpdTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
                     android:text="@string/fpd_text_number_of_likes"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/fpdTvNumberOfDownland"
                     app:layout_constraintTop_toBottomOf="@id/fpdLine2" />
 
                 <TextView
                     android:id="@+id/fpdTvNumberOfLikesInfo"
+                    style="@style/fpdTextInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
                     app:layout_constraintEnd_toEndOf="@id/fpdTvNumberOfLikes"
                     app:layout_constraintStart_toStartOf="@id/fpdTvNumberOfLikes"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfLikes"
@@ -371,6 +364,18 @@
                     tools:listitem="@layout/item_tags" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/fdpDisconnected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <include
+                    layout="@layout/no_internet_error" />
+
+            </FrameLayout>
+
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/fpdShimmerFrameLayout"

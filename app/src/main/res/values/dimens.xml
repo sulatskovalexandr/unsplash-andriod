@@ -9,4 +9,6 @@
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_32">32dp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="bottom_nav_icon_size">30dp</dimen>
+    <dimen name="fpd_profile_image_size">40dp</dimen>
 </resources>

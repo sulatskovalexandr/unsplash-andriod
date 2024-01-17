@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/RoundCorner"
-        tools:src="@drawable/image1" />
+        tools:src="@drawable/image1"
+        android:background="@color/image_bg"/>
 
     <TextView
         android:id="@+id/fucQuantityPhoto"
@@ -25,8 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginBottom="@dimen/margin_16"
+        android:background="@drawable/round_corner_collection_name_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="2dp"
         android:text="@string/pf_text_photo"
-        android:textColor="@color/white"
+        android:textColor="@color/text_button"
         app:layout_constraintBottom_toBottomOf="@id/fucItemImage"
         app:layout_constraintStart_toStartOf="@id/fucItemImage" />
 
@@ -34,8 +39,13 @@
         android:id="@+id/fucCollectionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/round_corner_collection_name_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="2dp"
         android:text="Name of collection"
-        android:textColor="@color/white"
+        android:textColor="@color/text_button"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/fucQuantityPhoto"
