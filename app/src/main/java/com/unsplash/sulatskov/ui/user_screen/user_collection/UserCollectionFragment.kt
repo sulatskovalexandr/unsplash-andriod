@@ -20,6 +20,9 @@ import com.unsplash.sulatskov.ui.base.BaseFragment
 class UserCollectionFragment :
     BaseFragment<UserCollectionViewModel, FragmentUserCollectionBinding>(), ClickListener {
 
+    /**
+     * Подписка на получение и обновление данных из UserPhotoViewModel
+     */
     override val viewModelClass: Class<UserCollectionViewModel>
         get() = UserCollectionViewModel::class.java
 
@@ -36,6 +39,10 @@ class UserCollectionFragment :
     }
 
     override fun observeViewModel() {
+
+        /**
+         * Получение и обновление данных о списке коллекций из UserPhotoViewModel
+         */
         observeData(viewModel.userCollectionList) { event ->
             when (event) {
                 is Event.Loading -> onProgress()
@@ -44,6 +51,9 @@ class UserCollectionFragment :
             }
         }
 
+        /**
+         * Получение и обновление данных о Messages из UserPhotoViewModel
+         */
         observeData(viewModel.messageFlow) { messages ->
             when (messages) {
                 is Messages.HideShimmer -> {
@@ -81,6 +91,9 @@ class UserCollectionFragment :
 
         binding.fpcRvListCollection.layoutManager = layoutManager
 
+        /**
+         * Прогрузка следующей страницы в списке коллекций пользователя по достижении 5-го элемента страницы
+         */
         binding.fpcRvListCollection.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -101,11 +114,17 @@ class UserCollectionFragment :
         }
     }
 
+    /**
+     * Действия в момент загрузки данных
+     */
     private fun onProgress() {
         binding.fpcSrlRefresh.isRefreshing = false
         binding.fucEmptyList.visibility = View.GONE
     }
 
+    /**
+     * Действия в момент успешной загрузки данных
+     */
     private fun onSuccess(data: List<Collection>) {
         try {
             binding.fpcRvListCollection.visibility = View.VISIBLE
@@ -119,6 +138,9 @@ class UserCollectionFragment :
         }
     }
 
+    /**
+     * Действия в момент ошибки загрузки данных
+     */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
 

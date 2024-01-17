@@ -21,7 +21,6 @@ class PhotoDetailsViewModel @Inject constructor(
     private val getPhotoDetails: GetPhotoDetailsUseCase,
     private val getPhotoStatistics: GetPhotoStatisticsUseCase,
     private val photoDownloadUrl: PhotoDownloadUrl,
-    private val networkChecker: NetworkChecker,
     private val getDataBasePhotoDetailsUseCase: GetDataBasePhotoDetailsUseCase
 ) : BaseViewModel() {
 
@@ -36,34 +35,36 @@ class PhotoDetailsViewModel @Inject constructor(
 
     private lateinit var photoId: String
 
+    /**
+     * Вызывается на onViewCreated у PhotoDetailsFragment
+     */
     override fun onViewCreated() {
         loadDetailsPhoto(photoId)
         loadStatisticsPhoto(photoId)
     }
 
+    /**
+     * Получение информаании о фото
+     */
     private fun loadDetailsPhoto(photoId: String) {
         viewModelScope.launch {
-//            if (networkChecker.isNetworkConnected()) {
             getPhotoDetails.invoke(photoId)
                 .onSuccess {
-//                val execute: PhotoDetails? = getPhotoDetails.execute(photoId = photoId)
                     _photoDetails.value = it
                     _messageFlow.value = Messages.HideShimmer
                 }.onFailure {
                     delay(1000)
                     getDataBasePhotoDetailsUseCase.invoke(photoId)
                     _messageFlow.value = Messages.HideShimmer
-
                 }
-//            } else {
-
-//            }
         }
     }
 
+    /**
+     * Получение статистики фото
+     */
     private fun loadStatisticsPhoto(photoId: String) {
         viewModelScope.launch {
-//            if (networkChecker.isNetworkConnected()) {
             getPhotoStatistics.invoke(photoId)
                 .onSuccess {
                     _photoStatistics.value = it
@@ -72,10 +73,6 @@ class PhotoDetailsViewModel @Inject constructor(
                     delay(1000)
                     _messageFlow.value = Messages.NetworkIsDisconnected
                 }
-//            } else {
-
-//            }
-//        }
         }
     }
 
@@ -83,18 +80,12 @@ class PhotoDetailsViewModel @Inject constructor(
         this.photoId = photoId
     }
 
+    /**
+     * Загрузка фото на устройство
+     */
     fun onDownloadClick(photoId: String) {
         viewModelScope.launch {
-//            if (networkChecker.isNetworkConnected()) {
-//                val isDownloaded = photoExists.run(photoId)
-//                if (isDownloaded) {
-//                    _messageFlow.value = Messages.AlreadyDownloaded
-//                } else {
             photoDownloadUrl(photoId)
-//                }
-//            } else {
-//                _messageFlow.value = "error"
-//            }
         }
     }
 

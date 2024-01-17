@@ -54,10 +54,9 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
                 Glide.with(itemView)
                     .load(collection.coverPhoto.url?.regular)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
                     .override(2, 2)
             )
-            .error(R.drawable.ic_error)
+            .error(R.drawable.error_circle_image)
 //            .placeholder(itemView.context.getProgressBar())
             .into(fcItemImage)
 
@@ -67,9 +66,9 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
                 Glide.with(itemView)
                     .load(collection.user.profileImage.medium)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
                     .override(2, 2)
             )
+            .error(R.drawable.error_circle_image)
             .into(fcItemProfileImage)
 
         binding.fcItemUserName.text = collection.user.name

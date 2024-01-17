@@ -18,7 +18,6 @@ import javax.inject.Inject
 class PhotoViewModel @Inject constructor(
     private val getPhotoUseCase: GetPhotoUseCase,
     private val getDataBasePhotoUseCase: GetDataBasePhotoUseCase,
-//    private val networkChecker: NetworkChecker
 ) : BaseViewModel() {
 
     private val _photoList = MutableStateFlow<Event<List<Photo>>>(Event.loading())
@@ -31,6 +30,9 @@ class PhotoViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
+    /**
+     * Вызывается на onViewCreated у PhotoFragment
+     */
     override fun onViewCreated() {
         loadPhoto(param = param)
         if (param.page == 1) {
@@ -41,7 +43,7 @@ class PhotoViewModel @Inject constructor(
     }
 
     /**
-     * Загрузить фотографии
+     * Загружает список фото
      */
     private fun loadPhoto(param: ListPhotoParam) {
         isLoading = true
@@ -67,7 +69,9 @@ class PhotoViewModel @Inject constructor(
             isLoading = false
         }
     }
-
+    /**
+     * Загружает следующую страницу в списке фото
+     */
     fun onLoadPhotos() {
         if (!isLoading && isSuccess) {
             loadPhoto(param)
@@ -75,11 +79,17 @@ class PhotoViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает 1 страницу в списке фото
+     */
     fun onRefreshPhotos() {
         loadPhoto(param.copy(page = 1))
         _messageFlow.value = Messages.ShowShimmer
     }
 
+    /**
+     * Загружает список фото оттсортированных по дате добавления (старые)
+     */
     fun loadListOldestPhoto() {
         loadPhoto(
             param = param.copy(
@@ -89,6 +99,9 @@ class PhotoViewModel @Inject constructor(
         )
     }
 
+    /**
+     * Загружает список фото оттсортированных по популярности
+     */
     fun loadListPopularPhoto() {
         loadPhoto(
             param = param.copy(

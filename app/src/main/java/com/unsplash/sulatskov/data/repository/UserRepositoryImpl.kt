@@ -10,13 +10,22 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val photoApiService: PhotoApiService,
 ) : UserRepository {
+
+    /**
+     * Получает список фото пользователя с сервера
+     */
     override suspend fun getUserPhoto(userName: String, page: Int): List<UserPhoto> =
         photoApiService.getUsersPhoto(userName, page)
 
+    /**
+     * Получает список коллекций пользователя с сервера
+     */
     override suspend fun getUserCollection(userName: String, page: Int): List<Collection> =
         photoApiService.getUserCollection(userName, page)
 
-
+    /**
+     * Получает информацию пользователя с сервера
+     */
     override suspend fun getUser(userName: String): User =
         photoApiService.getUser(userName)
 

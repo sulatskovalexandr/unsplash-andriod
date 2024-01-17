@@ -17,7 +17,7 @@ import retrofit2.http.Query
 interface UnsplashPhotoApi {
 
     /**
-     *photos
+     * photos
      */
     @GET("photos")
     @Headers(
@@ -33,7 +33,6 @@ interface UnsplashPhotoApi {
     /**
      *photo_details
      */
-
     @GET("photos/{id}")
     suspend fun getPhotoDetails(
         @Path("id")
@@ -58,7 +57,6 @@ interface UnsplashPhotoApi {
     /**
      *collection
      */
-
     @GET("collections")
     suspend fun getCollections(
         @Query("page") page: Int?,
@@ -69,7 +67,6 @@ interface UnsplashPhotoApi {
     /**
      *user
      */
-
     @GET("users/{username}")
     suspend fun getUser(
         @Path("username")

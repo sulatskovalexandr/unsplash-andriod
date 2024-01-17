@@ -23,6 +23,9 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
 
     private val adapter = CollectionAdapter(this)
 
+    /**
+     * Подписка на получение и обновление данных из CollectionViewModel
+     */
     override val viewModelClass: Class<CollectionViewModel>
         get() = CollectionViewModel::class.java
 
@@ -34,6 +37,10 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
     }
 
     override fun observeViewModel() {
+
+        /**
+         * Получение и обновление данных о списке коллекций из CollectionViewModel
+         */
         observeData(viewModel.collectionList) { event ->
             when (event) {
                 is Event.Loading -> onProgress()
@@ -42,6 +49,9 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
             }
         }
 
+        /**
+         * Получение и обновление данных о Messages из CollectionViewModel
+         */
         observeData(viewModel.messageFlow) { message ->
             when (message) {
                 is Messages.NetworkIsDisconnected ->
@@ -61,12 +71,19 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         }
     }
 
+    /**
+     * @see BaseFragment.onViewCreated
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fcRvListCollection.adapter = adapter // Подключение PhotosAdapter() к fgRvListPhotos
+        binding.fcRvListCollection.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext())
         binding.fcRvListCollection.layoutManager =
             layoutManager
+
+        /**
+         * Прогрузка следующей страницы в списке коллекций по достижении 5-го элемента страницы
+         */
 
         binding.fcRvListCollection.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
@@ -83,11 +100,17 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
             }
         })
 
+        /**
+         * Обновление списка коллекций
+         */
         binding.fcSrlRefresh.setOnRefreshListener {
             adapter.clear()
             viewModel.onRefreshCollection()
         }
 
+        /**
+         * Обработка нажатий на элеемнты в меню в Toolbar
+         */
         binding.fcToolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.item_order) {
             } else if (it.itemId == R.id.item_search) {
@@ -97,10 +120,16 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         }
     }
 
+    /**
+     * Действия в момент загрузки данных
+     */
     private fun onProgress() {
         binding.fcSrlRefresh.isRefreshing = false
     }
 
+    /**
+     * Действия в момент успешной загрузки данных
+     */
     private fun onSuccess(data: List<Collection>) {
         try {
             binding.fcRvListCollection.visibility = View.VISIBLE
@@ -110,16 +139,23 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         }
     }
 
+    /**
+     * Действия в момент ошибки загрузки данных
+     */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
     }
 
+    /**
+     * Переход на UserFragment с передачей аргументов
+     *
+     * @param photoProfile
+     * @param userName
+     */
     override fun onProfileImageClick(photoProfile: String, userName: String) {
         val bundle = Bundle()
         bundle.putString(Const.PHOTO_PROFILE_KEY, photoProfile)
         bundle.putString(Const.USER_NAME_KEY, userName)
         findNavController().navigate(R.id.action_collectionFragment_to_userFragment, bundle)
     }
-
-
 }

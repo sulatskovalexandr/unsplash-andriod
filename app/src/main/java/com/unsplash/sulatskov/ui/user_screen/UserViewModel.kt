@@ -19,10 +19,16 @@ class UserViewModel @Inject constructor(
 
     private lateinit var userName: String
 
+    /**
+     * Вызывается на onViewCreated у UserFragment
+     */
     override fun onViewCreated() {
         loadUser(userName)
     }
 
+    /**
+     * Загружает данные о пользователе
+     */
     private fun loadUser(userName: String) {
         viewModelScope.launch {
             getUser.invoke(userName)

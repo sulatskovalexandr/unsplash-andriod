@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class CollectionViewModel @Inject constructor(
     private val getCollectionUseCase: GetCollectionUseCase,
-//    private val networkChecker: NetworkChecker
 ) : BaseViewModel() {
 
     private val _collectionList = MutableStateFlow<Event<List<Collection>>>(Event.loading())
@@ -27,6 +26,9 @@ class CollectionViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
+    /**
+     * Вызывается на onViewCreated у CollectionFragment
+     */
     override fun onViewCreated() {
         if (page == 1) {
             loadCollection(page)
@@ -36,6 +38,9 @@ class CollectionViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает список коллекций
+     */
     private fun loadCollection(page: Int) {
         isLoading = true
         viewModelScope.launch {
@@ -58,12 +63,18 @@ class CollectionViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает следующую страницу в списке коллекций
+     */
     fun onLoadCollection() {
         if (!isLoading && isSuccess) {
             loadCollection(page)
         }
     }
 
+    /**
+     * Загружает 1 страницу в списке коллекций при обновлении
+     */
     fun onRefreshCollection() {
         loadCollection(1)
         _messageFlow.value = Messages.ShowShimmer

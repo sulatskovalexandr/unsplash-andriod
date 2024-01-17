@@ -26,6 +26,9 @@ import com.unsplash.sulatskov.ui.base.BaseFragment
 
 class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), PhotoClickListener {
 
+    /**
+     * Подписка на получение и обновление данных из PhotoViewModel
+     */
     override val viewModelClass: Class<PhotoViewModel>
         get() = PhotoViewModel::class.java
 
@@ -41,6 +44,9 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
 
     override fun observeViewModel() {
 
+        /**
+         * Получение и обновление данных о списке фото из PhotoViewModel
+         */
         observeData(viewModel.photoList) { event ->
             when (event) {
                 is Event.Loading -> onProgress()
@@ -49,6 +55,9 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
             }
         }
 
+        /**
+         * Получение и обновление данных о Messages из CollectionViewModel
+         */
         observeData(viewModel.messageFlow) { message ->
             when (message) {
                 is Messages.NetworkIsDisconnected ->
@@ -68,6 +77,14 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         }
     }
 
+    /**
+     * Переход на PhotoDetailsFragment с передачей аргументов
+     *
+     * @param photoId
+     * @param photoUrl
+     * @param photoProfile
+     * @param userName
+     */
     override fun onPhotoClick(
         photoId: String,
         photoUrl: String,
@@ -82,6 +99,12 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         findNavController().navigate(R.id.action_photoFragment_to_photoDetailsFragment, bundle)
     }
 
+    /**
+     * Переход на UserFragment с передачей аргументов
+     *
+     * @param photoProfile
+     * @param userName
+     */
     override fun onProfileImageClick(photoProfile: String, userName: String) {
         val bundle = Bundle()
         bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
@@ -89,18 +112,16 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         findNavController().navigate(R.id.action_photoFragment_to_userFragment, bundle)
     }
 
-    /**
-     * View уже точно создоно
-     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.fpRvListPhotos.adapter = adapter // Подключение PhotosAdapter() к fgRvListPhotos
+        binding.fpRvListPhotos.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext())
-        binding.fpRvListPhotos.layoutManager =
-            layoutManager // Настройка отображения fgRvListPhotos (один элемент в строке)
+        binding.fpRvListPhotos.layoutManager = layoutManager
 
-//          Подгрузка данных следующей страницы списка
+        /**
+         * Прогрузка следующей страницы в списке фото по достижении 5-го элемента страницы
+         */
         binding.fpRvListPhotos.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -117,14 +138,16 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         })
 
         /**
-         * Обработчик свайпа на обновление данных в списке
+         * Обновление списка фото
          */
-
         binding.fpSrlRefresh.setOnRefreshListener {
             adapter.clear()
             viewModel.onRefreshPhotos()
         }
 
+        /**
+         * Показ диалога для сортировки списка
+         */
         fun showDialog() {
             AlertDialog.Builder(activity as MainActivity, R.style.MultiChoiceAlertDialog)
                 .setTitle(R.string.order_dialog_text)
@@ -151,36 +174,11 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
                     }
                 }.create()
                 .show()
-//            val viewAlertDialog = layoutInflater.inflate(R.layout.order_dialog, null)
-//            val radioGroup = viewAlertDialog.findViewById<RadioGroup>(R.id.radioGroup)
-//            builder.setView(viewAlertDialog)
-//            val dialog = builder.create()
-//            radioGroup?.setOnCheckedChangeListener { group, checkedId ->
-//                when (checkedId) {
-//                    R.id.rbOrderByLatest -> {
-//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByLatest).isChecked = true
-//                        adapter.clear()
-//                        viewModel.onLoadPhotos()
-//                        dialog.dismiss()
-//                    }
-//                    R.id.rbOrderByOldest -> {
-//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByOldest).isChecked = true
-//                        adapter.clear()
-//                        viewModel.loadListOldestPhoto()
-//                        dialog.dismiss()
-//                    }
-//                    R.id.rbOrderByPopular -> {
-//                        radioGroup.findViewById<RadioButton>(R.id.rbOrderByPopular).isChecked = true
-//                        adapter.clear()
-//                        viewModel.loadListPopularPhoto()
-//                        dialog.dismiss()
-//                    }
-//                }
-//                dialog.dismiss()
-//            }
-//            dialog.show()
         }
 
+        /**
+         * Обработка нажатий на элеемнты в меню в Toolbar
+         */
         binding.fpToolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.item_order) {
                 showDialog()
@@ -191,10 +189,16 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         }
     }
 
+    /**
+     * Действия в момент загрузки данных
+     */
     private fun onProgress() {
         binding.fpSrlRefresh.isRefreshing = false
     }
 
+    /**
+     * Действия в момент успешной загрузки данных
+     */
     private fun onSuccess(data: List<Photo>) {
         try {
             binding.fpRvListPhotos.visibility = View.VISIBLE
@@ -204,6 +208,9 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         }
     }
 
+    /**
+     * Действия в момент ошибки загрузки данных
+     */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
     }

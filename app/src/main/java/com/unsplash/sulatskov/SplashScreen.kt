@@ -33,19 +33,6 @@ class SplashScreen : AppCompatActivity() {
         splashBinding.sLetter2.startAnimation(sAnim2)
         splashBinding.hLetter.startAnimation(hAnim)
 
-//        hAnim.setAnimationListener(object : Animation.AnimationListener {
-//            override fun onAnimationStart(animation: Animation?) {
-//                splashBinding.iconApp.visibility = View.INVISIBLE
-//            }
-//
-//            override fun onAnimationEnd(animation: Animation?) {
-//                splashBinding.iconApp.startAnimation(iconAnimation)
-//                splashBinding.iconApp.visibility = View.VISIBLE
-//            }
-//
-//            override fun onAnimationRepeat(animation: Animation?) {}
-//        })
-
         splashBinding.root.postDelayed({
             startActivity(Intent(this@SplashScreen, MainActivity::class.java))
             finish()

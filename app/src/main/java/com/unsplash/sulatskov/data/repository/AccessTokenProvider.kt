@@ -12,14 +12,11 @@ class AccessTokenProvider @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("filename", Context.MODE_PRIVATE)
 
-    val clientId = //"uFAuiJArob6B1GyyS9uKWHQhpOgyIpFJwD548UePxD4"
-        sharedPreferences.getString(TOKEN_KEY, null).isNullOrBlank()
-    val clientSecret = //"_xt7DU1OizkNjbwiA8N2-5ip7hif5LZyGxN2MJXaE_g"
-        sharedPreferences.getString(TOKEN_KEY, null).isNullOrBlank()
+    val clientId = sharedPreferences.getString(TOKEN_KEY, null).isNullOrBlank()
+    val clientSecret = sharedPreferences.getString(TOKEN_KEY, null).isNullOrBlank()
 
     val isAuthorized: Boolean
         get() = !accessToken.isNullOrEmpty()
-
 
     var accessToken: String?
         get() = sharedPreferences.getString(ACCESS_TOKEN_KEY, null)
@@ -41,6 +38,9 @@ class AccessTokenProvider @Inject constructor(context: Context) {
             .apply()
     }
 
+    /**
+     * Сохраняет данные пользователя (имя, почту и фото профиля) в sharedPreferences
+     */
     fun saveUserProfile(me: Me) = sharedPreferences.edit {
         putString(USERNAME_KEY, me.userName)
         putString(EMAIL_KEY, me.email)
@@ -59,7 +59,6 @@ class AccessTokenProvider @Inject constructor(context: Context) {
     companion object {
         private const val ACCESS_TOKEN_KEY = "access_token"
         private const val TOKEN_KEY = "token"
-
         private const val USERNAME_KEY = "user_username"
         private const val EMAIL_KEY = "user_email"
         private const val PROFILE_IMAGE_KEY = "user_profile_image"

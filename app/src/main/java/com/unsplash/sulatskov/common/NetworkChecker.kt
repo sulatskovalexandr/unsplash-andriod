@@ -9,6 +9,10 @@ class NetworkChecker(context: Context) {
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     private var result = false
+
+    /**
+     * Проверяет наличие (отсутствие) интернета
+     */
     fun isNetworkConnected(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val networkCapabilities = connectivityManager.activeNetwork ?: return false

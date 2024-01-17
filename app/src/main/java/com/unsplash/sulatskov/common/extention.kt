@@ -21,10 +21,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.unsplash.sulatskov.R
 import com.google.android.material.snackbar.Snackbar
+import com.unsplash.sulatskov.constants.Const.UNSPLASH_DIRECTORY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.io.File
-
 
 /**
  * Запускает (и перезапускает) на фрагменте collect для переданного flow только в состоянии активности
@@ -56,7 +56,7 @@ fun Context.getProgressBar(): CircularProgressDrawable {
 }
 
 /**
- * Формат 1000 -> 1K
+ * Формат чисел 1000 -> 1K
  */
 val Int.formated: String
     get() = if (this >= 1000000000) {
@@ -67,19 +67,25 @@ val Int.formated: String
         String.format("%.1fK", this / 1000.0)
     } else this.toString()
 
+/**
+ * Показать snackbar
+ */
 fun Fragment.snackbar(msg: String) {
     view?.apply {
         Snackbar.make(this, msg, Snackbar.LENGTH_LONG).show()
     }
 }
 
-const val UNSPLASH_DIRECTORY = "Unsplash "
-val UNSPLASH_RELATIVE_PATH = "${Environment.DIRECTORY_PICTURES}${File.separator}$UNSPLASH_DIRECTORY"
-val UNSPLASH_LEGACY_PATH =
-    "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)}${File.separator}$UNSPLASH_DIRECTORY"
-
+/**
+ * Проверяет начилие файла в хранилище
+ */
 @RequiresApi(Build.VERSION_CODES.Q)
 fun isPhotoExists(context: Context, fileName: String): Boolean {
+
+    val UNSPLASH_RELATIVE_PATH = "${Environment.DIRECTORY_PICTURES}${File.separator}$UNSPLASH_DIRECTORY"
+    val UNSPLASH_LEGACY_PATH =
+        "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)}${File.separator}$UNSPLASH_DIRECTORY"
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
         val selection = "${MediaStore.MediaColumns.RELATIVE_PATH} like ? and " +
@@ -95,6 +101,9 @@ fun isPhotoExists(context: Context, fileName: String): Boolean {
     }
 }
 
+/**
+ * Показывает клавиатуру
+ */
 fun EditText.showKeyboard() {
     if (requestFocus()) {
         (getActivity()?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
@@ -103,6 +112,9 @@ fun EditText.showKeyboard() {
     }
 }
 
+/**
+ * Context
+ */
 fun View.getActivity(): AppCompatActivity? {
     var context = this.context
     while (context is ContextWrapper) {

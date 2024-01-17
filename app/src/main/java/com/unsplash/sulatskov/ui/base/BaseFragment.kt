@@ -10,6 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import javax.inject.Inject
 
+/**
+ * Базовый класс для фрагментов с ViewModel и ViewBinding
+ *
+ * @property viewModelFactory [ViewModelFactory]
+ *
+ */
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     @Inject
@@ -52,6 +58,9 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         return binding.root
     }
 
+    /**
+     * @see Fragment.onViewCreated
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeViewModel()
         viewModel.onViewCreated()

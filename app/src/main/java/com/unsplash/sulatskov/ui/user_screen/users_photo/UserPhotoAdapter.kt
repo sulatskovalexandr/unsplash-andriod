@@ -56,10 +56,9 @@ class UserPhotoHolder(itemView: View, var listener: ClickListener) :
                 Glide.with(itemView)
                     .load(userPhoto?.url?.regular)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
                     .override(2, 2)
             )
-            .error(R.drawable.ic_error)
+            .error(R.drawable.error_circle_image)
             .placeholder(itemView.context.getProgressBar())
             .into(fppItemImage)
 
@@ -76,6 +75,4 @@ class UserPhotoHolder(itemView: View, var listener: ClickListener) :
 
 interface ClickListener {
     fun onPhotoClick(photoId: String, photoUrl: String, photoProfile: String, userName: String)
-
-
 }

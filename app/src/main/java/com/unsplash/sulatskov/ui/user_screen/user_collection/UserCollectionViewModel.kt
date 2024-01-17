@@ -30,6 +30,9 @@ class UserCollectionViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
+    /**
+     * Вызывается на onViewCreated у UserCollectionFragment
+     */
     override fun onViewCreated() {
         if (param.page == 1) {
             loadUserCollection(param)
@@ -38,6 +41,9 @@ class UserCollectionViewModel @Inject constructor(
             _messageFlow.value = Messages.HideShimmer
     }
 
+    /**
+     * Загружает список коллекций пользователя
+     */
     private fun loadUserCollection(param: UserPhotoParam) {
         isLoading = true
         viewModelScope.launch {
@@ -58,6 +64,9 @@ class UserCollectionViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает следующую страницу в списке коллекций пользователя
+     */
     fun onLoadUserCollection() {
         if (!isLoading && isSuccess) {
             loadUserCollection(param)
@@ -65,6 +74,9 @@ class UserCollectionViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает 1 страницу в списке коллекций пользователя при обновлении
+     */
     fun onRefreshUserCollection() {
         loadUserCollection(param.copy(page = 1))
         _messageFlow.value = Messages.ShowShimmer

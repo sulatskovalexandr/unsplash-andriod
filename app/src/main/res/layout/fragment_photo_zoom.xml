@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_bg"
+    android:background="@color/black"
     tools:context=".ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment">
 
     <com.jsibbold.zoomage.ZoomageView
@@ -33,6 +33,5 @@
         android:focusable="true"
         android:padding="8dp"
         android:src="@drawable/ic_back" />
-
 
 </FrameLayout>

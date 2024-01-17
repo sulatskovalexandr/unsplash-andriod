@@ -31,6 +31,10 @@ import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_sc
 
 class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDetailsBinding>() {
 
+    /**
+     * Подписка на получение и обновление данных из PhotoViewModel
+     */
+
     override val viewModelClass: Class<PhotoDetailsViewModel>
         get() = PhotoDetailsViewModel::class.java
 
@@ -53,6 +57,11 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
         get() = arguments?.getString(USER_NAME_KEY) ?: error("error")
 
     override fun observeViewModel() {
+
+        /**
+         * Получение и обновление данных фото из PhotoDetailsViewModel
+         */
+
         observeData(viewModel.photoDetails) { photoDetails ->
 
             if (photoDetails.exif?.model != null) {
@@ -125,11 +134,19 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
             }
         }
 
+        /**
+         * Получение и обновление статистики фото из PhotoDetailsViewModel
+         */
+
         observeData(viewModel.photoStatistics) { photoStatistics ->
 
             binding.fpdTvNumberOfViewInfo.text = photoStatistics.views.total?.formated
             binding.fpdTvNumberOfDownlandInfo.text = photoStatistics.downloads.total?.formated
         }
+
+        /**
+         * Получение и обновление данных о Messages из CollectionViewModel
+         */
 
         observeData(viewModel.messageFlow) { message ->
             when (message) {
@@ -157,6 +174,10 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
             viewModel.clearMessage()
         }
     }
+
+    /**
+     * Проверка на доступ к хранилищу
+     */
 
     private val writeLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -219,6 +240,9 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
         }
     }
 
+    /**
+     * Загрузка фото на устройство
+     */
     private fun downloadPhoto() {
         binding.fpdBtnDownland.setImageResource(R.drawable.baseline_download_24)
         binding.fpdBtnDownland.setPadding(4)
@@ -250,6 +274,9 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
         }
     }
 
+    /**
+     * Проверка на наличие фото в хранилище устройства
+     */
     private fun showDownloadDialog() {
         val dialog = AlertDialog.Builder(requireContext())
         dialog.setTitle("Скачать снова?")

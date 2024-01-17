@@ -21,7 +21,9 @@ class
 UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>(),
     ClickListener {
 
-
+    /**
+     * Подписка на получение и обновление данных из UserPhotoViewModel
+     */
     override val viewModelClass: Class<UserPhotoViewModel>
         get() = UserPhotoViewModel::class.java
 
@@ -38,6 +40,10 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
     }
 
     override fun observeViewModel() {
+
+        /**
+         * Получение и обновление данных о списке фото из UserPhotoViewModel
+         */
         observeData(viewModel.userPhotoList) { event ->
             when (event) {
                 is Event.Loading -> onProgress()
@@ -46,6 +52,9 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
             }
         }
 
+        /**
+         * Получение и обновление данных о Messages из UserPhotoViewModel
+         */
         observeData(viewModel.messageFlow) { messages ->
             when (messages) {
                 is Messages.HideShimmer -> {
@@ -65,6 +74,14 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
         }
     }
 
+    /**
+     * Переход на PhotoDetailslFragment с передачей аргументов
+     *
+     * @param photoId
+     * @param photoUrl
+     * @param photoProfile
+     * @param userName
+     */
     override fun onPhotoClick(
         photoId: String,
         photoUrl: String,
@@ -88,6 +105,9 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
 
         binding.fppRvListPhoto.layoutManager = layoutManager
 
+        /**
+         * Прогрузка следующей страницы в списке фото пользователя по достижении 5-го элемента страницы
+         */
         binding.fppRvListPhoto.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -110,10 +130,16 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
         }
     }
 
+    /**
+     * Действия в момент загрузки данных
+     */
     private fun onProgress() {
         binding.fppSrlRefresh.isRefreshing = false
     }
 
+    /**
+     * Действия в момент успешной загрузки данных
+     */
     private fun onSuccess(data: List<UserPhoto>) {
         try {
             binding.fppRvListPhoto.visibility = View.VISIBLE
@@ -127,6 +153,9 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
         }
     }
 
+    /**
+     * Действия в момент ошибки загрузки данных
+     */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
     }

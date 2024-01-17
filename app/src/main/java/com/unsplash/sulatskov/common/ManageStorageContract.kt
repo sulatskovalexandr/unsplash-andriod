@@ -12,6 +12,9 @@ import androidx.annotation.RequiresApi
 @RequiresApi(Build.VERSION_CODES.R)
 class ManageStorageContract : ActivityResultContract<Unit, Boolean>() {
 
+    /**
+     * Доступ к хранилищу
+     */
     override fun createIntent(context: Context, input: Unit): Intent =
         Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
             addCategory("android.intent.category.DEFAULT")
@@ -20,5 +23,4 @@ class ManageStorageContract : ActivityResultContract<Unit, Boolean>() {
 
     override fun parseResult(resultCode: Int, intent: Intent?): Boolean =
         Environment.isExternalStorageManager()
-
 }

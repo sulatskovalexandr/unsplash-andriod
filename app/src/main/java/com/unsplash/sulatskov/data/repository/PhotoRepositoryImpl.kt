@@ -7,11 +7,23 @@ import com.unsplash.sulatskov.domain.repository.PhotoRepository
 import com.unsplash.sulatskov.services.ApiService.PhotoApiService
 import javax.inject.Inject
 
+/**
+ * Имплементация [PhotoRepository]
+ *
+ * @param photoApiService [PhotoApiService]
+ * @param photoDao [PhotoDao]
+ */
 class PhotoRepositoryImpl @Inject constructor(
     private val photoApiService: PhotoApiService,
     private val photoDao: PhotoDao,
 ) : PhotoRepository {
 
+    /**
+     * Получает список фото с сервера и добавляет в БД
+     *
+     * @param page
+     * @param oderBy  сортировка списка по параметру enum class Order
+     */
     override suspend fun getListPhoto(page: Int, oderBy: String): List<Photo> {
 
         val photos = photoApiService.getPhotos(page = page, 10, oderBy).map { photo ->
@@ -28,6 +40,9 @@ class PhotoRepositoryImpl @Inject constructor(
         return photos
     }
 
+    /**
+     * Получает список фото с БД
+     */
     override suspend fun getDataBaseListPhoto(page: Int, oderBy: String): List<Photo> =
         photoDao.getPhotos(10)
 }

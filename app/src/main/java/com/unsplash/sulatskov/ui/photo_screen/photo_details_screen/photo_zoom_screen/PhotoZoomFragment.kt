@@ -21,7 +21,7 @@ class PhotoZoomFragment : Fragment() {
         super.onCreate(savedInstanceState)
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            activity?.window?.insetsController?.hide(WindowInsets.Type.statusBars())
+            activity?.window?.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
             activity?.window?.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -35,33 +35,26 @@ class PhotoZoomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPhotoZoomBinding.inflate(inflater, container, false)
+        return binding.root
 
-//        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//        activity?.window?.statusBarColor = Color.alpha(R.color.alpha_0)
-//        (activity as MainActivity).goneNavBar()
-            return binding.root
+    }
 
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-
-            Glide
-                .with(view)
-                .load(photoUrl)
+        Glide
+            .with(view)
+            .load(photoUrl)
 //            .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.fpzImage)
+            .into(binding.fpzImage)
 
-            binding.fpzBackButton.setOnClickListener {
-                findNavController().popBackStack()
-            }
-        }
-
-        override fun onDestroyView() {
-            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//        (activity as MainActivity).visibleNavBar()
-            super.onDestroyView()
+        binding.fpzBackButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
+
+    override fun onDestroyView() {
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onDestroyView()
+    }
+}

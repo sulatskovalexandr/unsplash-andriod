@@ -1,17 +1,19 @@
 package com.unsplash.sulatskov.ui.user_screen
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
+import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.constants.Const
 import com.unsplash.sulatskov.ui.user_screen.user_collection.UserCollectionFragment
 import com.unsplash.sulatskov.ui.user_screen.users_photo.UserPhotoFragment
 
 class UserPagerAdapter(
     fm: FragmentManager,
-    private val userName: String,
-) : FragmentPagerAdapter(fm) {
+    private val userName: String, val context: Context
+) : FragmentStatePagerAdapter(fm) {
 
     override fun getCount(): Int = NUM_ITEMS
 
@@ -27,8 +29,15 @@ class UserPagerAdapter(
                     putString(Const.USER_NAME_KEY, userName)
                 }
             }
-
         }
+    }
+
+    override fun getPageTitle(position: Int): CharSequence {
+        val title = if (position == 0) {
+            context.getString(R.string.pf_text_photo)
+        } else
+            context.getString(R.string.pf_text_collection)
+        return title
     }
 
     companion object {

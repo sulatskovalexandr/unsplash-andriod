@@ -29,6 +29,9 @@ class UserPhotoViewModel @Inject constructor(
     private var isLoading = false
     private var isSuccess = false
 
+    /**
+     * Вызывается на onViewCreated у UserPhotoFragment
+     */
     override fun onViewCreated() {
         if (param.page == 1) {
             loadUserPhoto(param)
@@ -37,6 +40,9 @@ class UserPhotoViewModel @Inject constructor(
             _messageFlow.value = Messages.HideShimmer
     }
 
+    /**
+     * Загружает список фото пользователя
+     */
     private fun loadUserPhoto(param: UserPhotoParam) {
         isLoading = true
         viewModelScope.launch {
@@ -57,6 +63,9 @@ class UserPhotoViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает следующую страницу в списке фото пользователя
+     */
     fun onLoadUserPhotos() {
         if (!isLoading && isSuccess) {
             loadUserPhoto(param)
@@ -64,6 +73,9 @@ class UserPhotoViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Загружает 1 страницу в списке фото пользователя при обновлении
+     */
     fun onRefreshUserPhoto() {
         loadUserPhoto(param.copy(page = 1))
         _messageFlow.value = Messages.ShowShimmer

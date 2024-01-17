@@ -7,6 +7,9 @@ import androidx.room.Query
 
 import com.unsplash.sulatskov.domain.model.Photo
 
+/**
+ * Интерфейс с запросами с БД
+ */
 @Dao
 interface PhotoDao {
 

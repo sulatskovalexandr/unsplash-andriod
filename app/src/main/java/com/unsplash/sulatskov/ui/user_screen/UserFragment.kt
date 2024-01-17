@@ -14,6 +14,9 @@ import com.unsplash.sulatskov.ui.base.BaseFragment
 
 class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
 
+    /**
+     * Подписка на получение и обновление данных из PhotoViewModel
+     */
     override val viewModelClass: Class<UserViewModel>
         get() = UserViewModel::class.java
 
@@ -30,6 +33,10 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
         get() = arguments?.getString(Const.USER_NAME_KEY) ?: error("error")
 
     override fun observeViewModel() {
+
+        /**
+         * Получение данных о пользователе из UserViewModel
+         */
         observeData(viewModel.user) { user ->
             binding.fprQuantityOfPhoto.text = user?.totalPhotos.toString()
             binding.fprQuantityOfLikes.text = user?.totalLikes.toString()
@@ -46,9 +53,6 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
             }
 
             binding.fprName.text = user?.name
-
-            binding.fprTabLayout.getTabAt(0)?.text = getString(R.string.pf_text_photo)
-            binding.fprTabLayout.getTabAt(1)?.text = getString(R.string.pf_text_collection)
 
             binding.pfToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
@@ -71,7 +75,8 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
 
         binding.fprViewPager.adapter = UserPagerAdapter(
             fm = childFragmentManager,
-            userName = userName
+            userName = userName,
+            requireContext()
         )
 
         Glide
@@ -81,7 +86,7 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
                 Glide.with(view)
                     .load(photoProfile)
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
+                    .error(R.drawable.error_circle_image)
                     .override(2, 2)
             )
             .into(binding.fprProfileImage)

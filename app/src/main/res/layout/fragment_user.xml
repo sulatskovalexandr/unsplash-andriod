@@ -171,7 +171,6 @@
         android:layout_height="wrap_content"
         android:animationCache="false"
         android:background="@color/screen_bg"
-
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <com.google.android.material.tabs.TabLayout
@@ -183,6 +182,5 @@
             app:tabTextColor="@color/text_primary" />
 
     </androidx.viewpager.widget.ViewPager>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

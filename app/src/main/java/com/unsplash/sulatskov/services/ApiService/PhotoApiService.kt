@@ -7,15 +7,18 @@ import javax.inject.Inject
 
 
 class PhotoApiService @Inject constructor(private val unsplashPhotoApi: UnsplashPhotoApi) {
+
     /**
      * photo
      */
+
     suspend fun getPhotos(page: Int, perPage: Int, orderBy: String): List<PhotoDto> =
         unsplashPhotoApi.getPhotos(page, perPage, orderBy)
 
     /**
      * photo_details
      */
+
     suspend fun getPhotoDetails(photoId: String): PhotoDetails? =
         unsplashPhotoApi.getPhotoDetails(photoId)
 
@@ -27,8 +30,7 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
 
     /**
      * collection
-     * */
-
+     */
     suspend fun getCollections(
         page: Int,
         perPage: Int

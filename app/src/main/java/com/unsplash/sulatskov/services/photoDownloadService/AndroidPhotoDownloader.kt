@@ -4,7 +4,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.os.Environment
 import androidx.core.net.toUri
-import com.unsplash.sulatskov.common.UNSPLASH_DIRECTORY
+import com.unsplash.sulatskov.constants.Const.UNSPLASH_DIRECTORY
 import java.io.File
 
 class AndroidPhotoDownloader(
@@ -13,7 +13,9 @@ class AndroidPhotoDownloader(
 
     private val downloadManager = context.getSystemService(DownloadManager::class.java)
 
-
+    /**
+     * Загрузка файла (фото) в хранилище (DIRECTORY_PICTURES)
+     */
     override fun downloadFile(fileName: String, url: String): Long {
         val request = DownloadManager.Request(url.toUri())
             .setMimeType("image/jpeg")

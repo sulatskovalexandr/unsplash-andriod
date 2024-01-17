@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 //            add(R.id.maFragmentContainer, loginFragment).hide(loginFragment)
 //        }.commit()
 
+
+        /**
+         * Переключение между элементами BottomBar
+         */
         binding?.maBottomBar?.setOnItemSelectedListener { item ->
             when (item.itemId) {
 

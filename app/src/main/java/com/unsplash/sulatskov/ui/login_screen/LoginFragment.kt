@@ -40,6 +40,9 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         }
     }
 
+    /**
+     * Подписка на получение и обновление данных из LoginViewModel
+     */
     override val viewModelClass: Class<LoginViewModel>
         get() = LoginViewModel::class.java
 

@@ -2,8 +2,9 @@ package com.unsplash.sulatskov.constants
 
 object Const {
     const val BASE_URL = "https://api.unsplash.com/"
-    const val YOUR_ACCESS_KEY = "uFAuiJArob6B1GyyS9uKWHQhpOgyIpFJwD548UePxD4" //"L1s5HMYqIs-ech59ODZr7zNxji1LtjA1kvA1f3wAlxQ"
-    const val YOUR_SECRET_KEY = "uFAuiJArob6B1GyyS9uKWHQhpOgyIpFJwD548UePxD4" //"l7QeqgpuaZ3hxvuHnxIwpPseB0peezXoUgZJips-akI"
+    const val YOUR_ACCESS_KEY = "uFAuiJArob6B1GyyS9uKWHQhpOgyIpFJwD548UePxD4"
+    const val YOUR_SECRET_KEY = "uFAuiJArob6B1GyyS9uKWHQhpOgyIpFJwD548UePxD4"
+    const val UNSPLASH_DIRECTORY = "Unsplash"
 
     const val unsplashAuthCallback: String = "unsplash-auth-callback"
     const val REDIRECT_URI = "unsplash://$unsplashAuthCallback"
@@ -21,6 +22,4 @@ object Const {
     const val PHOTO_URL_KEY = "PHOTO_URL_KEY"
     const val PHOTO_PROFILE_KEY = "PHOTO_PROFILE_KEY"
     const val USER_NAME_KEY = "USER_NAME_KEY"
-
-
 }

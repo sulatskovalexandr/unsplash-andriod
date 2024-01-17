@@ -55,9 +55,9 @@ class UserCollectionHolder(itemView: View, var listener: ClickListener) :
                     Glide.with(itemView)
                         .load(userCollection.coverPhoto.url?.regular)
                         .transition(DrawableTransitionOptions.withCrossFade())
-                        .error(R.drawable.ic_error)
                         .override(2, 2)
                 )
+                .error(R.drawable.error_circle_image)
 //                .placeholder(itemView.context.getProgressBar())
                 .into(fucItemImage)
 

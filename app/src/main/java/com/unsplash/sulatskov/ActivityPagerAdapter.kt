@@ -14,7 +14,7 @@ class ActivityPagerAdapter(
     val userName: String
 ) : FragmentPagerAdapter(fm) {
 
-    override fun getCount(): Int = com.unsplash.sulatskov.ActivityPagerAdapter.Companion.NUM_ITEMS
+    override fun getCount(): Int = NUM_ITEMS
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
