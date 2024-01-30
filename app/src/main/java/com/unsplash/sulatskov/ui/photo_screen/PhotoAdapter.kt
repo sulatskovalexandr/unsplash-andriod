@@ -26,9 +26,7 @@ class PhotoAdapter(private val clickListener: PhotoClickListener) :
     override fun getItemCount(): Int = listPhotos.size
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
-
         holder.bindPhoto(listPhotos[position])
-
     }
 
     fun addPhoto(photo: List<Photo>) {
@@ -45,7 +43,7 @@ class PhotoAdapter(private val clickListener: PhotoClickListener) :
 }
 
 class PhotoHolder(
-    var clickListener: PhotoClickListener,
+    private val clickListener: PhotoClickListener,
     itemView: View,
 ) : RecyclerView.ViewHolder(itemView) {
 

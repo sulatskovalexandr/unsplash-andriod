@@ -376,7 +376,6 @@
 
             </FrameLayout>
 
-
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/fpdShimmerFrameLayout"
                 android:layout_width="match_parent"

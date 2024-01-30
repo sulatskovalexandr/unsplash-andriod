@@ -275,10 +275,10 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
     }
 
     /**
-     * Проверка на наличие фото в хранилище устройства
+     * Диалог при повторном скачивании фото
      */
     private fun showDownloadDialog() {
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext(), R.style.MultiChoiceAlertDialog)
         dialog.setTitle("Скачать снова?")
         dialog.setMessage("Это фото уже загружено. Вы хотите загрузить его еще раз?")
         dialog.setNegativeButton("Нет") { d, w ->

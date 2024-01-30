@@ -36,6 +36,15 @@ class PhotoApiService @Inject constructor(private val unsplashPhotoApi: Unsplash
         unsplashPhotoApi.getCollections(page, perPage)
 
     /**
+     * collection_details
+     */
+    suspend fun getCollectionDetails(collectionId:String):CollectionDetails =
+        unsplashPhotoApi.getCollectionsDetails(collectionId)
+
+    suspend fun getCollectionPhotos(collectionId:String, page: Int, perPage: Int):List<CollectionPhotos> =
+        unsplashPhotoApi.getCollectionPhotos(collectionId, page, perPage)
+
+    /**
      * user
      */
     suspend fun getUser(userName: String): User =

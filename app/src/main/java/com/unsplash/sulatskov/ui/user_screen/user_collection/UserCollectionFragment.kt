@@ -2,6 +2,7 @@ package com.unsplash.sulatskov.ui.user_screen.user_collection
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -18,7 +19,7 @@ import com.unsplash.sulatskov.ui.base.BaseFragment
 
 
 class UserCollectionFragment :
-    BaseFragment<UserCollectionViewModel, FragmentUserCollectionBinding>(), ClickListener {
+    BaseFragment<UserCollectionViewModel, FragmentUserCollectionBinding>(), UserCollectionClickListener {
 
     /**
      * Подписка на получение и обновление данных из UserPhotoViewModel
@@ -72,15 +73,6 @@ class UserCollectionFragment :
             }
 
         }
-    }
-
-    override fun onCollectionClick(
-        photoId: String,
-        photoUrl: String,
-        photoProfile: String,
-        userName: String
-    ) {
-        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -143,6 +135,18 @@ class UserCollectionFragment :
      */
     private fun onError() {
         snackbar(getString(R.string.network_is_disconnected_text))
+    }
 
+    /**
+     * Переход на СollectionDetailsFragment с передачей аргументов
+     *
+     * @param collectionId
+     * @param title
+     */
+    override fun onCollectionClick(collectionId: String, title: String) {
+        val bundle = Bundle()
+        bundle.putString(Const.COLLECTION_ID, collectionId)
+        bundle.putString(Const.TITLE, title)
+        findNavController().navigate(R.id.action_userFragment_to_collectionDetailsFragment, bundle)
     }
 }

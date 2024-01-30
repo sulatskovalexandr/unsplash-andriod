@@ -15,7 +15,6 @@ class CollectionAdapter(val clickListener: CollectionClickListener) :
 
     private val listCollectionDto = mutableListOf<Collection>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_collection, parent, false)
@@ -81,11 +80,13 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
                 collection.userName
             )
         }
+        binding.fcItemImage.setOnClickListener {
+            clickListener.onCollectionClick(collectionId = collection.id , title = collection.title)
+        }
     }
 }
 
 interface CollectionClickListener {
-//    fun onCollectionClick(photoId: String, photoUrl: String, photoProfile: String, userName: String)
-
+    fun onCollectionClick(collectionId: String, title: String)
     fun onProfileImageClick(photoProfile: String, userName: String)
 }

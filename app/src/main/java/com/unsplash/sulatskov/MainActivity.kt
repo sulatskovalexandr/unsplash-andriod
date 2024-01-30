@@ -16,7 +16,7 @@ import com.unsplash.sulatskov.ui.login_screen.LoginFragment
 import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
 
 
-@Suppress("UNREACHABLE_CODE")
+//@Suppress("UNREACHABLE_CODE")
 class MainActivity : AppCompatActivity() {
 
 //     2

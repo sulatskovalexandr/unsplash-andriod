@@ -36,8 +36,15 @@ class RepositoryModule {
      *collection
      */
     @Provides
-    fun provideCollectionPhotoRepository(collectionRepository: CollectionRepositoryImpl): CollectionRepository =
+    fun provideCollectionRepository(collectionRepository: CollectionRepositoryImpl): CollectionRepository =
         collectionRepository
+
+    /**
+     *collection_details
+     */
+    @Provides
+    fun provideCollectionDetailsRepository(collectionDetailsRepository: CollectionDetailsRepositoryImpl): CollectionDetailsRepository =
+        collectionDetailsRepository
 
     /**
      * login

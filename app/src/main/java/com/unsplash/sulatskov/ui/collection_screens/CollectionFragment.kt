@@ -159,4 +159,18 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         bundle.putString(Const.USER_NAME_KEY, userName)
         findNavController().navigate(R.id.action_collectionFragment_to_userFragment, bundle)
     }
+
+    /**
+     * Переход на СollectionFragment с передачей аргументов
+     *
+     * @param collectionId
+     * @param title
+     */
+
+    override fun onCollectionClick(collectionId:String, title: String) {
+        val bundle = Bundle()
+        bundle.putString(Const.COLLECTION_ID, collectionId)
+        bundle.putString(Const.TITLE, title)
+        findNavController().navigate(R.id.action_collectionFragment_to_collectionDetailsFragment, bundle)
+    }
 }

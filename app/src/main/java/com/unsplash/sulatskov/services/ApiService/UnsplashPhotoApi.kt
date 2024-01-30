@@ -6,13 +6,8 @@ import com.unsplash.sulatskov.constants.Const.REDIRECT_URI
 import com.unsplash.sulatskov.constants.Const.YOUR_ACCESS_KEY
 import com.unsplash.sulatskov.constants.Const.YOUR_SECRET_KEY
 import com.unsplash.sulatskov.domain.model.*
-import com.unsplash.sulatskov.domain.model.CollectionDto
 import com.unsplash.sulatskov.domain.model.dto.PhotoDto
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UnsplashPhotoApi {
 
@@ -65,6 +60,25 @@ interface UnsplashPhotoApi {
     ): List<CollectionDto>
 
     /**
+     *collection_details
+     */
+    @GET("collections/{id}")
+    suspend fun getCollectionsDetails(
+        @Path("id")
+        collectionId: String,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): CollectionDetails
+
+    @GET("collections/{id}/photos")
+    suspend fun getCollectionPhotos(
+        @Path("id")
+        collectionId: String,
+        @Query("page") page: Int?,
+        @Query("per_page") perPage: Int? = PER_PAGE,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): List<CollectionPhotos>
+
+    /**
      *user
      */
     @GET("users/{username}")
@@ -98,9 +112,9 @@ interface UnsplashPhotoApi {
     @POST("oauth/token")
     suspend fun userAuthorization(
         @Query("client_id") clientId: String = YOUR_ACCESS_KEY,
-        @Query("client_secret") clientSecret:String = YOUR_SECRET_KEY,
-        @Query("redirect_uri") redirectUri:String = REDIRECT_URI,
+        @Query("client_secret") clientSecret: String = YOUR_SECRET_KEY,
+        @Query("redirect_uri") redirectUri: String = REDIRECT_URI,
         @Query("code") code: String,
         @Query("grant_type") grantType: String = GRANT_TYPE
-    ):AccessToken
+    ): AccessToken
 }
