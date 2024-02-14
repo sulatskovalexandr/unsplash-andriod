@@ -2,6 +2,7 @@ package com.unsplash.sulatskov.di
 
 import android.content.Context
 import com.unsplash.sulatskov.ui.collection_screens.CollectionFragment
+import com.unsplash.sulatskov.ui.collection_screens.collection_details.CollectionDetailsFragment
 import com.unsplash.sulatskov.ui.photo_screen.PhotoFragment
 import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.PhotoDetailsFragment
 import com.unsplash.sulatskov.ui.user_screen.UserFragment
@@ -45,4 +46,5 @@ interface AppComponent {
     fun inject(fragment: CollectionFragment)
     fun inject(fragment: LoginFragment)
     fun inject(fragment: SearchFragment)
+    fun inject(fragment:CollectionDetailsFragment)
 }

@@ -22,4 +22,6 @@ object Const {
     const val PHOTO_URL_KEY = "PHOTO_URL_KEY"
     const val PHOTO_PROFILE_KEY = "PHOTO_PROFILE_KEY"
     const val USER_NAME_KEY = "USER_NAME_KEY"
+    const val TITLE = "TITLE"
+    const val COLLECTION_ID = "COLLECTION_ID"
 }

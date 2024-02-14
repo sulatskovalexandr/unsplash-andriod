@@ -27,6 +27,17 @@
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fucDisconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/no_internet_error" />
+
+    </FrameLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/fpcSrlRefresh"
         android:layout_width="match_parent"
@@ -37,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            tools:listitem="@layout/item_user_collection" />
+            tools:listitem="@layout/item_user_collection"
+            android:background="@color/screen_bg"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -51,17 +63,5 @@
         android:textColor="@color/grey"
         android:textSize="16sp"
         android:visibility="gone" />
-
-    <FrameLayout
-        android:id="@+id/fucDisconnected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <include
-            layout="@layout/no_internet_error" />
-
-    </FrameLayout>
-
 
 </FrameLayout>

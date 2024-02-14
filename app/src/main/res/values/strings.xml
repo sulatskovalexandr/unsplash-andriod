@@ -31,6 +31,7 @@
     <string name="unsplash_join_url">https://unsplash.com/join</string>
     <string name="fuc_list_collection_text">Список коллекций пуст</string>
     <string name="fuc_list_photo_text">Список фотографий пуст</string>
+    <string name="no_photos_available">Нет доступных фото</string>
 
     <array name="sort">
         <item>Сначала новые</item>

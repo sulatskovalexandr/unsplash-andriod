@@ -29,10 +29,22 @@
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fupDisconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/no_internet_error" />
+
+    </FrameLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/fppSrlRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fppRvListPhoto"
@@ -40,7 +52,8 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:visibility="gone"
-            tools:listitem="@layout/item_user_photo" />
+            tools:listitem="@layout/item_user_photo"
+            android:background="@color/screen_bg"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -55,14 +68,4 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <FrameLayout
-        android:id="@+id/fupDisconnected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <include
-            layout="@layout/no_internet_error" />
-
-    </FrameLayout>
 </FrameLayout>

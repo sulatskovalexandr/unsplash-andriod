@@ -10,7 +10,7 @@ import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.databinding.ItemUserCollectionBinding
 import com.unsplash.sulatskov.domain.model.CollectionDto
 
-class UserCollectionAdapter(private val listener: ClickListener) :
+class UserCollectionAdapter(private val clicklistener: UserCollectionClickListener) :
     RecyclerView.Adapter<UserCollectionHolder>() {
 
 
@@ -21,7 +21,7 @@ class UserCollectionAdapter(private val listener: ClickListener) :
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_user_collection, parent, false)
-        return UserCollectionHolder(view, listener)
+        return UserCollectionHolder(view, clicklistener)
     }
 
     override fun getItemCount(): Int = listUsersCollectionDto.size
@@ -41,7 +41,7 @@ class UserCollectionAdapter(private val listener: ClickListener) :
     }
 }
 
-class UserCollectionHolder(itemView: View, var listener: ClickListener) :
+class UserCollectionHolder(itemView: View, var clicklistener: UserCollectionClickListener) :
     RecyclerView.ViewHolder(itemView) {
 
     private val binding = ItemUserCollectionBinding.bind(itemView)
@@ -66,12 +66,14 @@ class UserCollectionHolder(itemView: View, var listener: ClickListener) :
             binding.fucQuantityPhoto.text = "${userCollectionDto.totalPhoto} Фотографии"
 
             binding.fucItemImage.setOnClickListener {
-
+                clicklistener.onCollectionClick(
+                    collectionId = userCollectionDto.id,
+                    title = userCollectionDto.title
+                )
             }
-
         }
 }
 
-interface ClickListener {
-    fun onCollectionClick(photoId: String, photoUrl: String, photoProfile: String, userName: String)
+interface UserCollectionClickListener {
+    fun onCollectionClick(collectionId: String, title: String)
 }
