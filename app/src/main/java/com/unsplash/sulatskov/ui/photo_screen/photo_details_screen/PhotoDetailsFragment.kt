@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.stfalcon.imageviewer.StfalconImageViewer
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.*
@@ -26,7 +27,6 @@ import com.unsplash.sulatskov.constants.Const.USER_NAME_KEY
 import com.unsplash.sulatskov.databinding.FragmentPhotoDetailsBinding
 import com.unsplash.sulatskov.photo_details_screen.presentation.photo_details_screen.PhotoDetailsAdapter
 import com.unsplash.sulatskov.ui.base.BaseFragment
-import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment
 
 
 class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDetailsBinding>() {
@@ -114,22 +114,31 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
             binding.fpdClContainer.visibility = View.VISIBLE
 
             binding.fpdImage.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putString(PHOTO_URL_KEY, photoUrl)
-                val photoZoomFragment = PhotoZoomFragment()
-                photoZoomFragment.arguments = bundle
-                findNavController().navigate(
-                    R.id.action_photoDetailsFragment_to_photoZoomFragment,
-                    bundle
+                StfalconImageViewer.Builder(
+                    /* context = */
+                    requireContext(),
+                    /* images = */
+                    listOf(photoUrl),
                 )
+                /* imageLoader = */
+                { iv, url ->
+                    Glide.with(iv)
+                        .load(url)
+                        .into(iv)
+                }
+                    .withHiddenStatusBar(false)
+                    .withTransitionFrom(binding.fpdImage)
+                    .show()
             }
+
             binding.fpdProfileImage.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
                 bundle.putString(USER_NAME_KEY, userName)
                 findNavController().navigate(
                     R.id.action_photoDetailsFragment_to_userFragment,
-                    bundle
+                    bundle,
+                    fragmentAnim()
                 )
             }
         }

@@ -17,7 +17,7 @@
             android:id="@+id/fcToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/app_bar_menu"
+            app:menu="@menu/collection_app_bar_menu"
             app:titleTextColor="@color/text_primary"
             app:title="@string/fc_toolbar_title" />
 

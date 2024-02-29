@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.stfalcon.imageviewer.StfalconImageViewer
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.observeData
@@ -59,12 +60,21 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
             }
 
             binding.fprProfileImage.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putString(Const.PHOTO_URL_KEY, user?.profileImage?.large.toString())
-                findNavController().navigate(
-                    R.id.action_profileFragment_to_photoZoomFragment,
-                    bundle
+                StfalconImageViewer.Builder(
+                    /* context = */
+                    requireContext(),
+                    /* images = */
+                    listOf(photoProfile),
                 )
+                /* imageLoader = */
+                { iv, url ->
+                    Glide.with(iv)
+                        .load(url)
+                        .into(iv)
+                }
+                    .withHiddenStatusBar(false)
+                    .withTransitionFrom(binding.fprProfileImage)
+                    .show()
             }
         }
     }

@@ -18,6 +18,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.unsplash.sulatskov.R
 import com.google.android.material.snackbar.Snackbar
@@ -124,4 +125,16 @@ fun View.getActivity(): AppCompatActivity? {
         context = context.baseContext
     }
     return null
+}
+
+/**
+ * Анимация при переключении фрагментов
+ */
+fun fragmentAnim(): NavOptions {
+    return  NavOptions.Builder()
+        .setEnterAnim(R.anim.enter_right)
+        .setExitAnim(R.anim.exit_left)
+        .setPopEnterAnim(R.anim.enter_left)
+        .setPopExitAnim(R.anim.exit_right)
+        .build()
 }

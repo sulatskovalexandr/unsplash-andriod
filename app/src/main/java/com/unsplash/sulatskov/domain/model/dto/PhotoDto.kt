@@ -1,8 +1,8 @@
 package com.unsplash.sulatskov.domain.model.dto
 
 
-import com.unsplash.sulatskov.domain.model.User
 import com.google.gson.annotations.SerializedName
+import com.unsplash.sulatskov.domain.model.User
 
 data class PhotoDto(
     val id: String,
@@ -11,25 +11,22 @@ data class PhotoDto(
     @SerializedName("created_at") val createdAt: String,
 )
 
-class UserDto(
+data class UserDto(
     val id: String = "",
     @SerializedName("username")
     val userName: String = "",
     val location: String? = "",
     @SerializedName("profile_image")
     val profileImage: ProfileImage?,
+)
 
-    )
-
-class
-ProfileImage(
+data class ProfileImage(
     val small: String? = "",
     val medium: String? = "",
     val large: String? = "",
+)
 
-    )
-
-class Urls(
+data class Urls(
     val raw: String? = "",
     val full: String? = "",
     val regular: String? = "",

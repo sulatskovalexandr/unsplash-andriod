@@ -11,6 +11,7 @@ import com.unsplash.sulatskov.Event
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.Messages
+import com.unsplash.sulatskov.common.fragmentAnim
 import com.unsplash.sulatskov.common.observeData
 import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const
@@ -157,7 +158,10 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
         val bundle = Bundle()
         bundle.putString(Const.PHOTO_PROFILE_KEY, photoProfile)
         bundle.putString(Const.USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_collectionFragment_to_userFragment, bundle)
+        findNavController().navigate(
+            R.id.action_collectionFragment_to_userFragment, bundle,
+            fragmentAnim()
+        )
     }
 
     /**
@@ -167,10 +171,13 @@ class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionB
      * @param title
      */
 
-    override fun onCollectionClick(collectionId:String, title: String) {
+    override fun onCollectionClick(collectionId: String, title: String) {
         val bundle = Bundle()
         bundle.putString(Const.COLLECTION_ID, collectionId)
         bundle.putString(Const.TITLE, title)
-        findNavController().navigate(R.id.action_collectionFragment_to_collectionDetailsFragment, bundle)
+        findNavController().navigate(
+            R.id.action_collectionFragment_to_collectionDetailsFragment, bundle,
+            fragmentAnim()
+        )
     }
 }

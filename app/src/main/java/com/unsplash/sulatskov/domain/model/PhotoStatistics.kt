@@ -6,15 +6,15 @@ data class PhotoStatistics(
     val likes: Likes
 )
 
-class Downloads(
+data class Downloads(
     val total: Int? = 0
 )
 
-class Views(
+data class Views(
     val total: Int? = 0
 )
 
-class Likes(
+data class Likes(
     val total: Int? = 0
 )
 

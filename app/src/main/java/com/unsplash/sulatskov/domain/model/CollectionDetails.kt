@@ -2,7 +2,7 @@ package com.unsplash.sulatskov.domain.model
 
 import com.google.gson.annotations.SerializedName
 
-class CollectionDetails(
+data class CollectionDetails(
     val id: String,
     val title: String? = "",
     val description: String? = "",

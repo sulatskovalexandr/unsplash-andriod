@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/item_order"
-        android:contentDescription="Order by"
-        android:icon="@drawable/outline_sort_24"
-        android:title="Order by"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/item_search"
         android:contentDescription="Search"
         android:icon="@drawable/baseline_search_24"
