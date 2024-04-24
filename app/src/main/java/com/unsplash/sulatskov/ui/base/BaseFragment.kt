@@ -1,6 +1,5 @@
 package com.unsplash.sulatskov.ui.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,9 +41,9 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
     protected open fun observeViewModel() {
     }
 
-    override fun onAttach(context: Context) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         inject()
-        super.onAttach(context)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

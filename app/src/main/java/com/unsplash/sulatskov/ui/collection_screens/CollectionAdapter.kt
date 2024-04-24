@@ -74,9 +74,9 @@ class CollectionHolder(itemView: View, val clickListener: CollectionClickListene
         binding.fcItemCollectionTitle.text = collection.title
         binding.fcQuantityPhoto.text = "${collection.totalPhoto} Фотографии"
 
-        binding.fcItemProfileImage.setOnClickListener {
+        binding.fcItemUser.setOnClickListener {
             clickListener.onProfileImageClick(
-                photoProfile = collection.profileImage,
+                collection.profileImage,
                 collection.userName
             )
         }

@@ -127,16 +127,11 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         val layoutManager = LinearLayoutManager(requireContext())
         binding.fpRvListPhotos.layoutManager = layoutManager
 
-        /**
-         * Прогрузка следующей страницы в списке фото по достижении 5-го элемента страницы
-         */
         binding.fpRvListPhotos.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val lastPosition = layoutManager.findLastVisibleItemPosition()
-                Log.e("werwerw", "$lastPosition x ${adapter.itemCount}")
                 if (lastPosition > (adapter.itemCount - 5)) {
-                    Log.e("werwerw", "load")
                     viewModel.onLoadPhotos()
                     (binding.fpRvListPhotos.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
                         false

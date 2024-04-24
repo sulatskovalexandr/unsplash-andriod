@@ -4,17 +4,17 @@ import com.unsplash.sulatskov.data_base.PhotoDao
 import com.unsplash.sulatskov.domain.model.Photo
 
 import com.unsplash.sulatskov.domain.repository.PhotoRepository
-import com.unsplash.sulatskov.services.ApiService.PhotoApiService
+import com.unsplash.sulatskov.services.ApiService.UnsplashApiService
 import javax.inject.Inject
 
 /**
  * Имплементация [PhotoRepository]
  *
- * @param photoApiService [PhotoApiService]
+ * @param unsplashApiService [UnsplashApiService]
  * @param photoDao [PhotoDao]
  */
 class PhotoRepositoryImpl @Inject constructor(
-    private val photoApiService: PhotoApiService,
+    private val unsplashApiService: UnsplashApiService,
     private val photoDao: PhotoDao,
 ) : PhotoRepository {
 
@@ -26,10 +26,10 @@ class PhotoRepositoryImpl @Inject constructor(
      */
     override suspend fun getListPhoto(page: Int, oderBy: String): List<Photo> {
 
-        val photos = photoApiService.getPhotos(page = page, 10, oderBy).map { photo ->
+        val photos = unsplashApiService.getPhotos(page = page, 10, oderBy).map { photo ->
             Photo(
                 id = photo.id,
-                userName = photo.user.userName.orEmpty(),
+                userName = photo.user.name.orEmpty(),
                 profileImage = photo.user.profileImage?.medium.toString(),
                 urls = photo.urls?.regular.toString(),
                 createdTime = 1L

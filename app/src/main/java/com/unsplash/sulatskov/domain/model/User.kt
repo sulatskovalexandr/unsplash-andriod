@@ -17,7 +17,7 @@ data class User(
     @SerializedName("total_collections")
     val totalCollections: Int? = 0,
     @SerializedName("profile_image")
-    val profileImage: ProfileImage
+    val profileImage: ProfileImage?
 )
 
 data class AccessToken(

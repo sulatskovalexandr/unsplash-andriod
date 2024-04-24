@@ -63,17 +63,19 @@ class UserCollectionFragment :
                     binding.fppShimmerFrameLayout.visibility = View.GONE
                     binding.fppShimmerFrameLayout.stopShimmer()
                 }
+
                 is Messages.ShowShimmer -> {
                     binding.fppShimmerFrameLayout.visibility = View.VISIBLE
                     binding.fppShimmerFrameLayout.startShimmer()
                 }
+
                 is Messages.NetworkIsDisconnected -> {
                     binding.fucDisconnected.visibility = View.VISIBLE
                 }
+
                 else -> {
                 }
             }
-
         }
     }
 

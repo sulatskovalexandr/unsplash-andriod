@@ -60,7 +60,7 @@ class CollectionDetailsFragment :
                 val bundle = Bundle()
                 bundle.putString(
                     Const.PHOTO_PROFILE_KEY,
-                    collectionDetails.user.profileImage.medium
+                    collectionDetails.user.profileImage?.medium
                 )
                 bundle.putString(Const.USER_NAME_KEY, collectionDetails.user.userName)
                 findNavController().navigate(

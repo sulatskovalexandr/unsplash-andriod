@@ -15,6 +15,7 @@ data class UserDto(
     val id: String = "",
     @SerializedName("username")
     val userName: String = "",
+    val name: String = "",
     val location: String? = "",
     @SerializedName("profile_image")
     val profileImage: ProfileImage?,

@@ -44,11 +44,11 @@ class CollectionPhotosHolder(
     fun bindCollectionPhotos(collectionPhotos: CollectionPhotos) = with(binding) {
 
         Glide.with(itemView)
-            .load(collectionPhotos.user.profileImage.medium)
+            .load(collectionPhotos.user.profileImage?.medium)
             .transition(DrawableTransitionOptions.withCrossFade())
             .thumbnail(
                 Glide.with(itemView)
-                    .load(collectionPhotos.user.profileImage.small)
+                    .load(collectionPhotos.user.profileImage?.small)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .override(2, 2)
             )
@@ -74,7 +74,7 @@ class CollectionPhotosHolder(
 
         binding.fpItemProfileImage.setOnClickListener {
             clickListener.onProfileImageClick(
-                photoProfile = collectionPhotos.user.profileImage.medium.toString(),
+                photoProfile = collectionPhotos.user.profileImage?.medium.toString(),
                 userName = collectionPhotos.user.userName.toString()
             )
         }
@@ -82,7 +82,7 @@ class CollectionPhotosHolder(
             clickListener.onPhotoClick(
                 photoId = collectionPhotos.id,
                 photoUrl = collectionPhotos.urls.regular.toString(),
-                photoProfile = collectionPhotos.user.profileImage.medium.toString(),
+                photoProfile = collectionPhotos.user.profileImage?.medium.toString(),
                 userName = collectionPhotos.user.userName.toString()
             )
         }

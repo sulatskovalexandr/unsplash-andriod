@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.aghajari.zoomhelper.ZoomHelper
 import com.unsplash.sulatskov.databinding.ActivityMainBinding
 import com.unsplash.sulatskov.ui.login_screen.LoginFragment
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 
 //@Suppress("UNREACHABLE_CODE")
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         super.onCreate(savedInstanceState)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
@@ -35,6 +35,13 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        KeyboardVisibilityEvent.setEventListener(
+            this
+        ) { isOpen ->
+            if (isOpen) hideNavBar()
+            else visibleNavBar()
+        }
     }
 
 //    override fun onResume() {
@@ -44,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 //            override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
 //                when (f) {
 //                    is PhotoZoomFragment ->
-//                        goneNavBar()
+//                        hideNavBar()
 //                }
 //                super.onFragmentStarted(fm, f)
 //            }
@@ -64,10 +71,7 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.maFragmentContainer).navigate(
             actionId,
             null,
-            NavOptions.Builder()
-                .setPopUpTo(null, true)
-                .setLaunchSingleTop(true)
-                .build()
+            NavOptions.Builder().setPopUpTo(null, true).setLaunchSingleTop(true).build()
         )
         return true
     }
@@ -85,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun goneNavBar() {
+    fun hideNavBar() {
         binding?.maBottomBar?.visibility = View.GONE
     }
 

@@ -5,18 +5,18 @@ import com.unsplash.sulatskov.domain.model.Photo
 import com.unsplash.sulatskov.domain.model.PhotoDetails
 import com.unsplash.sulatskov.domain.model.PhotoStatistics
 import com.unsplash.sulatskov.domain.repository.PhotoDetailsRepository
-import com.unsplash.sulatskov.services.ApiService.PhotoApiService
+import com.unsplash.sulatskov.services.ApiService.UnsplashApiService
 import com.unsplash.sulatskov.services.photoDownloadService.PhotoDownloader
 import javax.inject.Inject
 
 /**
  * Имплементация [PhotoDetailsRepository]
  *
- * @param photoApiService [PhotoApiService]
+ * @param unsplashApiService [UnsplashApiService]
  * @param photoDownloader [PhotoDownloader]
  */
 class PhotoDetailsRepositoryImpl @Inject constructor(
-    private val photoApiService: PhotoApiService,
+    private val unsplashApiService: UnsplashApiService,
     private val photoDownloader: PhotoDownloader
 ) :
     PhotoDetailsRepository {
@@ -27,7 +27,7 @@ class PhotoDetailsRepositoryImpl @Inject constructor(
      * @param photoId   id фото
      */
     override suspend fun getPhotoDetail(photoId: String): PhotoDetails? =
-        photoApiService.getPhotoDetails(photoId = photoId)
+        unsplashApiService.getPhotoDetails(photoId = photoId)
 
     /**
      * Получает статистику фото с сервера
@@ -35,7 +35,7 @@ class PhotoDetailsRepositoryImpl @Inject constructor(
      * @param photoId   id фото
      */
     override suspend fun getPhotoStatistics(photoId: String): PhotoStatistics? =
-        photoApiService.getPhotoStatistics(photoId = photoId)
+        unsplashApiService.getPhotoStatistics(photoId = photoId)
 
     /**
      * Получает Url фото с сервера
@@ -43,7 +43,7 @@ class PhotoDetailsRepositoryImpl @Inject constructor(
      * @param photoId   id фото
      */
     override suspend fun getDownloadPhotoUrl(photoId: String): DownloadPhotoUrl =
-        photoApiService.getDownloadPhotoUrl(photoId)!!
+        unsplashApiService.getDownloadPhotoUrl(photoId)!!
 
     /**
      * Загружает фото на устройство
