@@ -22,7 +22,7 @@ class SplashScreen : AppCompatActivity() {
         val aAnim = AnimationUtils.loadAnimation(this, R.anim.a_animation)
         val sAnim2 = AnimationUtils.loadAnimation(this, R.anim.s2_animation)
         val hAnim = AnimationUtils.loadAnimation(this, R.anim.h_animation)
-        val iconAnimation = AnimationUtils.loadAnimation(this, R.anim.icon_aniimation)
+        val iconAnimation = AnimationUtils.loadAnimation(this, R.anim.icon_animation)
 
         splashBinding.uLetter.startAnimation(uAnim)
         splashBinding.nLetter.startAnimation(nAnim)
@@ -32,6 +32,7 @@ class SplashScreen : AppCompatActivity() {
         splashBinding.aLetter.startAnimation(aAnim)
         splashBinding.sLetter2.startAnimation(sAnim2)
         splashBinding.hLetter.startAnimation(hAnim)
+        splashBinding.appIcon.startAnimation(iconAnimation)
 
         splashBinding.root.postDelayed({
             startActivity(Intent(this@SplashScreen, MainActivity::class.java))
