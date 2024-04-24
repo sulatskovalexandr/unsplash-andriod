@@ -23,24 +23,37 @@
                 android:id="@+id/fsEditText"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="80dp"
                 android:background="@color/text_button"
                 android:textColor="@color/text_primary"
                 android:ems="10"
                 android:paddingStart="@dimen/margin_16"
                 android:hint="@string/fs_search_text"
                 android:inputType="textPersonName"
-                android:textColorHint="@color/grey" />
+                android:textColorHint="@color/grey"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/fsCancelButton"
+                android:layout_width="75dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:text="Отмена"
+
+                android:textColor="@color/text_primary"
+                android:visibility="visible"/>
 
             <ImageView
                 android:id="@+id/fsDeleteButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:padding="14dp"
+                android:padding="10dp"
                 android:src="@drawable/outline_delete_circle_24"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -49,8 +62,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/fsViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_height="match_parent"
         android:animationCache="false"
         android:background="@color/screen_bg"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">

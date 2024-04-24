@@ -13,6 +13,7 @@ import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -20,10 +21,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.unsplash.sulatskov.R
 import com.google.android.material.snackbar.Snackbar
+import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.constants.Const.UNSPLASH_DIRECTORY
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -113,6 +116,11 @@ fun EditText.showKeyboard() {
     }
 }
 
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
 /**
  * Context
  */
@@ -131,10 +139,19 @@ fun View.getActivity(): AppCompatActivity? {
  * Анимация при переключении фрагментов
  */
 fun fragmentAnim(): NavOptions {
-    return  NavOptions.Builder()
+    return NavOptions.Builder()
         .setEnterAnim(R.anim.enter_right)
         .setExitAnim(R.anim.exit_left)
         .setPopEnterAnim(R.anim.enter_left)
         .setPopExitAnim(R.anim.exit_right)
         .build()
 }
+val EditText.textFlow: Flow<String>
+    get() = callbackFlow {
+        val textWatcher = doAfterTextChanged {
+            if (it != null) {
+                trySend(it.toString())
+            }
+        }
+        awaitClose { removeTextChangedListener(textWatcher) }
+    }

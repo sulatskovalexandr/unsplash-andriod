@@ -1,26 +1,47 @@
 package com.unsplash.sulatskov.ui.search_screen
 
+import android.content.Context
+import android.util.SparseArray
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.ui.search_screen.search_collection.SearchCollectionFragment
 import com.unsplash.sulatskov.ui.search_screen.search_photo.SearchPhotoFragment
 import com.unsplash.sulatskov.ui.search_screen.search_user.SearchUserFragment
 
-class SearchPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class SearchPagerAdapter(val fm: FragmentManager, val context: Context) : FragmentPagerAdapter(fm) {
+    private val fragmentList: List<Fragment> =
+        listOf(SearchPhotoFragment(), SearchCollectionFragment(),// SearchUserFragment())
+        )
+    private val fragmentTags = SparseArray<String>()
 
-    override fun getCount(): Int = NUM_ITEM
+    private fun getFragment(position: Int) =
+        fm.findFragmentByTag(fragmentTags.get(position))
 
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> SearchPhotoFragment()
-            1 -> SearchCollectionFragment()
-            else -> SearchUserFragment()
-        }
+    override fun getItem(position: Int): Fragment =
+        fragmentList[position]
+//        when (position) {
+//            0 -> SearchPhotoFragment()
+//            1 -> SearchCollectionFragment()
+//            2 -> SearchUserFragment()
+//            else -> {
+//                PhotoFragment()
+//            }
+//        }
+
+    override fun getCount(): Int = fragmentList.size
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val fragment = super.instantiateItem(container, position)
+        (fragment as Fragment).tag.let { fragmentTags.put(position, it) }
+        return fragment
     }
 
-
-    companion object {
-        private const val NUM_ITEM = 3
+    fun onQuery(query: String) {
+        (getFragment(0) as? SearchPhotoFragment)?.onQuery(query)
+        (getFragment(1) as? SearchCollectionFragment)?.onQuery(query)
+//        (getFragment(2) as? SearchUserFragment)?.onQuery(query)
     }
 }

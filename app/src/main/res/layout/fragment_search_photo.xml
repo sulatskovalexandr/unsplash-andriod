@@ -6,7 +6,6 @@
     android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".ui.user_screen.users_photo.UserPhotoFragment">
 
-
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/fspShimmerFrameLayout"
         android:layout_width="match_parent"
@@ -17,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <include layout="@layout/shimmer_photo" />
 
@@ -35,7 +35,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:visibility="gone"
-        tools:listitem="@layout/item_user_photo" />
+        android:visibility="visible"
+        tools:listitem="@layout/item_photo" />
+
+    <FrameLayout
+        android:id="@+id/fspNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include layout="@layout/not_found" />
+    </FrameLayout>
 
 </FrameLayout>

@@ -18,4 +18,6 @@ class GetCollectionUseCase @Inject constructor(
      */
     override suspend fun execute(param: Int): List<Collection> =
         collectionRepository.getListCollections(param)
+
+    fun executePagingCollection() = collectionRepository.getPagingCollection()
 }

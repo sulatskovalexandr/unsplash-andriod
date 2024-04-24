@@ -53,4 +53,12 @@ class RepositoryModule {
     @Provides
     fun provideLoginRepository(loginRepository: LoginRepositoryImpl):LoginRepository =
         loginRepository
+
+    /**
+     * search
+     */
+
+    @Provides
+    fun provideSearchRepository(searchRepository: SearchRepositoryImpl):SearchRepository =
+        searchRepository
 }
