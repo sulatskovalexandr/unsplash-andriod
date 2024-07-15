@@ -39,4 +39,31 @@
         <item>Популярные</item>
     </array>
 
+    <string name="order_by_latest">Последние</string>
+    <string name="order_by_relevant">Актуальность</string>
+
+    <string name="content_filter_high">Максимальный</string>
+    <string name="content_filter_low">Минимальный</string>
+
+
+    <string name="color_all">Любые</string>
+    <string name="color_black_and_white">Черно-белые</string>
+    <string name="color_black">Черные</string>
+    <string name="color_white">Белые</string>
+    <string name="color_yellow">Желытые</string>
+    <string name="color_orange">Оранжевые</string>
+    <string name="color_red">Красные</string>
+    <string name="color_purple">Фиолетовые</string>
+    <string name="color_magenta">Пурпурные</string>
+    <string name="color_green">Зеленые</string>
+    <string name="color_teal">Бирюзовые</string>
+    <string name="color_blue">Синие</string>
+
+
+    <string name="orientation_ALL"> Любая</string>
+    <string name="orientation_landscape">Альбомная</string>
+    <string name="orientation_portrait">Портретная</string>
+    <string name="orientation_squarish">Квадратная</string>
+    <string name="retry_text">Повторить попытку</string>
+
 </resources>

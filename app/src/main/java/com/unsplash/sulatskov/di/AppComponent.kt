@@ -1,6 +1,7 @@
 package com.unsplash.sulatskov.di
 
 import android.content.Context
+import com.unsplash.sulatskov.domain.model.SearchCollections
 import com.unsplash.sulatskov.ui.collection_screens.CollectionFragment
 import com.unsplash.sulatskov.ui.collection_screens.collection_details.CollectionDetailsFragment
 import com.unsplash.sulatskov.ui.photo_screen.PhotoFragment
@@ -8,6 +9,9 @@ import com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.PhotoDetailsF
 import com.unsplash.sulatskov.ui.user_screen.UserFragment
 import com.unsplash.sulatskov.ui.login_screen.LoginFragment
 import com.unsplash.sulatskov.ui.search_screen.SearchFragment
+import com.unsplash.sulatskov.ui.search_screen.search_collection.SearchCollectionFragment
+import com.unsplash.sulatskov.ui.search_screen.search_photo.SearchPhotoFragment
+import com.unsplash.sulatskov.ui.search_screen.search_user.SearchUserFragment
 import com.unsplash.sulatskov.ui.user_screen.user_collection.UserCollectionFragment
 import com.unsplash.sulatskov.ui.user_screen.users_photo.UserPhotoFragment
 import dagger.BindsInstance
@@ -45,6 +49,9 @@ interface AppComponent {
     fun inject(fragment: UserCollectionFragment)
     fun inject(fragment: CollectionFragment)
     fun inject(fragment: LoginFragment)
-    fun inject(fragment: SearchFragment)
     fun inject(fragment:CollectionDetailsFragment)
+    fun inject(fragment:SearchFragment)
+    fun inject(fragment:SearchPhotoFragment)
+    fun inject(fragment:SearchCollectionFragment)
+    fun inject(fragment:SearchUserFragment)
 }

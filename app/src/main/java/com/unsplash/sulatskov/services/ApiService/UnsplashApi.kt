@@ -7,9 +7,13 @@ import com.unsplash.sulatskov.constants.Const.YOUR_ACCESS_KEY
 import com.unsplash.sulatskov.constants.Const.YOUR_SECRET_KEY
 import com.unsplash.sulatskov.domain.model.*
 import com.unsplash.sulatskov.domain.model.dto.PhotoDto
+import com.unsplash.sulatskov.ui.search_screen.search_photo.ColorSearchPhoto
+import com.unsplash.sulatskov.ui.search_screen.search_photo.ContentFilterSearchPhoto
+import com.unsplash.sulatskov.ui.search_screen.search_photo.OrderSearchPhoto
+import com.unsplash.sulatskov.ui.search_screen.search_photo.OrientationSearchPhoto
 import retrofit2.http.*
 
-interface UnsplashPhotoApi {
+interface UnsplashApi {
 
     /**
      * photos
@@ -117,4 +121,35 @@ interface UnsplashPhotoApi {
         @Query("code") code: String,
         @Query("grant_type") grantType: String = GRANT_TYPE
     ): AccessToken
+
+    /**
+     *search
+     */
+    @GET("search/photos")
+    suspend fun getSearchPhotos(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = PER_PAGE,
+        @Query("order_by") orderBy: String = OrderSearchPhoto.LATEST.value,
+        @Query("content_filter") contentFilter: String = ContentFilterSearchPhoto.LOW.value,
+        @Query("color") color: String? = ColorSearchPhoto.ANY.value.orEmpty(),
+        @Query("orientation") orientation: String? =OrientationSearchPhoto.ANY.value.orEmpty(),
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): SearchPhotos
+
+    @GET("search/collections")
+    suspend fun getSearchCollections(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = PER_PAGE,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): SearchCollections
+
+    @GET("search/users")
+    suspend fun getSearchUsers(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = PER_PAGE,
+        @Query("client_id") clientId: String = YOUR_ACCESS_KEY
+    ): SearchUsers
 }
