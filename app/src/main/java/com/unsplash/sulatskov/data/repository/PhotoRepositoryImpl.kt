@@ -29,7 +29,8 @@ class PhotoRepositoryImpl @Inject constructor(
         val photos = unsplashApiService.getPhotos(page = page, 10, oderBy).map { photo ->
             Photo(
                 id = photo.id,
-                userName = photo.user.name.orEmpty(),
+                name = photo.user.name.orEmpty(),
+                userName = photo.user.userName.orEmpty(),
                 profileImage = photo.user.profileImage?.medium.toString(),
                 urls = photo.urls?.regular.toString(),
                 createdTime = 1L

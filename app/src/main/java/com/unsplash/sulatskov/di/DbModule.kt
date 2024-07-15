@@ -13,12 +13,7 @@ import dagger.Provides
 class DbModule {
 
     @Provides
-    fun providePhotoDataBase(context: Context): PhotoDataBase = Room.databaseBuilder(
-        context,
-        PhotoDataBase::class.java,
-        Photo.TABLE_NAME
-    )
-        .build()
+    fun providePhotoDataBase(context: Context): PhotoDataBase = PhotoDataBase(context)
 
     @Provides
     fun providePhotoDao(dataBase: PhotoDataBase): PhotoDao =

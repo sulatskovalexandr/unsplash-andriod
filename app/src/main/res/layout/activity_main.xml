@@ -17,23 +17,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_bar_menu" />
 
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/maViewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:animationCache="false"-->
-<!--        android:background="@color/screen_bg"-->
-<!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">-->
+    <!--    <androidx.viewpager.widget.ViewPager-->
+    <!--        android:id="@+id/maViewPager"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:animationCache="false"-->
+    <!--        android:background="@color/screen_bg"-->
+    <!--        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">-->
 
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/maTabLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            android:layout_gravity="bottom"-->
-<!--            android:background="@color/screen_bg"-->
-<!--            app:tabTextColor="@color/text_primary" />-->
+    <!--        <com.google.android.material.tabs.TabLayout-->
+    <!--            android:id="@+id/maTabLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            android:layout_gravity="bottom"-->
+    <!--            android:background="@color/screen_bg"-->
+    <!--            app:tabTextColor="@color/text_primary" />-->
 
-<!--    </androidx.viewpager.widget.ViewPager>-->
+    <!--    </androidx.viewpager.widget.ViewPager>-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/maFragmentContainer"
@@ -43,8 +43,7 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/maBottomBar"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph"
-        tools:layout="@layout/activity_main" />
+        app:navGraph="@navigation/nav_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

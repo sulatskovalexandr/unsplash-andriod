@@ -19,7 +19,7 @@ class GetPhotoUseCaseTest {
     @RelaxedMockK
     private lateinit var photoRepository: PhotoRepository
     private lateinit var useCase: GetPhotoUseCase
-    private val param = ListPhotoParam(1, GetPhotoUseCase.Companion.Order.LATEST)
+    private val param = ListPhotoParam(1, GetPhotoUseCase.Companion.OrderListPhoto.LATEST)
 
     @Before
     fun beforeTest() {

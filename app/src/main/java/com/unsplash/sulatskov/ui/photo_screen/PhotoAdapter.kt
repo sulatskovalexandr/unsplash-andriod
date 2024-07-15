@@ -79,7 +79,7 @@ class PhotoHolder(
 
         ZoomHelper.addZoomableView(binding.fpItemImage)
 
-        fpItemName.text = photo.userName
+        fpItemName.text = photo.name
 
 //        if (photo.user?.location != null) {
 //            itemLocation.text = photo.user.location

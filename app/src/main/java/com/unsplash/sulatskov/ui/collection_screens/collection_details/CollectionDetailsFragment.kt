@@ -38,10 +38,10 @@ class CollectionDetailsFragment :
     }
 
     private val title: String
-        get() = arguments?.getString(Const.TITLE) ?: error("error")
+        get() = arguments?.getString(Const.TITLE_KEY) ?: error("error")
 
     private val collectionId: String
-        get() = arguments?.getString(Const.COLLECTION_ID) ?: error("error")
+        get() = arguments?.getString(Const.COLLECTION_ID_KEY) ?: error("error")
 
     override fun observeViewModel() {
         /**
