@@ -25,6 +25,10 @@
 
     </style>
 
+    <style name="CustomProgressBar" parent="Widget.AppCompat.ProgressBar">
+
+    </style>
+
 <!--    <style name="MyRadioButton" parent="Theme.AppCompat.Light">-->
 <!--        <item name="colorControlNormal">@color/purple_500</item>-->
 <!--        <item name="colorControlActivated">@color/purple_700</item>-->

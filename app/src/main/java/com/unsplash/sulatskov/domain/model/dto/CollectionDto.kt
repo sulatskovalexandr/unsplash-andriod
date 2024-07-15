@@ -1,9 +1,9 @@
 package com.unsplash.sulatskov.domain.model
 
-import com.unsplash.sulatskov.domain.model.dto.Urls
 import com.google.gson.annotations.SerializedName
+import com.unsplash.sulatskov.domain.model.dto.Urls
 
-class CollectionDto(
+data class CollectionDto(
     val id: String = "",
     val title: String = "",
     val description: String = "",
@@ -13,15 +13,13 @@ class CollectionDto(
     val coverPhoto: CoverPhoto,
     val user: User,
     val private: Boolean
-
 )
 
-class CoverPhoto(
+data class CoverPhoto(
     val id: String = "",
     val likes: Int? = 0,
     val description: String? = "",
     val user: User,
     @SerializedName("urls")
     val url: Urls?,
-
-    )
+)

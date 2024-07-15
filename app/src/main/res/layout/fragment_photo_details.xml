@@ -5,6 +5,7 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screen_bg"
     app:defaultNavHost="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,7 +17,7 @@
             android:id="@+id/fpdCollapsingBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_grey"
+            android:backgroundTint="@color/shimmer_bg"
             android:fitsSystemWindows="true"
             android:navigationIcon="@drawable/ic_back"
             app:contentScrim="?attr/colorPrimary"
@@ -61,7 +62,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/screen_bg"
         android:paddingTop="@dimen/margin_16"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -146,7 +146,7 @@
                     android:layout_marginStart="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_16"
                     android:layout_marginEnd="@dimen/margin_16"
-                    android:background="@color/light_grey"
+                    android:background="@color/shimmer_bg"
                     app:layout_constraintTop_toBottomOf="@id/fpdProfileImage" />
 
                 <TextView
@@ -274,7 +274,7 @@
                     android:layout_marginStart="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_16"
                     android:layout_marginEnd="@dimen/margin_16"
-                    android:background="@color/light_grey"
+                    android:background="@color/shimmer_bg"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvIsoInfo" />
 
                 <TextView
@@ -347,7 +347,7 @@
                     android:layout_marginStart="@dimen/margin_16"
                     android:layout_marginTop="@dimen/margin_16"
                     android:layout_marginEnd="@dimen/margin_16"
-                    android:background="@color/light_grey"
+                    android:background="@color/shimmer_bg"
                     app:layout_constraintTop_toBottomOf="@id/fpdTvNumberOfViewInfo" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -371,8 +371,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
-                <include
-                    layout="@layout/no_internet_error" />
+                <include layout="@layout/no_internet_error" />
 
             </FrameLayout>
 

@@ -1,8 +1,8 @@
 package com.unsplash.sulatskov.domain.model
 
+import com.google.gson.annotations.SerializedName
 import com.unsplash.sulatskov.domain.model.dto.Urls
 import com.unsplash.sulatskov.domain.model.dto.UserDto
-import com.google.gson.annotations.SerializedName
 
 data class PhotoDetails(
     val id: String? = "",
@@ -16,7 +16,7 @@ data class PhotoDetails(
     val user: UserDto?
 )
 
-class Exif(
+data class Exif(
     val model: String? = "",
     val aperture: String = "",
     @SerializedName("exposure_time")
@@ -27,7 +27,7 @@ class Exif(
 )
 
 
-class Location(
+data class Location(
     val city: String = "",
     val country: String = ""
 )

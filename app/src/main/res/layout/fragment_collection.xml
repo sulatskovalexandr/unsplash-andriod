@@ -17,7 +17,7 @@
             android:id="@+id/fcToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/app_bar_menu"
+            app:menu="@menu/collection_app_bar_menu"
             app:titleTextColor="@color/text_primary"
             app:title="@string/fc_toolbar_title" />
 
@@ -31,7 +31,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,8 +57,10 @@
             android:id="@+id/fcRvListCollection"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:clipToPadding="false"
-            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:visibility="visible"
             tools:listitem="@layout/item_collection"
            />
 

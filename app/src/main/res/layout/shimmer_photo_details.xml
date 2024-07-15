@@ -11,7 +11,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/margin_16"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Circular" />
@@ -21,7 +21,7 @@
         android:layout_width="100dp"
         android:layout_height="16dp"
         android:layout_marginStart="@dimen/margin_10"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintBottom_toBottomOf="@id/spdProfileImage"
         app:layout_constraintStart_toEndOf="@id/spdProfileImage"
         app:layout_constraintTop_toTopOf="@id/spdProfileImage" />
@@ -35,7 +35,7 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="4dp"
-        android:src="@color/light_grey"
+        android:src="@color/shimmer_bg"
         app:layout_constraintBottom_toBottomOf="@id/spdProfileImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spdProfileImage" />
@@ -49,7 +49,7 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="4dp"
-        android:src="@color/light_grey"
+        android:src="@color/shimmer_bg"
         app:layout_constraintEnd_toStartOf="@id/spdBtnFavorite"
         app:layout_constraintTop_toTopOf="@id/spdBtnFavorite" />
 
@@ -62,7 +62,7 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="4dp"
-        android:src="@color/light_grey"
+        android:src="@color/shimmer_bg"
         app:layout_constraintEnd_toStartOf="@id/spdBtnLike"
         app:layout_constraintTop_toTopOf="@+id/spdBtnLike" />
 
@@ -73,7 +73,7 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_16"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintTop_toBottomOf="@id/spdProfileImage" />
 
     <TextView
@@ -82,7 +82,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="@dimen/margin_8"
         android:layout_marginTop="18dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdLine1"
         app:layout_constraintTop_toBottomOf="@id/spdLine1" />
 
@@ -91,7 +91,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvCamera"
         app:layout_constraintTop_toBottomOf="@id/spdTvCamera" />
 
@@ -101,7 +101,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="@dimen/margin_8"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdLine1"
         app:layout_constraintTop_toBottomOf="@id/spdTvCameraInfo" />
 
@@ -110,7 +110,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvFocus"
         app:layout_constraintTop_toBottomOf="@id/spdTvFocus" />
 
@@ -120,7 +120,7 @@
         android:layout_width="25dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvFocusInfo"
         app:layout_constraintTop_toBottomOf="@id/spdTvFocusInfo" />
 
@@ -129,7 +129,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvIso"
         app:layout_constraintTop_toBottomOf="@id/spdTvIso" />
 
@@ -139,7 +139,7 @@
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintEnd_toEndOf="@id/spdLine1"
         app:layout_constraintTop_toBottomOf="@id/spdLine1" />
 
@@ -148,7 +148,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvAperture"
         app:layout_constraintTop_toBottomOf="@id/spdTvAperture" />
 
@@ -157,7 +157,7 @@
         android:layout_width="80dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvApertureInfo"
         app:layout_constraintTop_toBottomOf="@id/spdTvApertureInfo" />
 
@@ -166,7 +166,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvExposition"
         app:layout_constraintTop_toBottomOf="@id/spdTvExposition" />
 
@@ -175,7 +175,7 @@
         android:layout_width="83dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvExpositionInfo"
         app:layout_constraintTop_toBottomOf="@id/spdTvExpositionInfo" />
 
@@ -184,7 +184,7 @@
         android:layout_width="80dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintStart_toStartOf="@id/spdTvResolution"
         app:layout_constraintTop_toBottomOf="@id/spdTvResolution" />
 
@@ -195,7 +195,7 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_16"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintTop_toBottomOf="@id/spdTvIsoInfo" />
 
     <TextView
@@ -203,7 +203,7 @@
         android:layout_width="80dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintEnd_toStartOf="@id/spdTvNumberOfDownland"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spdLine2" />
@@ -213,7 +213,7 @@
         android:layout_width="60dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         android:textColor="@color/dark_grey"
         app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfView"
         app:layout_constraintStart_toStartOf="@id/spdTvNumberOfView"
@@ -224,7 +224,7 @@
         android:layout_width="80dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintEnd_toStartOf="@id/spdTvNumberOfLikes"
         app:layout_constraintStart_toEndOf="@id/spdTvNumberOfView"
         app:layout_constraintTop_toBottomOf="@id/spdLine2" />
@@ -234,7 +234,7 @@
         android:layout_width="60dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         android:textColor="@color/dark_grey"
         app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfDownland"
         app:layout_constraintStart_toStartOf="@id/spdTvNumberOfDownland"
@@ -245,7 +245,7 @@
         android:layout_width="50dp"
         android:layout_height="16dp"
         android:layout_marginTop="20dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/spdTvNumberOfDownland"
         app:layout_constraintTop_toBottomOf="@id/spdLine2" />
@@ -255,7 +255,7 @@
         android:layout_width="60dp"
         android:layout_height="14dp"
         android:layout_marginTop="5dp"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintEnd_toEndOf="@id/spdTvNumberOfLikes"
         app:layout_constraintStart_toStartOf="@id/spdTvNumberOfLikes"
         app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfLikes" />
@@ -267,7 +267,7 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_16"
-        android:background="@color/light_grey"
+        android:background="@color/shimmer_bg"
         app:layout_constraintTop_toBottomOf="@id/spdTvNumberOfViewInfo" />
 
     <LinearLayout

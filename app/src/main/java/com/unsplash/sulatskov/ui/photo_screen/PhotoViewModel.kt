@@ -26,7 +26,7 @@ class PhotoViewModel @Inject constructor(
     private val _messageFlow = MutableStateFlow<Messages?>(null)
     val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
 
-    private var param = ListPhotoParam(1, GetPhotoUseCase.Companion.Order.LATEST)
+    private var param = ListPhotoParam(1, OrderListPhoto.LATEST)
     private var isLoading = false
     private var isSuccess = false
 
@@ -94,7 +94,7 @@ class PhotoViewModel @Inject constructor(
         loadPhoto(
             param = param.copy(
                 page = param.page,
-                orderBy = GetPhotoUseCase.Companion.Order.OLDEST
+                orderBy = OrderListPhoto.OLDEST
             )
         )
     }
@@ -106,7 +106,7 @@ class PhotoViewModel @Inject constructor(
         loadPhoto(
             param = param.copy(
                 page = param.page,
-                orderBy = GetPhotoUseCase.Companion.Order.POPULAR
+                orderBy = OrderListPhoto.POPULAR
             )
         )
     }

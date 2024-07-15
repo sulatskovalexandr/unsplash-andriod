@@ -19,7 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_anchor="@+id/appBarLayout"
             app:layout_anchorGravity="center"
-            app:menu="@menu/app_bar_menu"
+            app:menu="@menu/photo_app_bar_menu"
             app:title="@string/fp_toolbar_title"
             app:titleTextColor="@color/text_primary" />
 

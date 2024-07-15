@@ -5,14 +5,14 @@ import com.unsplash.sulatskov.constants.Const.REDIRECT_URI
 import com.unsplash.sulatskov.domain.model.AccessToken
 import com.unsplash.sulatskov.domain.model.Me
 import com.unsplash.sulatskov.domain.repository.LoginRepository
-import com.unsplash.sulatskov.services.ApiService.PhotoApiService
+import com.unsplash.sulatskov.services.ApiService.UnsplashApiService
 import javax.inject.Inject
 
 /**
  * Имплементация [LoginRepository]
  */
 class LoginRepositoryImpl @Inject constructor(
-    private val photoApiService: PhotoApiService,
+    private val unsplashApiService: UnsplashApiService,
     private val accessTokenProvider: AccessTokenProvider,
 ) : LoginRepository {
 
@@ -22,7 +22,7 @@ class LoginRepositoryImpl @Inject constructor(
      * @param code
      */
     override suspend fun getAccessToken(code: String): AccessToken =
-        photoApiService.userAuthorization(
+        unsplashApiService.userAuthorization(
             accessTokenProvider.clientId.toString(),
             accessTokenProvider.clientSecret.toString(),
             REDIRECT_URI,
@@ -34,7 +34,7 @@ class LoginRepositoryImpl @Inject constructor(
      * Получает данные пользователя (мой профиль)
      */
     override suspend fun getMe(): Me =
-        photoApiService.getMe()
+        unsplashApiService.getMe()
 
     /**
      * Проверяет наличие AccessToken

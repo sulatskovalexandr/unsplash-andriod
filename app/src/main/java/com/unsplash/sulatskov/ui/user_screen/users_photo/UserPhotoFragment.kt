@@ -10,6 +10,7 @@ import com.unsplash.sulatskov.Event
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.Messages
+import com.unsplash.sulatskov.common.fragmentAnim
 import com.unsplash.sulatskov.common.observeData
 import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const
@@ -75,7 +76,7 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
     }
 
     /**
-     * Переход на PhotoDetailslFragment с передачей аргументов
+     * Переход на PhotoDetailsFragment с передачей аргументов
      *
      * @param photoId
      * @param photoUrl
@@ -93,7 +94,11 @@ UserPhotoFragment : BaseFragment<UserPhotoViewModel, FragmentUserPhotoBinding>()
         bundle.putString(Const.PHOTO_URL_KEY, photoUrl)
         bundle.putString(Const.PHOTO_PROFILE_KEY, photoProfile)
         bundle.putString(Const.USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_profileFragment_to_photoDetailsFragment, bundle)
+        findNavController().navigate(
+            R.id.action_profileFragment_to_photoDetailsFragment,
+            bundle,
+            fragmentAnim()
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

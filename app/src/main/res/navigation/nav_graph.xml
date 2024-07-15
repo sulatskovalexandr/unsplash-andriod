@@ -38,9 +38,6 @@
         android:name="com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.PhotoDetailsFragment"
         android:label="PhotoDetailsFragment">
         <action
-            android:id="@+id/action_photoDetailsFragment_to_photoZoomFragment"
-            app:destination="@id/photoZoomFragment" />
-        <action
             android:id="@+id/action_photoDetailsFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
@@ -68,20 +65,8 @@
             android:id="@+id/action_profileFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_photoZoomFragment"
-            app:destination="@id/photoZoomFragment" />
-        <action
             android:id="@+id/action_userFragment_to_collectionDetailsFragment"
             app:destination="@id/collectionDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/photoZoomFragment"
-        android:name="com.unsplash.sulatskov.ui.photo_screen.photo_details_screen.photo_zoom_screen.PhotoZoomFragment"
-        android:label="fragment_photo_zoom"
-        tools:layout="@layout/fragment_photo_zoom">
-        <action
-            android:id="@+id/action_photoZoomFragment_to_photoDetailsFragment2"
-            app:destination="@id/photoDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"

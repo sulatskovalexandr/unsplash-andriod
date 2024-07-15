@@ -3,7 +3,7 @@ package com.unsplash.sulatskov.domain.model
 import com.unsplash.sulatskov.domain.model.dto.ProfileImage
 import com.google.gson.annotations.SerializedName
 
-class User(
+data class User(
     val id: String? = "",
     @SerializedName("username")
     val userName: String? = "",
@@ -17,10 +17,10 @@ class User(
     @SerializedName("total_collections")
     val totalCollections: Int? = 0,
     @SerializedName("profile_image")
-    val profileImage: ProfileImage
+    val profileImage: ProfileImage?
 )
 
-class AccessToken(
+data class AccessToken(
     @SerializedName("access_token")
     val accessToken: String = "",
     @SerializedName("token_type")
@@ -30,7 +30,7 @@ class AccessToken(
     val createAt: Int? = 0
 )
 
-class Me(
+data class Me(
     val id: String = "",
     @SerializedName("username")
     val userName: String = "",

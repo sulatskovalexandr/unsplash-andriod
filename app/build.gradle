@@ -6,13 +6,13 @@ plugins {
 
 android {
     namespace 'com.unsplash.sulatskov'
-    compileSdk 33
+    compileSdk 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.unsplash.sulatskov"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -94,6 +94,8 @@ dependencies {
     implementation 'com.jsibbold:zoomage:1.3.1'
     implementation 'io.github.aghajari:ZoomHelper:1.1.0'
 
+    implementation 'com.github.stfalcon-studio:StfalconImageViewer:v1.0.1'
+
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
 
@@ -112,5 +114,4 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.5.0")
     testImplementation("androidx.test:runner:1.5.2")
     testImplementation("androidx.test:rules:1.5.0")
-
 }

@@ -30,9 +30,9 @@ class PhotoAdapter(private val clickListener: PhotoClickListener) :
     }
 
     fun addPhoto(photo: List<Photo>) {
+        val i = listPhotos.size - 1
         listPhotos.addAll(photo)
-        notifyItemInserted(listPhotos.size - 1)
-
+        notifyItemRangeInserted(i, photo.size)
     }
 
     fun clear() {
@@ -88,10 +88,7 @@ class PhotoHolder(
         binding.fpItemImage.setOnClickListener {
             clickListener.onPhotoClick(photo.id, photo.urls, photo.profileImage, photo.userName)
         }
-        binding.fpItemProfileImage.setOnClickListener {
-            clickListener.onProfileImageClick(photo.profileImage, photo.userName)
-        }
-        binding.fpItemName.setOnClickListener {
+        binding.fpItemUser.setOnClickListener {
             clickListener.onProfileImageClick(photo.profileImage, photo.userName)
         }
     }

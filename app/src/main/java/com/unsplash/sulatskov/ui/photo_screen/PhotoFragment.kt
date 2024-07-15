@@ -13,6 +13,7 @@ import com.unsplash.sulatskov.MainActivity
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.Messages
+import com.unsplash.sulatskov.common.fragmentAnim
 import com.unsplash.sulatskov.common.observeData
 import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const
@@ -96,7 +97,11 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         bundle.putString(PHOTO_URL_KEY, photoUrl)
         bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
         bundle.putString(USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_photoFragment_to_photoDetailsFragment, bundle)
+        findNavController().navigate(
+            R.id.action_photoFragment_to_photoDetailsFragment,
+            bundle,
+            fragmentAnim()
+        )
     }
 
     /**
@@ -109,7 +114,10 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         val bundle = Bundle()
         bundle.putString(PHOTO_PROFILE_KEY, photoProfile)
         bundle.putString(USER_NAME_KEY, userName)
-        findNavController().navigate(R.id.action_photoFragment_to_userFragment, bundle)
+        findNavController().navigate(
+            R.id.action_photoFragment_to_userFragment, bundle,
+            fragmentAnim()
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,16 +127,11 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         val layoutManager = LinearLayoutManager(requireContext())
         binding.fpRvListPhotos.layoutManager = layoutManager
 
-        /**
-         * Прогрузка следующей страницы в списке фото по достижении 5-го элемента страницы
-         */
         binding.fpRvListPhotos.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val lastPosition = layoutManager.findLastVisibleItemPosition()
-                Log.e("werwerw", "$lastPosition x ${adapter.itemCount}")
                 if (lastPosition > (adapter.itemCount - 5)) {
-                    Log.e("werwerw", "load")
                     viewModel.onLoadPhotos()
                     (binding.fpRvListPhotos.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
                         false

@@ -6,30 +6,39 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/margin_16">
 
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/fcItemProfileImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="@dimen/margin_8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/Circular"
-        app:strokeColor="@android:color/transparent"
-        tools:src="@color/black" />
-
-    <TextView
-        android:id="@+id/fcItemUserName"
+    <LinearLayout
+        android:id="@+id/fcItemUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_10"
-        android:layout_marginTop="@dimen/margin_10"
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/text_size_name"
-        app:layout_constraintStart_toEndOf="@id/fcItemProfileImage"
-        app:layout_constraintTop_toTopOf="@id/fcItemProfileImage"
-        tools:text="Collection Name" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fcItemProfileImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/Circular"
+            app:strokeColor="@android:color/transparent"
+            tools:src="@color/black" />
+
+        <TextView
+            android:id="@+id/fcItemUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="17dp"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_name"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/fcItemProfileImage"
+            app:layout_constraintTop_toTopOf="@id/fcItemProfileImage"
+            tools:text="Collection Name" />
+    </LinearLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/fcItemImage"
@@ -41,7 +50,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/image1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fcItemProfileImage"
+        app:layout_constraintTop_toBottomOf="@id/fcItemUser"
         app:shapeAppearanceOverlay="@style/RoundCorner"
         android:background="@color/image_bg"/>
 
@@ -55,7 +64,6 @@
         android:background="@drawable/round_corner_collection_name_bg"
         android:textStyle="bold"
         android:paddingBottom="2dp"
-
         app:layout_constraintBottom_toBottomOf="@id/fcItemImage"
         app:layout_constraintStart_toStartOf="@id/fcItemImage"
         tools:text="@string/pf_text_photo"

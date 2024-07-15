@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 /**
  * Получение списка коллекций
- *
  */
 class GetCollectionUseCase @Inject constructor(
     private val collectionRepository: CollectionRepository

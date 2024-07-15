@@ -10,6 +10,7 @@ import com.unsplash.sulatskov.Event
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
 import com.unsplash.sulatskov.common.Messages
+import com.unsplash.sulatskov.common.fragmentAnim
 import com.unsplash.sulatskov.common.observeData
 import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const
@@ -19,7 +20,8 @@ import com.unsplash.sulatskov.ui.base.BaseFragment
 
 
 class UserCollectionFragment :
-    BaseFragment<UserCollectionViewModel, FragmentUserCollectionBinding>(), UserCollectionClickListener {
+    BaseFragment<UserCollectionViewModel, FragmentUserCollectionBinding>(),
+    UserCollectionClickListener {
 
     /**
      * Подписка на получение и обновление данных из UserPhotoViewModel
@@ -61,17 +63,19 @@ class UserCollectionFragment :
                     binding.fppShimmerFrameLayout.visibility = View.GONE
                     binding.fppShimmerFrameLayout.stopShimmer()
                 }
+
                 is Messages.ShowShimmer -> {
                     binding.fppShimmerFrameLayout.visibility = View.VISIBLE
                     binding.fppShimmerFrameLayout.startShimmer()
                 }
+
                 is Messages.NetworkIsDisconnected -> {
                     binding.fucDisconnected.visibility = View.VISIBLE
                 }
+
                 else -> {
                 }
             }
-
         }
     }
 
@@ -147,6 +151,10 @@ class UserCollectionFragment :
         val bundle = Bundle()
         bundle.putString(Const.COLLECTION_ID, collectionId)
         bundle.putString(Const.TITLE, title)
-        findNavController().navigate(R.id.action_userFragment_to_collectionDetailsFragment, bundle)
+        findNavController().navigate(
+            R.id.action_userFragment_to_collectionDetailsFragment,
+            bundle,
+            fragmentAnim()
+        )
     }
 }
