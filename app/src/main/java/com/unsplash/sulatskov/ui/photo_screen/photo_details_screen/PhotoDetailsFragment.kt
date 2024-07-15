@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.view.*
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -19,7 +19,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stfalcon.imageviewer.StfalconImageViewer
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
-import com.unsplash.sulatskov.common.*
+import com.unsplash.sulatskov.common.ManageStorageContract
+import com.unsplash.sulatskov.common.Messages
+import com.unsplash.sulatskov.common.formated
+import com.unsplash.sulatskov.common.fragmentAnim
+import com.unsplash.sulatskov.common.isPhotoExists
+import com.unsplash.sulatskov.common.observeData
+import com.unsplash.sulatskov.common.snackbar
 import com.unsplash.sulatskov.constants.Const.PHOTO_ID_KEY
 import com.unsplash.sulatskov.constants.Const.PHOTO_PROFILE_KEY
 import com.unsplash.sulatskov.constants.Const.PHOTO_URL_KEY
@@ -27,6 +33,7 @@ import com.unsplash.sulatskov.constants.Const.USER_NAME_KEY
 import com.unsplash.sulatskov.databinding.FragmentPhotoDetailsBinding
 import com.unsplash.sulatskov.photo_details_screen.presentation.photo_details_screen.PhotoDetailsAdapter
 import com.unsplash.sulatskov.ui.base.BaseFragment
+import com.unsplash.sulatskov.ui.search_screen.SearchFragment
 
 
 class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDetailsBinding>() {
@@ -38,7 +45,14 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
     override val viewModelClass: Class<PhotoDetailsViewModel>
         get() = PhotoDetailsViewModel::class.java
 
-    private val adapter = PhotoDetailsAdapter()
+    private val adapter = PhotoDetailsAdapter(
+        onTagClick = { tagTitle ->
+            findNavController().navigate(
+                resId = R.id.action_photoDetailsFragment_to_searchFragment,
+                args = SearchFragment.createArgs(tagTitle)
+            )
+        }
+    )
 
     override fun createViewBinding(): FragmentPhotoDetailsBinding =
         FragmentPhotoDetailsBinding.inflate(layoutInflater)
@@ -105,6 +119,7 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
                 binding.fpdLocation.text = " ${photoDetails.location.city}"
             } else {
                 binding.fpdLocation.visibility = View.GONE
+                binding.fpdLocation.movementMethod
             }
 
             photoDetails.tags?.let {
@@ -164,6 +179,7 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
                     binding.fpdClContainer.visibility = View.GONE
                     binding.fdpDisconnected.visibility = View.VISIBLE
                 }
+
                 Messages.AlreadyDownloaded ->
                     showDownloadDialog()
 

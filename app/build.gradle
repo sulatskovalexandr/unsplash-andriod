@@ -35,8 +35,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_18
-        targetCompatibility JavaVersion.VERSION_18
+        sourceCompatibility JavaVersion.VERSION_19
+        targetCompatibility JavaVersion.VERSION_19
     }
     kotlinOptions {
         jvmTarget = '19'
@@ -119,6 +119,6 @@ dependencies {
     testImplementation("androidx.test:rules:1.5.0")
 
     def paging_version = "3.2.1"
-    implementation "androidx.paging:paging-common:$paging_version"
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-common-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 }

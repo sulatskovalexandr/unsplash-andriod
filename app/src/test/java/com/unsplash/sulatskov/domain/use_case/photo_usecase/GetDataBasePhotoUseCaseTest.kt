@@ -2,6 +2,7 @@ package com.unsplash.sulatskov.domain.use_case.photo_usecase
 
 import com.unsplash.sulatskov.domain.model.Photo
 import com.unsplash.sulatskov.domain.repository.PhotoRepository
+import com.unsplash.sulatskov.ui.photo_screen.OrderListPhoto
 import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
 import io.mockk.MockKAnnotations
@@ -18,6 +19,7 @@ class GetDataBasePhotoUseCaseTest {
     @RelaxedMockK
     private lateinit var photoRepository: PhotoRepository
     private lateinit var useCase: GetDataBasePhotoUseCase
+    private  var photoParam:ListPhotoParam  = ListPhotoParam(1,OrderListPhoto.LATEST)
 
     @Before
     fun beforeTest() {
@@ -28,12 +30,11 @@ class GetDataBasePhotoUseCaseTest {
     @Test
     fun `success test GetDataBasePhotoUseCaseTest`() = runTest {
         coEvery {
-            photoRepository.getDataBaseListPhoto(1)
+            photoRepository.getDataBaseListPhoto(1, OrderListPhoto.LATEST.value)
         } coAnswers {
             listOf(Photo(id = "", userName = "", profileImage = "", urls = "", createdTime = 0))
         }
-
-        val testResult = useCase(1).isSuccess
+        val testResult = useCase(1, photoParam.orderBy.value).isSuccess
 
         withClue("testResult should be true") {
             testResult shouldBe true

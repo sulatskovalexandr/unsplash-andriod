@@ -122,8 +122,8 @@ class SearchCollectionFragment :
 
     override fun onCollectionClick(collectionId: String, title: String) {
         val bundle = Bundle()
-        bundle.putString(Const.COLLECTION_ID, collectionId)
-        bundle.putString(Const.TITLE, title)
+        bundle.putString(Const.COLLECTION_ID_KEY, collectionId)
+        bundle.putString(Const.TITLE_KEY, title)
         findNavController().navigate(
             R.id.action_searchFragment_to_collectionDetailsFragment, bundle,
             fragmentAnim()

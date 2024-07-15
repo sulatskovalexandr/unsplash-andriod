@@ -6,10 +6,8 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.unsplash.sulatskov.MainActivity
 import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.appComponent
-import com.unsplash.sulatskov.common.showKeyboard
 import com.unsplash.sulatskov.common.textFlow
 import com.unsplash.sulatskov.databinding.FragmentSearchBinding
 import com.unsplash.sulatskov.ui.base.BaseFragment
@@ -30,12 +28,15 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         appComponent.inject(this)
     }
 
+    private val title: String?
+        get() = arguments?.getString(TAG_TITLE_KEY)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(binding.fsEditText.requestFocus()){
+        if (binding.fsEditText.requestFocus()) {
             binding.fsCancelButton.visibility = View.VISIBLE
-        }else
+        } else
             binding.fsCancelButton.visibility = View.GONE
 
         binding.fsToolBar.setNavigationOnClickListener {
@@ -60,14 +61,24 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
             binding.fsCancelButton.isGone
         }
 
-        if(binding.fsEditText.isFocused){
+        if (binding.fsEditText.isFocused) {
             binding.fsCancelButton.isVisible
-        }else
+        } else
             binding.fsCancelButton.isGone
 
         binding.fsViewPager.adapter = searchPagerAdapter
         binding.fsTabLayout.getTabAt(0)?.text = getString(R.string.pf_text_photo)
         binding.fsTabLayout.getTabAt(1)?.text = getString(R.string.pf_text_collection)
 //        binding.fsTabLayout.getTabAt(2)?.text = getString(R.string.fs_text_users)
+        if (title != null) {
+            binding.fsEditText.setText(title)
+        }
+    }
+
+    companion object {
+        const val TAG_TITLE_KEY = "TAG_TITLE_KEY"
+        fun createArgs(tagTitle: String) = Bundle().apply {
+            putString(TAG_TITLE_KEY, tagTitle)
+        }
     }
 }

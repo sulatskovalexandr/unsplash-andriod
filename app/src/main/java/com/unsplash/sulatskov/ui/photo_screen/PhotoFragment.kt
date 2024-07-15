@@ -34,7 +34,7 @@ class PhotoFragment : BaseFragment<PhotoViewModel, FragmentPhotoBinding>(), Phot
         get() = PhotoViewModel::class.java
 
     private val adapter = PhotoAdapter(this) // Передача адаптера
-    var checkedItemId = 0
+    private var checkedItemId = 0
 
     override fun createViewBinding(): FragmentPhotoBinding =
         FragmentPhotoBinding.inflate(layoutInflater)

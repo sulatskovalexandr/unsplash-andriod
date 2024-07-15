@@ -8,19 +8,21 @@ import com.unsplash.sulatskov.R
 import com.unsplash.sulatskov.databinding.ItemTagsBinding
 import com.unsplash.sulatskov.domain.model.Tag
 
-class PhotoDetailsAdapter() : RecyclerView.Adapter<PhotoDetailsHolder>() {
+class PhotoDetailsAdapter(
+    private val onTagClick: (String) -> Unit
+) : RecyclerView.Adapter<PhotoDetailsHolder>() {
     private val tagList = mutableListOf<Tag>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoDetailsHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_tags, parent, false)
-        return PhotoDetailsHolder(view)
+        return PhotoDetailsHolder(onTagClick, view)
     }
 
     override fun getItemCount(): Int = tagList.size
 
     override fun onBindViewHolder(holder: PhotoDetailsHolder, position: Int) {
-        holder.bindTeg(tagList[position])
+        holder.bindTag(tagList[position])
     }
 
     fun addTags(tag: List<Tag>) {
@@ -30,13 +32,17 @@ class PhotoDetailsAdapter() : RecyclerView.Adapter<PhotoDetailsHolder>() {
 }
 
 class PhotoDetailsHolder(
+    private val onTagClick: (String) -> Unit,
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = ItemTagsBinding.bind(itemView)
 
-    fun bindTeg(tag: Tag) = with(binding) {
+    fun bindTag(tag: Tag) = with(binding) {
         fpdItemTag.text = tag.title
+
+        binding.fpdItemTag.setOnClickListener {
+            onTagClick(tag.title.toString())
+        }
     }
 }
-
