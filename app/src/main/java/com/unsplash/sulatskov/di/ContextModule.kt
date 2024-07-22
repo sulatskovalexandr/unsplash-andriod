@@ -6,12 +6,9 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-abstract class ContextModule {  // to allow abstract method make module abstract
-
-    //@Binds works on an abstract method
+abstract class ContextModule {
 
     @Singleton
-    @Binds   // @Binds, binds the Application instance to Context
-    abstract fun context(appInstance: Context): Context //just return the super-type you need
-
+    @Binds
+    abstract fun context(appInstance: Context): Context
 }

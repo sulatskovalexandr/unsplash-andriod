@@ -13,7 +13,8 @@ import com.unsplash.sulatskov.ui.search_screen.search_user.SearchUserFragment
 
 class SearchPagerAdapter(val fm: FragmentManager, val context: Context) : FragmentPagerAdapter(fm) {
     private val fragmentList: List<Fragment> =
-        listOf(SearchPhotoFragment(), SearchCollectionFragment(),// SearchUserFragment())
+        listOf(
+            SearchPhotoFragment(), SearchCollectionFragment(),
         )
     private val fragmentTags = SparseArray<String>()
 
@@ -22,14 +23,6 @@ class SearchPagerAdapter(val fm: FragmentManager, val context: Context) : Fragme
 
     override fun getItem(position: Int): Fragment =
         fragmentList[position]
-//        when (position) {
-//            0 -> SearchPhotoFragment()
-//            1 -> SearchCollectionFragment()
-//            2 -> SearchUserFragment()
-//            else -> {
-//                PhotoFragment()
-//            }
-//        }
 
     override fun getCount(): Int = fragmentList.size
 

@@ -22,7 +22,6 @@ class SearchCollectionFragment :
     BaseFragment<SearchCollectionViewModel, FragmentSearchCollectionBinding>(),
     CollectionClickListener {
 
-    //    private val adapter = SearchCollectionAdapter(this)
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         PagingSearchCollectionAdapter(this)
     }
@@ -35,33 +34,6 @@ class SearchCollectionFragment :
     override fun inject() {
         appComponent.inject(this)
     }
-
-//    override fun observeViewModel() {
-//        observeData(viewModel.searchCollectionList) { event ->
-//            when (event) {
-//                is Event.Loading -> onProgress()
-//                is Event.Success -> onSuccess(event.data)
-//                is Event.Error -> onError()
-//            }
-//        }
-//        observeData(viewModel.messageFlow) { message ->
-//            when (message) {
-//                is Messages.NetworkIsDisconnected ->
-//                    snackbar(getString(R.string.network_is_disconnected_text))
-//                is Messages.ShowShimmer -> {
-//                    binding.fscShimmerFrameLayout.startShimmer()
-//                    binding.fscShimmerFrameLayout.visibility = View.VISIBLE
-//                }
-//                is Messages.HideShimmer -> {
-//                    binding.fscShimmerFrameLayout.stopShimmer()
-//                    binding.fscShimmerFrameLayout.visibility = View.GONE
-//                }
-//                else -> {
-//                }
-//            }
-//            viewModel.clearMessage()
-//        }
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,36 +56,7 @@ class SearchCollectionFragment :
             binding.fpcRvListCollection.isVisible = state.refresh != LoadState.Loading
             binding.fscShimmerFrameLayout.isVisible = state.refresh == LoadState.Loading
         }
-
-//        binding.fpcRvListCollection.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                val lastPosition = layoutManager.findLastVisibleItemPosition()
-//                if (lastPosition > (adapter.itemCount - 5)) {
-//                    viewModel.onLoadSearchCollection()
-//                    (binding.fpcRvListCollection.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
-//                        false
-//                }
-//                super.onScrolled(recyclerView, dx, dy)
-//            }
-//        })
     }
-
-//    private fun onProgress() {}
-//
-//    private fun onSuccess(data: List<CollectionDto>) {
-//        try {
-//            binding.fpcRvListCollection.visibility = View.VISIBLE
-//            adapter.setCollection(data)
-//
-//        } catch (t: Throwable) {
-//            t.printStackTrace()
-//        }
-//    }
-//
-//    private fun onError() {
-//        snackbar(getString(R.string.network_is_disconnected_text))
-//    }
 
     fun onQuery(query: String) {
         adapter.refresh()

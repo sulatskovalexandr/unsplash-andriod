@@ -44,7 +44,6 @@ class PagingCollectionHolder(itemView: View, private val clickListener: Collecti
                     .override(2, 2)
             )
             .error(R.drawable.error_circle_image)
-//            .placeholder(itemView.context.getProgressBar())
             .into(fcItemImage)
 
         Glide.with(itemView)
@@ -90,5 +89,3 @@ private object CollectionDiffItemCallback : DiffUtil.ItemCallback<CollectionDto>
                 oldItem.title == newItem.title
     }
 }
-
-

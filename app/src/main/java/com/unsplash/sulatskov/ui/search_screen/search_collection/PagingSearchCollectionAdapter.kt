@@ -25,17 +25,6 @@ class PagingSearchCollectionAdapter(private val clickListener: CollectionClickLi
     override fun onBindViewHolder(holder: CollectionHolder, position: Int) {
         holder.bindCollection(getItem(position))
     }
-
-//    fun setCollection(collectionDto: List<CollectionDto>) {
-//        listSearchCollection.clear()
-//        listSearchCollection.addAll(collectionDto)
-//        notifyDataSetChanged()
-//    }
-
-//    fun clear() {
-//        listSearchCollection.clear()
-//        notifyDataSetChanged()
-//    }
 }
 
 class CollectionHolder(itemView: View, private val clickListener: CollectionClickListener) :
@@ -56,7 +45,6 @@ class CollectionHolder(itemView: View, private val clickListener: CollectionClic
                     .override(2, 2)
             )
             .error(R.drawable.error_circle_image)
-//            .placeholder(itemView.context.getProgressBar())
             .into(fcItemImage)
 
         Glide.with(itemView)

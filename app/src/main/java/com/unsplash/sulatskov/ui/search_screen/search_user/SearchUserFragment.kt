@@ -82,6 +82,4 @@ class SearchUserFragment : BaseFragment<SearchUserViewModel, FragmentSearchUserB
         bundle.putString(PHOTO_URL_KEY, photoId)
         bundle.putString(PHOTO_PROFILE_KEY, photoId)
     }
-
-
 }

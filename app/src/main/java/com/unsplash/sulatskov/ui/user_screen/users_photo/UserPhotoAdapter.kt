@@ -59,7 +59,6 @@ class UserPhotoHolder(itemView: View, var listener: ClickListener) :
                     .override(2, 2)
             )
             .error(R.drawable.error_circle_image)
-            .placeholder(itemView.context.getProgressBar())
             .into(fppItemImage)
 
         binding.fppItemImage.setOnClickListener {

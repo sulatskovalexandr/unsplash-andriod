@@ -74,16 +74,12 @@ class PhotoHolder(
                     .override(2, 2)
             )
             .error(R.drawable.error_circle_image)
-            .placeholder(itemView.context.getProgressBar())
             .into(fpItemImage)
 
         ZoomHelper.addZoomableView(binding.fpItemImage)
 
         fpItemName.text = photo.name
 
-//        if (photo.user?.location != null) {
-//            itemLocation.text = photo.user.location
-//        } else
         fpItemLocation.visibility = View.GONE
         binding.fpItemImage.setOnClickListener {
             clickListener.onPhotoClick(photo.id, photo.urls, photo.profileImage, photo.userName)
@@ -99,5 +95,3 @@ interface PhotoClickListener {
 
     fun onProfileImageClick(photoProfile: String, userName: String)
 }
-
-

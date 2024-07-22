@@ -59,7 +59,6 @@ class UserCollectionHolder(itemView: View, var clicklistener: UserCollectionClic
                         .override(2, 2)
                 )
                 .error(R.drawable.error_circle_image)
-//                .placeholder(itemView.context.getProgressBar())
                 .into(fucItemImage)
 
             binding.fucCollectionName.text = userCollectionDto.title

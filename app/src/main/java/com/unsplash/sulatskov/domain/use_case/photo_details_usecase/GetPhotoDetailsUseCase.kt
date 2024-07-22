@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class GetPhotoDetailsUseCase @Inject constructor(private val photoDetailsRepository: PhotoDetailsRepository) :
     UseCase<String, PhotoDetails?>(Dispatchers.IO) {
+
     override suspend fun execute(photoId: String): PhotoDetails? =
         photoDetailsRepository.getPhotoDetail(photoId)
 }

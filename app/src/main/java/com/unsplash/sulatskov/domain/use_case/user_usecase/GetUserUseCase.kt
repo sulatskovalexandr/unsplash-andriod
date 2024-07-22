@@ -11,5 +11,4 @@ class GetUserUseCase @Inject constructor(private val userRepository: UserReposit
 
     override suspend fun execute(userName: String): User =
         userRepository.getUser(userName)
-
 }

@@ -28,61 +28,9 @@ class SearchCollectionViewModel @Inject constructor(private val searchRepository
         )
     }.flow.cachedIn(viewModelScope)
 
-
-//    private val _searchCollectionList =
-//        MutableStateFlow<Event<List<CollectionDto>>>(Event.loading())
-//    val searchCollectionList: StateFlow<Event<List<CollectionDto>>> =
-//        _searchCollectionList.asStateFlow()
-//
-//    private val _messageFlow = MutableStateFlow<Messages?>(null)
-//    val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
-//
-//    private var param = SearchCollectionParam("", 1)
-//
-//    private var isLoading = false
-//    private var isSuccess = false
-//
-//    override fun onViewCreated() {
-//        if (param.page == 1) {
-//            loadCollection()
-//            _messageFlow.value = Messages.ShowShimmer
-//        } else
-//            _messageFlow.value = Messages.HideShimmer
-//    }
-//
-//    private fun loadCollection() {
-//        isLoading = true
-//        viewModelScope.launch {
-//            _searchCollectionList.value = Event.loading()
-//            getSearchCollectionUseCase.invoke(param)
-//                .onSuccess {
-//                    isSuccess = true
-//                    isLoading = it.size != 10
-//                    _searchCollectionList.value = Event.success(it)
-//                    _messageFlow.value = Messages.HideShimmer
-//                    param = param.copy(page = param.page + 1)
-//                }.onFailure {
-//                    delay(1000)
-//                    isLoading = false
-//                    _messageFlow.value = Messages.HideShimmer
-//                    _messageFlow.value = Messages.NetworkIsDisconnected
-//                }
-//        }
-//    }
-//
-//    fun onLoadSearchCollection() {
-//        if (!isLoading && isSuccess) {
-//            loadCollection()
-//        }
-//    }
-
     fun setArgs(query: String) {
         if (param.query != query) {
             param = param.copy(query = query)
         }
     }
-//
-//    fun clearMessage() {
-//        _messageFlow.value = null
-//    }
 }

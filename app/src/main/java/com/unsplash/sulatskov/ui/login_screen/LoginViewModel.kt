@@ -18,11 +18,6 @@ class LoginViewModel @Inject constructor(
     private val accessTokenProvider: AccessTokenProvider
 ) : BaseViewModel() {
 
-//    private var code: String = ""
-//    override fun onViewCreated() {
-//        login(code)
-//    }
-
     private val _token = MutableStateFlow<Event<String>>(Event.loading())
     val token: StateFlow<Event<String>> = _token.asStateFlow()
 
@@ -38,12 +33,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-//    fun setCode(code: String) {
-//        this.code = code
-//    }
-
     fun saveToken(token: String) {
         accessTokenProvider.accessToken = token
     }
-
 }

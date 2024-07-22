@@ -8,13 +8,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val getSearchPhotoUseCase: GetSearchPhotoUseCase,
 ) : BaseViewModel() {
 
     private val _queryFLow = MutableStateFlow("")
     val queryFlow: StateFlow<String> = _queryFLow.asStateFlow()
-
-    init {
-    }
 
 }
