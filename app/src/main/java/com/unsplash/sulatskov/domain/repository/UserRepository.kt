@@ -15,6 +15,4 @@ UserRepository {
         userName: String,
         page: Int
     ): List<CollectionDto>
-
-
 }

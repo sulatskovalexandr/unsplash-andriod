@@ -44,29 +44,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onResume() {
-//        supportFragmentManager.registerFragmentLifecycleCallbacks(object :
-//            FragmentManager.FragmentLifecycleCallbacks() {
-//
-//            override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
-//                when (f) {
-//                    is PhotoZoomFragment ->
-//                        hideNavBar()
-//                }
-//                super.onFragmentStarted(fm, f)
-//            }
-//
-//            override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
-//                super.onFragmentStopped(fm, f)
-//                when (f) {
-//                    is PhotoZoomFragment ->
-//                        visibleNavBar()
-//                }
-//            }
-//        }, true)
-//        super.onResume()
-//    }
-
     private fun replaceFragment(actionId: Int): Boolean {
         findNavController(R.id.maFragmentContainer).navigate(
             actionId,

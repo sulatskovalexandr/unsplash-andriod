@@ -34,11 +34,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (binding.fsEditText.requestFocus()) {
-            binding.fsCancelButton.visibility = View.VISIBLE
-        } else
-            binding.fsCancelButton.visibility = View.GONE
-
         binding.fsToolBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
@@ -55,16 +50,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         binding.fsDeleteButton.setOnClickListener {
             binding.fsEditText.text = null
         }
-        binding.fsCancelButton.setOnClickListener {
-            binding.fsEditText.text = null
-            binding.fsEditText.clearFocus()
-            binding.fsCancelButton.isGone
-        }
 
-        if (binding.fsEditText.isFocused) {
-            binding.fsCancelButton.isVisible
-        } else
-            binding.fsCancelButton.isGone
 
         binding.fsViewPager.adapter = searchPagerAdapter
         binding.fsTabLayout.getTabAt(0)?.text = getString(R.string.pf_text_photo)

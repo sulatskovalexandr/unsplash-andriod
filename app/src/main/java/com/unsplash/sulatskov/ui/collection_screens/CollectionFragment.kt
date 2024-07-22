@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 class CollectionFragment : BaseFragment<CollectionViewModel, FragmentCollectionBinding>(),
     CollectionClickListener {
 
-    //    private val adapter = CollectionAdapter(this)
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         PagingCollectionAdapter(this)
     }

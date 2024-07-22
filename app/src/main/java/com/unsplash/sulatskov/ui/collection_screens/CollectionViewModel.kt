@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CollectionViewModel @Inject constructor(
-    getCollectionUseCase: GetCollectionUseCase,
-    private val getDataBaseCollectionUseCase: GetDataBaseCollectionUseCase
+    getCollectionUseCase: GetCollectionUseCase
 ) : BaseViewModel() {
 
     val listCollection: Flow<PagingData<CollectionDto>> =

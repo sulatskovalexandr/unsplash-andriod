@@ -14,5 +14,6 @@ interface PhotoDetailsRepository {
     suspend fun getDownloadPhotoUrl(photoId: String): DownloadPhotoUrl
 
     suspend fun downloadPhoto(fileName: String, url: String): Long
+
     suspend fun getDataBasePhoto(userId: String): Photo
 }

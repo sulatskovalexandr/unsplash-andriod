@@ -28,5 +28,4 @@ class UserRepositoryImpl @Inject constructor(
      */
     override suspend fun getUser(userName: String): User =
         unsplashApiService.getUser(userName)
-
 }

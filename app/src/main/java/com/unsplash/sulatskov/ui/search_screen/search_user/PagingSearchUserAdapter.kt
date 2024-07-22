@@ -59,15 +59,6 @@ class SearchUserHolder(itemView: View, private val clickListener: SearchUserClic
                 user?.userName.toString()
             )
         }
-//        binding.suItemImage.setOnClickListener {
-//            clickListener.onPhotoClick()
-//        }
-//        binding.suItemImage2.setOnClickListener {
-//            clickListener.onPhotoClick()
-//        }
-//        binding.suItemImage3.setOnClickListener {
-//            clickListener.onPhotoClick()
-//        }
     }
 }
 

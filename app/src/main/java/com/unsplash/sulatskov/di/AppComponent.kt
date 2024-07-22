@@ -34,11 +34,6 @@ interface AppComponent {
         @BindsInstance
         fun repositoryModule(interfaceModule: RepositoryModule): Builder
 
-        // @BindsInstance   //this two  commented lines can be removed
-        // fun contextModule(contextModule: ContextModule): Builder
-
-        // why? because dagger already knows how to provide Context Module
-
         fun build(): AppComponent
     }
 

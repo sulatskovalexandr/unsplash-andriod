@@ -130,12 +130,9 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
 
             binding.fpdImage.setOnClickListener {
                 StfalconImageViewer.Builder(
-                    /* context = */
                     requireContext(),
-                    /* images = */
                     listOf(photoUrl),
                 )
-                /* imageLoader = */
                 { iv, url ->
                     Glide.with(iv)
                         .load(url)
@@ -175,7 +172,6 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
         observeData(viewModel.messageFlow) { message ->
             when (message) {
                 Messages.NetworkIsDisconnected -> {
-//                    snackbar(getString(R.string.network_is_disconnected_text))
                     binding.fpdClContainer.visibility = View.GONE
                     binding.fdpDisconnected.visibility = View.VISIBLE
                 }
@@ -244,7 +240,6 @@ class PhotoDetailsFragment : BaseFragment<PhotoDetailsViewModel, FragmentPhotoDe
             .with(view)
             .load(photoUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
-//            .override(2, 2)
             .into(binding.fpdImage)
 
         Glide

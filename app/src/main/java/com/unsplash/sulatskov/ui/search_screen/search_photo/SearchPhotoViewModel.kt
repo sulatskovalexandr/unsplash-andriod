@@ -40,68 +40,9 @@ class SearchPhotoViewModel @Inject constructor(private val searchRepository: Sea
         )
     }.flow.cachedIn(viewModelScope)
 
-    //    private val _searchPhotoList = MutableStateFlow<Event<List<PhotoDto>>>(Event.loading())
-//    val searchPhotosList: StateFlow<Event<List<PhotoDto>>> = _searchPhotoList.asStateFlow()
-//
-//    private val _messageFlow = MutableStateFlow<Messages?>(null)
-//    val messageFlow: StateFlow<Messages?> = _messageFlow.asStateFlow()
-
-
-    //    private var isLoading = false
-//    private var isSuccess = false
-//
-////    val pager = Pager(
-////        PagingConfig(10),
-////        param
-////    ) {
-////        SearchPhotoPagingSource()
-////    }
-//
-//    override fun onViewCreated() {
-//        if (param.page == 1) {
-////            pager.flow
-//            onLoadSearchPhotos()
-//            _messageFlow.value = Messages.ShowShimmer
-//        } else
-//            _messageFlow.value = Messages.HideShimmer
-//    }
-//
-//    private fun loadSearchPhoto() {
-//        isLoading = true
-//        viewModelScope.launch {
-//            _searchPhotoList.value = Event.loading()
-//            getSearchPhotoUseCase.invoke(param)
-//                .onSuccess {
-//                    isSuccess = true
-//                    isLoading = it.size != 10
-//                    _searchPhotoList.value = Event.success(it)
-//                    _messageFlow.value = Messages.HideShimmer
-//                    param = param.copy(page = param.page + 1)
-//                }.onFailure {
-//                    delay(1000)
-//                    isLoading = false
-//                    _messageFlow.value = Messages.HideShimmer
-//                    _messageFlow.value = Messages.NetworkIsDisconnected
-//                }
-//        }
-//    }
-//
-//    fun onLoadSearchPhotos() {
-//        if (!isLoading && isSuccess) {
-//            loadSearchPhoto()
-//            _messageFlow.value = Messages.HideShimmer
-//        }
-//    }
-//
     fun setArgs(query: String) {
         if (param.query != query) {
             param = param.copy(query = query)
-//            _messageFlow.value = Messages.ShowShimmer
-//            loadSearchPhoto()
         }
     }
-//
-//    fun clearMessage() {
-//        _messageFlow.value = null
-//    }
 }

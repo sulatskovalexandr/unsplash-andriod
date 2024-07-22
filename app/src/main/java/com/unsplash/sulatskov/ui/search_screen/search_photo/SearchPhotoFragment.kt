@@ -23,8 +23,6 @@ import kotlinx.coroutines.launch
 class SearchPhotoFragment : BaseFragment<SearchPhotoViewModel, FragmentSearchPhotoBinding>(),
     PhotoClickListener {
 
-//    private val adapter = SearchPhotoAdapter(this)
-//    }
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         PagingSearchPhotoAdapter(this)
     }
@@ -35,37 +33,6 @@ class SearchPhotoFragment : BaseFragment<SearchPhotoViewModel, FragmentSearchPho
         FragmentSearchPhotoBinding.inflate(layoutInflater)
 
     override fun inject() = appComponent.inject(this)
-
-//    override fun observeViewModel() {
-//        observeData(viewModel.searchPhotosList) { event ->
-//            when (event) {
-//                is Event.Loading -> onProgress()
-//                is Event.Success -> onSuccess(event.data)
-//                is Event.Error -> onError()
-//            }
-//        }
-//        observeData(viewModel.messageFlow) { message ->
-//            when (message) {
-//                is Messages.NetworkIsDisconnected ->
-//                    snackbar(getString(R.string.network_is_disconnected_text))
-//
-//                is Messages.ShowShimmer -> {
-//                    binding.fspShimmerFrameLayout.startShimmer()
-//                    binding.fspShimmerFrameLayout.visibility = View.VISIBLE
-//                }
-//
-//                is Messages.HideShimmer -> {
-//                    binding.fspShimmerFrameLayout.stopShimmer()
-//                    binding.fspShimmerFrameLayout.visibility = View.GONE
-//                }
-//
-//                else -> {
-//                }
-//            }
-//            viewModel.clearMessage()
-//        }
-//    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -89,43 +56,7 @@ class SearchPhotoFragment : BaseFragment<SearchPhotoViewModel, FragmentSearchPho
             binding.fspRvListPhoto.isVisible = state.refresh != LoadState.Loading
             binding.fspShimmerFrameLayout.isVisible = state.refresh == LoadState.Loading
         }
-
-//        binding.fspRvListPhoto.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                val lastPosition = layoutManager.findLastVisibleItemPosition()
-//                if (lastPosition > (adapter.itemCount - 5)) {
-//                    viewModel.onLoadSearchPhotos()
-//                    (binding.fspRvListPhoto.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
-//                        false
-//                }
-//                super.onScrolled(recyclerView, dx, dy)
-//            }
-//        })
     }
-
-//    private fun onProgress() {}
-//
-//    private fun onSuccess(data: List<PhotoDto>) {
-//        try {
-//            if (adapter.itemCount == 0) {
-//                adapter.setPhoto(data)
-//                binding.fspRvListPhoto.visibility = View.VISIBLE
-//                binding.fspRvListPhoto.visibility = View.GONE
-//            } else {
-//                adapter.addPhoto(data)
-//                binding.fspRvListPhoto.visibility = View.VISIBLE
-//            }
-//
-//        } catch (t: Throwable) {
-//            t.printStackTrace()
-//        }
-//    }
-
-//    private fun onError() {
-//
-//        snackbar(getString(R.string.network_is_disconnected_text))
-//    }
 
     fun onQuery(query: String) {
         adapter.refresh()
@@ -160,5 +91,3 @@ class SearchPhotoFragment : BaseFragment<SearchPhotoViewModel, FragmentSearchPho
         )
     }
 }
-
-

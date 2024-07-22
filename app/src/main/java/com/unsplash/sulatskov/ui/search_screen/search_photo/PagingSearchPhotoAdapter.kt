@@ -27,11 +27,6 @@ class PagingSearchPhotoAdapter(private val clickListener: PhotoClickListener) :
     override fun onBindViewHolder(holder: PagingSearchPhotoHolder, position: Int) {
         holder.bindPhoto(getItem(position))
     }
-
-//    fun clear() {
-//        listSearchPhoto.clear()
-//        notifyDataSetChanged()
-//    }
 }
 
 class PagingSearchPhotoHolder(
@@ -73,9 +68,6 @@ class PagingSearchPhotoHolder(
 
         fpItemName.text = photo?.user?.userName
 
-//        if (photo.user?.location != null) {
-//            itemLocation.text = photo.user.location
-//        } else
         fpItemLocation.visibility = View.GONE
 
         binding.fpItemImage.setOnClickListener {
@@ -105,6 +97,3 @@ object SearchPhotoDiffItemCallback : DiffUtil.ItemCallback<PhotoDto>() {
         oldItem.urls?.regular == newItem.urls?.regular
     }
 }
-
-
-
