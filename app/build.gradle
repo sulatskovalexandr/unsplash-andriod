@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.unsplash.sulatskov'
-    compileSdk 33
+    compileSdk 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
@@ -18,7 +18,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
 
         javaCompileOptions {
             annotationProcessorOptions {

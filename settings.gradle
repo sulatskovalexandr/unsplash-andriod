@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Unsplash 2.0"
 include ':app'
-include ':appcompose'
