@@ -27,6 +27,7 @@
                 android:background="@color/text_button"
                 android:textColor="@color/text_primary"
                 android:ems="10"
+                android:paddingEnd="16dp"
                 android:paddingStart="@dimen/margin_16"
                 android:hint="@string/fs_search_text"
                 android:inputType="textPersonName"
